@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、通过usb，android手机与笔记本互相共享网络两种需求的提出： 1、在众宇出差：笔记本通过网线上网，Android手机通过usb连接到笔记本。2、在黄岛跟线：手机通过CISCO anyconnect连到内网，笔记本通过USB共享网络。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows与Android混搭上网">
+<meta property="og:url" content="http://yoursite.com/2017/03/09/e9-80-9a-e8-bf-87usb-ef-bc-8candroid-e6-89-8b-e6-9c-ba-e4-b8-8e-e7-ac-94-e8-ae-b0-e6-9c-ac-e4-ba-92-e7-9b-b8-e5-85-b1-e4-ba-ab-e7-bd-91-e7-bb-9c/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、通过usb，android手机与笔记本互相共享网络两种需求的提出： 1、在众宇出差：笔记本通过网线上网，Android手机通过usb连接到笔记本。2、在黄岛跟线：手机通过CISCO anyconnect连到内网，笔记本通过USB共享网络。">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.884Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows与Android混搭上网">
+<meta name="twitter:description" content="一、通过usb，android手机与笔记本互相共享网络两种需求的提出： 1、在众宇出差：笔记本通过网线上网，Android手机通过usb连接到笔记本。2、在黄岛跟线：手机通过CISCO anyconnect连到内网，笔记本通过USB共享网络。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/09/e9-80-9a-e8-bf-87usb-ef-bc-8candroid-e6-89-8b-e6-9c-ba-e4-b8-8e-e7-ac-94-e8-ae-b0-e6-9c-ac-e4-ba-92-e7-9b-b8-e5-85-b1-e4-ba-ab-e7-bd-91-e7-bb-9c/"/>
+
+
+
+
+
+  <title>Windows与Android混搭上网 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/09/e9-80-9a-e8-bf-87usb-ef-bc-8candroid-e6-89-8b-e6-9c-ba-e4-b8-8e-e7-ac-94-e8-ae-b0-e6-9c-ac-e4-ba-92-e7-9b-b8-e5-85-b1-e4-ba-ab-e7-bd-91-e7-bb-9c/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Windows与Android混搭上网</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-09T13:04:20+08:00">
+                2017-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/Windows-10/" itemprop="url" rel="index">
+                    <span itemprop="name">Windows 10</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/Windows-10/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、通过usb，android手机与笔记本互相共享网络"><a href="#一、通过usb，android手机与笔记本互相共享网络" class="headerlink" title="一、通过usb，android手机与笔记本互相共享网络"></a>一、通过usb，android手机与笔记本互相共享网络</h3><p>两种需求的提出：</p>
+<p>1、在众宇出差：笔记本通过网线上网，Android手机通过usb连接到笔记本。<br>2、在黄岛跟线：手机通过CISCO anyconnect连到内网，笔记本通过USB共享网络。<a id="more"></a></p>
+<h4 id="需求一"><a href="#需求一" class="headerlink" title="需求一"></a>需求一</h4><p>Windows 10系统笔记本通过网线上网，Android手机通过热点连接到笔记本</p>
+<blockquote>
+<p>Windows 10系统：设置-&gt;移动热点-&gt;与其他设备共享我的Internet连接，打开开关。</p>
+<p>Android手机:关闭数据，打开wifi，连接笔记本上新建立的wifi热点。<br>问题：为啥我的魅族pro5与华硕笔记本通过usb连接，无法传输文件？</p>
+</blockquote>
+<p>无效方法一、设置-辅助功能-开发者选项-USB调试-打开<br>无效方法二、pro5那个type-c接口只有一面才能连接电脑的，你反着插试试<br>好用的方法：</p>
+<blockquote>
+<p>1、在设备管理中，删除没有正确识别的MTP设备，或直接更新设备驱动程序；</p>
+<p>2、不要选择自动更新（管用就不会出现问题了）选择 浏览计算机以查找驱动程序软件；</p>
+<p>3、关键步骤！不要试图浏览手机自带的驱动程序，没用的，选择 从计算机的设备驱动程序列表中选取；</p>
+<p>4、选择MTP USB 设备，成功啦！<br><a href="http://bbs.flyme.cn/thread-603922-1-1.html" target="_blank" rel="noopener">pro 5 Windows10无法连接手机到电脑</a></p>
+</blockquote>
+<h4 id="需求二"><a href="#需求二" class="headerlink" title="需求二"></a>需求二</h4><blockquote>
+<p>1、手机通过CISCO anyconnect连接到企业wifi hisense</p>
+<p>2、魅族Pro5手机打开USB调试：“关于手机”中，连续7次单击“版本号”打开开发者模式，“辅助功能-&gt;开发者选项”菜单，打开“USB调试”。</p>
+<p>3、手机通过USB连接笔记本，手机端：“便携式热点”中，打开“USB网络共享”。</p>
+<p>4、笔记本控制面板中的网络连接中，会多出一个NDIS设备，更新它的驱动，选手动查找，点从列表选取，取消显示兼容硬件，厂商选Microsoft，型号选远程NDIS兼容设备。<br>问题：手机开启ss，笔记本就无法正常上网了。</p>
+</blockquote>
+<h3 id="二、安卓手机-OTG-USB网卡-实现有线上网"><a href="#二、安卓手机-OTG-USB网卡-实现有线上网" class="headerlink" title="二、安卓手机+OTG+USB网卡 实现有线上网"></a>二、安卓手机+OTG+USB网卡 实现有线上网</h3><p>需求：想在公司，通过HUB，把一条网线分给电脑与手机使用，手机作为<strong>服务器，通过网络穿透提供服务</strong>。</p>
+<p><a href="http://www.cnblogs.com/eastgeneral/p/7293939.html" target="_blank" rel="noopener">android手机平板如何使用usb有线网卡</a></p>
+<p>买了小米USB百兆网卡，通过网线连接R7000路由器与魅族Pro5手机，网卡指示灯亮了，但手机与路由器互相看不到对方。是不是要研究一下网卡芯片，手机root后安装驱动才能用？</p>
+<p>经笔记本试用，这个小米USB百兆网卡在Windows 10下工作正常。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/08/e5-a6-82-e4-bd-95-e5-9c-a8-e5-85-8d-e8-b4-b9-e7-bd-91-e7-bb-9c-e7-8e-af-e5-a2-83-e4-b8-ad-e5-ae-9e-e7-8e-b0-e5-85-a8-e7-a8-8b-e5-8a-a0-e5-af-86-e4-b8-8a-e7-bd-91-ef-bc-9f/" rel="next" title="如何在免费网络环境中实现全程加密上网？">
+                <i class="fa fa-chevron-left"></i> 如何在免费网络环境中实现全程加密上网？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/11/e6-8a-8a-e7-be-8e-e5-9b-a2-e7-ad-89-e5-9b-bd-e4-ba-a7apk-e5-a1-9e-e5-85-a5island/" rel="prev" title="把美团等国产apk塞入island">
+                把美团等国产apk塞入island <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、通过usb，android手机与笔记本互相共享网络"><span class="nav-number">1.</span> <span class="nav-text">一、通过usb，android手机与笔记本互相共享网络</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需求一"><span class="nav-number">1.1.</span> <span class="nav-text">需求一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#需求二"><span class="nav-number">1.2.</span> <span class="nav-text">需求二</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、安卓手机-OTG-USB网卡-实现有线上网"><span class="nav-number">2.</span> <span class="nav-text">二、安卓手机+OTG+USB网卡 实现有线上网</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

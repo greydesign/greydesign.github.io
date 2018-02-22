@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="2015年底开始设计，2016年6月30日批量投产。是海信第一款ART5结构的电视产品。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2017-LED55NU8800U设计总结">
+<meta property="og:url" content="http://yoursite.com/2017/02/15/558800-e5-85-ac-e5-b7-ae-e8-ae-be-e8-ae-a1-e4-b8-8e-e5-88-86-e6-9e-90/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="2015年底开始设计，2016年6月30日批量投产。是海信第一款ART5结构的电视产品。">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.882Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2017-LED55NU8800U设计总结">
+<meta name="twitter:description" content="2015年底开始设计，2016年6月30日批量投产。是海信第一款ART5结构的电视产品。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/15/558800-e5-85-ac-e5-b7-ae-e8-ae-be-e8-ae-a1-e4-b8-8e-e5-88-86-e6-9e-90/"/>
+
+
+
+
+
+  <title>2017-LED55NU8800U设计总结 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/15/558800-e5-85-ac-e5-b7-ae-e8-ae-be-e8-ae-a1-e4-b8-8e-e5-88-86-e6-9e-90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2017-LED55NU8800U设计总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-15T04:53:28+08:00">
+                2017-02-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ASD/" itemprop="url" rel="index">
+                    <span itemprop="name">ASD</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ASD/Product/" itemprop="url" rel="index">
+                    <span itemprop="name">Product</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ASD/Product/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>2015年底开始设计，2016年6月30日批量投产。是海信第一款ART5结构的电视产品。</p>
+<a id="more"></a>
+<p>LED55NU8800U原型机批量日期：2017年月日。Art5结构，采用0.4毫米厚不锈钢网罩，整体压铸铝合金叉形底座，属于“璀璨”N8系列。</p>
+<p>产品总结大纲：产品信息；主要结构部件设计（底座、前壳、后壳、其他结构件、包装）；主要结构部件资源（采购、厂家）；设计理论、教训总结（公差计算等）</p>
+<h3 id="一、产品信息"><a href="#一、产品信息" class="headerlink" title="一、产品信息"></a>一、产品信息</h3><h4 id="1、LED55NU8800U（底座一体化包装）-中途原始BOM更改为壁挂一体化包装，新出底座一体化包装为派生机"><a href="#1、LED55NU8800U（底座一体化包装）-中途原始BOM更改为壁挂一体化包装，新出底座一体化包装为派生机" class="headerlink" title="1、LED55NU8800U（底座一体化包装）#中途原始BOM更改为壁挂一体化包装，新出底座一体化包装为派生机"></a>1、LED55NU8800U（底座一体化包装）#中途原始BOM更改为壁挂一体化包装，新出底座一体化包装为派生机</h4><pre>整机不带底座净重：21
+整机带底座净重：23
+
+整机尺寸（不含底座）：1230*47.2*727.5mm （整机厚度实际47.9）
+整机尺寸（含底座）：1230*262*801
+底座一体化包装整机带包装不带底座净重：29Kg
+底座一体化包装整机带包装带底座净重：31Kg
+底座一体化包装存放箱外尺寸：1478*155*891mm
+
+壁挂一体化包装整机带包装不带底座净重：Kg
+壁挂一体化包装整机带包装带底座净重：Kg
+壁挂一体化包装存放箱外尺寸：1378*155*891mm
+
+壁挂支架：
+型号：LG400010
+净重：1.1Kg
+BOM：5TLG031GCN0B-0120 Z.挂架.LG400010.B0.中国
+带包装毛重：1.5Kg
+壁挂包装箱内尺寸：mm
+壁挂包装箱外尺寸：mm
+
+底座：
+型号：LZ550000HG
+净重：2Kg
+BOM：5TLZ110LCN0V-0120 版本 1 Z.底座.LZ550000HG.VL1.中国
+带包装毛重：Kg
+尺寸：881.5*262.5*248mm
+壁挂包装箱内尺寸：mm
+壁挂包装箱外尺寸：mm
+</pre>
+
+<h4 id="2、LED55NU8800U（壁挂一体化包装）"><a href="#2、LED55NU8800U（壁挂一体化包装）" class="headerlink" title="2、LED55NU8800U（壁挂一体化包装）"></a>2、LED55NU8800U（壁挂一体化包装）</h4><h4 id="3、HE55N8700UWTS（底座一体化包装）"><a href="#3、HE55N8700UWTS（底座一体化包装）" class="headerlink" title="3、HE55N8700UWTS（底座一体化包装）"></a>3、HE55N8700UWTS（底座一体化包装）</h4><h3 id="二、主要结构部件"><a href="#二、主要结构部件" class="headerlink" title="二、主要结构部件"></a>二、主要结构部件</h3><h4 id="1、底座"><a href="#1、底座" class="headerlink" title="1、底座"></a>1、底座</h4><!--more-->
+<h5 id="1）底座单独出售信息，55N8底座包装信息："><a href="#1）底座单独出售信息，55N8底座包装信息：" class="headerlink" title="1）底座单独出售信息，55N8底座包装信息："></a>1）底座单独出售信息，55N8底座包装信息：</h5><pre>包装件毛重：3.6kg（=箱子1.3+底座2+衬垫0.14+0.15）
+内尺寸：936*327*119
+外尺寸：954*342*146
+堆码层数：17（层）
+颜色：浅玫瑰金
+商品流通码：6942147435878
+</pre>
+
+<h5 id="2）底座铝合金材料："><a href="#2）底座铝合金材料：" class="headerlink" title="2）底座铝合金材料："></a>2）底座铝合金材料：</h5><blockquote>
+<p>ADC12，属于日本标准，详见百度百科词条ADC12。</p>
+</blockquote>
+<h5 id="3）整机左右倾斜标准"><a href="#3）整机左右倾斜标准" class="headerlink" title="3）整机左右倾斜标准"></a>3）整机左右倾斜标准</h5><pre>55:3.5毫米
+65:4毫米
+</pre>
+
+<h4 id="2、前壳组件（众宇出差）"><a href="#2、前壳组件（众宇出差）" class="headerlink" title="2、前壳组件（众宇出差）"></a>2、前壳组件（众宇出差）</h4><pre>3月7日：壁挂一体包装EPS更新模型发海景；8700加遮光胶带；0517支架改模草稿，无法解决库存4000套问题；
+3月8日：通知信天游胡工加8700遮光胶带，海信商标颜色错；310盖板厚维12号送样，不抛光，需要商工寄色板；钢网翻遍角度不良，无来料检具，无组装检具，无两端小检具；8700型材没加工完毕。
+
+强调一下不锈钢网罩的颜色：
+8800电铸商标颜色为浅玫瑰金，网罩为渐变色。涉及的物料号：
+210837-0120 LED55NU8800U前壳组件 RSAG8.180.0241
+1177720 浅玫瑰金海信商标 RSAG8.809.0595
+1176222 浅玫瑰金ULED商标 RSAG8.809.0594
+
+8700电铸商标颜色为亮银色，网罩为色板的黑色。涉及的物料号：
+214023-0120 HE55N8700UWTS前壳组件 RSAG8.180.0287
+ 亮银色海信商标 RSAG8.809.0595
+ 亮银色ULED商标 RSAG8.809.0594
+
+304不锈钢硬度（1/2 2/2 3/4 4/4）H四个等级，常用的为1/2、3/4硬度，其中1/2大约对应300洛氏硬度，4/4为最硬的304不锈钢材料。
+</pre>
+
+<h4 id="三、开发节点"><a href="#三、开发节点" class="headerlink" title="三、开发节点"></a>三、开发节点</h4><h5 id="1、LED55NU8800U开发计划"><a href="#1、LED55NU8800U开发计划" class="headerlink" title="1、LED55NU8800U开发计划"></a>1、LED55NU8800U开发计划</h5><pre>2017年2月11日：（元宵节）第一个30台 #黄岛试产等待耗时8小时（项目经理要求8点到位，延误到下午4点整机上线）（王胜杰3月2日邮件：`2016年黄岛跟线及问题解决耗时统计【重要】`） 3月1日：第二个30台 #黄岛试产等待耗时16.5小时（项目经理要求上午9点到位，延误到3月2日1:30整机上线） *3月12日：第一个100台 #整机包装方案变更：100台仍使用内置底座老包装，3月18日翻包换内置壁挂包装方案，进行运输、机械试验。 #底座玫瑰金变更：利通3月10日齐套。 #后壳试模：3月13日。 #盖板试模：3月10日。 3月31日：DR 4月1日：第二个100台 4月12日：第二个100台 4月20日：IR</pre>
+
+<h5 id="2、HE55N8700UWTS开发计划"><a href="#2、HE55N8700UWTS开发计划" class="headerlink" title="2、HE55N8700UWTS开发计划"></a>2、HE55N8700UWTS开发计划</h5><pre>前壳3月8日送样，确认后16天到货；
+2017年3月20日：CYJ审查
+3月22日：模组53台试产，整机43台试产，灯光堵头支架T1是3月28日 #65 3月29日试产
+4月8日：20台
+4月17日：DR
+4月18日：150台
+5月12日：50台
+5月22日：首批量产
+</pre>
+资源以及厂家联系方式
+<pre>1264绝缘垫片 支运平（资源） 谢经理（诚一信）13905325056
+</pre>
+问题：如何在网页中方便加入表格？
+
+产品定位：
+<pre>LED55MU8600U的下一代产品，主要差别有：
+1、外观上由曲面电视改平面，增加感应操作灯效。
+2、采用量子点显示技术。
+3、背板由VCM板改为塑钢板。</pre>
+<pre>设计总有套路，能否总结一下？
+
+公差设计与分析</pre>
+<pre>下前壳与模组中框公差计算
+</pre>
+捆扎带长度计算：
+<pre>1、65NU8800捆扎带长1760mm，整机加纸隔板周长2926mm，带长/周长=0.6；
+2、55NU8800捆扎带长1500mm，整机加纸隔板周长2494mm(=*1230+17)*2)，带长/周长=0.6；
+</pre>
+LED55NU8800U网罩孔阵列
+<pre>网罩孔布局与8600一致，都是直径1.1与0.6的通孔，以间距1.36相邻分布。
+一种实现方法是填充阵列，可以用两种方式，大孔阵列，然后小孔阵列，还需要算斜线阵列距离，比较麻烦麻烦。另一中方式是先建立最小单位2大2小4个孔再阵列。
+另一种方法是通过关系式控制直径来阵列。
+用idx1、idx2控制孔直径大小，一布阵列出来，不需要两步阵列，研究一下啊！
+无论用那种阵列，如果阵列的每个特征是外形一致的，记得把option identify设置为general，特征生成会加速很多！
+</pre>
+总结报告私密问题：一篇报告，如何实现两个版本并存，一个版本公开，另一个版本带有很多不公开的批注？
+
+前壳组件派生图纸切换问题
+<pre>能否通过代表集或者其他方式，在图纸中自动切换？
+</pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/12/vi/" rel="next" title="简洁的vim环境入门">
+                <i class="fa fa-chevron-left"></i> 简洁的vim环境入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/15/mobile-safety/" rel="prev" title="改变端口号，发布内网网页">
+                改变端口号，发布内网网页 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、产品信息"><span class="nav-number">1.</span> <span class="nav-text">一、产品信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、LED55NU8800U（底座一体化包装）-中途原始BOM更改为壁挂一体化包装，新出底座一体化包装为派生机"><span class="nav-number">1.1.</span> <span class="nav-text">1、LED55NU8800U（底座一体化包装）#中途原始BOM更改为壁挂一体化包装，新出底座一体化包装为派生机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、LED55NU8800U（壁挂一体化包装）"><span class="nav-number">1.2.</span> <span class="nav-text">2、LED55NU8800U（壁挂一体化包装）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、HE55N8700UWTS（底座一体化包装）"><span class="nav-number">1.3.</span> <span class="nav-text">3、HE55N8700UWTS（底座一体化包装）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、主要结构部件"><span class="nav-number">2.</span> <span class="nav-text">二、主要结构部件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、底座"><span class="nav-number">2.1.</span> <span class="nav-text">1、底座</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1）底座单独出售信息，55N8底座包装信息："><span class="nav-number">2.1.1.</span> <span class="nav-text">1）底座单独出售信息，55N8底座包装信息：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2）底座铝合金材料："><span class="nav-number">2.1.2.</span> <span class="nav-text">2）底座铝合金材料：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3）整机左右倾斜标准"><span class="nav-number">2.1.3.</span> <span class="nav-text">3）整机左右倾斜标准</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、前壳组件（众宇出差）"><span class="nav-number">2.2.</span> <span class="nav-text">2、前壳组件（众宇出差）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、开发节点"><span class="nav-number">2.3.</span> <span class="nav-text">三、开发节点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、LED55NU8800U开发计划"><span class="nav-number">2.3.1.</span> <span class="nav-text">1、LED55NU8800U开发计划</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、HE55N8700UWTS开发计划"><span class="nav-number">2.3.2.</span> <span class="nav-text">2、HE55N8700UWTS开发计划</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

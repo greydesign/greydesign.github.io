@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Next注册zhangqihui.cc，用于手机建站 2017年12月13日：注册hidc.cc 前言拥有自己的顶级域名！本文主要是关于域名解析以及域名的一些知识点记录。主要解决DNS污染问题以及个人DNS访问的便利性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络基础之域名解析">
+<meta property="og:url" content="http://yoursite.com/2017/06/23/e4-b8-96-e7-95-8c-ef-bc-8c-e6-82-a8-e5-a5-bd-ef-bc-81-e6-8b-a5-e6-9c-89-e8-87-aa-e5-b7-b1-e7-9a-84-e9-a1-b6-e7-ba-a7-e5-9f-9f-e5-90-8d/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Next注册zhangqihui.cc，用于手机建站 2017年12月13日：注册hidc.cc 前言拥有自己的顶级域名！本文主要是关于域名解析以及域名的一些知识点记录。主要解决DNS污染问题以及个人DNS访问的便利性。">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.886Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络基础之域名解析">
+<meta name="twitter:description" content="Next注册zhangqihui.cc，用于手机建站 2017年12月13日：注册hidc.cc 前言拥有自己的顶级域名！本文主要是关于域名解析以及域名的一些知识点记录。主要解决DNS污染问题以及个人DNS访问的便利性。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/23/e4-b8-96-e7-95-8c-ef-bc-8c-e6-82-a8-e5-a5-bd-ef-bc-81-e6-8b-a5-e6-9c-89-e8-87-aa-e5-b7-b1-e7-9a-84-e9-a1-b6-e7-ba-a7-e5-9f-9f-e5-90-8d/"/>
+
+
+
+
+
+  <title>网络基础之域名解析 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/23/e4-b8-96-e7-95-8c-ef-bc-8c-e6-82-a8-e5-a5-bd-ef-bc-81-e6-8b-a5-e6-9c-89-e8-87-aa-e5-b7-b1-e7-9a-84-e9-a1-b6-e7-ba-a7-e5-9f-9f-e5-90-8d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">网络基础之域名解析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-23T15:06:40+08:00">
+                2017-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/VPS/" itemprop="url" rel="index">
+                    <span itemprop="name">VPS</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/VPS/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Next"><a href="#Next" class="headerlink" title="Next"></a>Next</h3><p>注册zhangqihui.cc，用于手机建站</p>
+<p>2017年12月13日：注册hidc.cc</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>拥有自己的顶级域名！本文主要是关于域名解析以及域名的一些知识点记录。主要解决DNS污染问题以及个人DNS访问的便利性。<br><a id="more"></a></p>
+<h3 id="零、DNS基础知识"><a href="#零、DNS基础知识" class="headerlink" title="零、DNS基础知识"></a>零、DNS基础知识</h3><p>在Android Termux中：</p>
+<blockquote>
+<p>pkg install dnsutils</p>
+<p>dig <a href="http://www.greydesign.tk" target="_blank" rel="noopener">www.greydesign.tk</a><br><a href="http://www.ruanyifeng.com/blog/2016/06/dns.html" target="_blank" rel="noopener">DNS原理入门</a><br><a href="http://blog.lxx1.com/502" target="_blank" rel="noopener">自建DNS缓存服务器加快上网速度</a><br><a href="https://gordon168.tw/fastest-facebook-ip-for-you/" target="_blank" rel="noopener">找出最快的 Facebook 主機</a></p>
+</blockquote>
+<h3 id="一、拥有自己的顶级域名"><a href="#一、拥有自己的顶级域名" class="headerlink" title="一、拥有自己的顶级域名"></a>一、拥有自己的顶级域名</h3><p>注册过qdmcad.com，注册了qdmcad.cn（以后不注册cn域名了，据说有很多限制，具体是啥我也不清楚），还注册了免费的顶级域名greydesign.tk、hisense.tk。可惜zhangqihui.com被注册了，等明年抢回来。是时候长期注册自己的com域名了！<br><!--more--><br>费用问题：域名注册商的收费策略一般是首年优惠，首次多注册几年或者续费都会贵一些，很让人纠结啊。看网上的一般应对方法是找优惠码。其实固定使用自己的顶级域名，10年也就是800元以内，和付出相比，带来的幸福感是长久的，值得的。</p>
+<p>先在万网注册 zhangqihui.me 吧，首年13，GoDaddy首年3个多美金，贵一些。</p>
+<h3 id="域名注册商选择问题："><a href="#域名注册商选择问题：" class="headerlink" title="域名注册商选择问题："></a>域名注册商选择问题：</h3><p>cn域名限制问题：<br>域名抢注问题：</p>
+<p>假设自己的顶级域名过期了，有优先续费的权利吗？是在域名注册的时候设置吗？<br>域名解析<br>我目前使用了两种，一种是<code>A</code>，就是直接用ip地址，比如我的vultr服务器，另一种是<code>CNAME</code>，用ALIAS的方法，比如我的github博客。</p>
+<p>问题，A解析，有www和@两种选项，需要分别填入ip地址，一般需要填写一样的，那填写不一样的会有什么好处呢？</p>
+<h3 id="二、同一个服务器，多个域名，多个网站，兼谈nginx配置"><a href="#二、同一个服务器，多个域名，多个网站，兼谈nginx配置" class="headerlink" title="二、同一个服务器，多个域名，多个网站，兼谈nginx配置"></a>二、同一个服务器，多个域名，多个网站，兼谈nginx配置</h3><p>一、VirtualHost<br>只有一个Apache服务器，可以建立多个网站吗？换一种说法，只有一个公网IP，可以用多个域名指向多个主页吗？当然，可以通过apache的VirtualHost实现：</p>
+<pre>$ apache2 -v
+$ sudo vi /etc/apache2/sites-enabled/000-default.conf
+</pre>
+加入如下内容：
+<pre>&lt;VirtualHost *:80&gt;
+ServerName www.greydesign.tk
+DocumentRoot /var/html/greydesign
+&lt;/VirtualHost&gt;
+</pre>
+二、nginx对域名的设置
+比如我申请了免费的`www.greydesign.tk`域名，同时`greydesign.tk`域名也就是我的了，有如下四种方式可以访问我的网站：
+<pre>http://greydesign.tk
+https://greydesign.tk
+http://greydesign.tk
+https://www.greydesing.tk
+</pre>
+由于我在nginx中设置了`ssl on`，使用`http`访问会返回如下错误
+<pre>400 Bad Request
+The plain HTTP request was sent to HTTPS port
+</pre>
+这就需要修改`/etc/nginx/sites-enabled/default`配置文件
+
+三、在家登录公司邮箱，返回错误信息，原来公司用的服务器也是nginx啊，502错误是啥意思？
+<pre>502 Bad Gateway
+nginx
+</pre>
+
+<h3 id="三、关于DNS的事情"><a href="#三、关于DNS的事情" class="headerlink" title="三、关于DNS的事情"></a>三、关于DNS的事情</h3><h4 id="1、问题提出"><a href="#1、问题提出" class="headerlink" title="1、问题提出"></a>1、问题提出</h4><p>在树莓派上建起一个web服务器，用的Wordpress，写了几篇文章，结果存在很多问题：</p>
+<p>1）外网无法访问web服务器：</p>
+<p>在内网可以通过本地ip地址、公网ip地址以及域名正常访问，可真到了外网，只有树莓派的ssh可以正常访问，web服务器却访问不了。</p>
+<p>我是在路由器中，用DMZ将web服务器发布出去的。参考了网上的文章发现，其实可以用端口映射的方法发布。在梅林固件中，分别在菜单“外部网络（WAN）-&gt;DMZ以及端口转发”设置。</p>
+<p>梅林固件有自己的ssh以及web管理用相关接口，ssh管理在菜单“系统管理-&gt;系统设置-&gt;SSH Daemon”中，缺省只能用于LAN，所以我在外网ssh树莓派没有任何问题。web管理在菜单“系统管理-&gt;系统设置-&gt;从互联网管理R7000”中，用的是8080端口。我关闭了DMZ设置，改为用端口映射的方法发布树莓派的web服务器。</p>
+<p>但无论是端口转发，还是DMZ，外网始终看不到个人主页，看网上文章，似乎是宽带服务商禁止了个人的80端口！如何查询端口，等有时间再学习吧。家里右qnap的NAS，通过qnap的动态域名是可以顺利访问的，估计用的是NAS的专用端口，问题是用的哪个端口，为啥在路由器中不需要设置？还有，家里的360摄像头、小米智能设备，都是如何通过路由器与外网顺利连接的呢？</p>
+<p>2）多个域名解析问题：</p>
+<p>我申请了三个域名，两个tk免费域名，一个cn付费域名，都指向本站。可是Wordpress建站只支持绝对路径访问，也就是站内链接只能使用一个域名，其他两个用不了。网上有将Wordpress绝对地址改为相对地址的方法，比如：<a href="http://yuanxi.blog.51cto.com/2149074/980913" target="_blank" rel="noopener">让wordpress按“相对路径”访问的方法</a>。我试用了一下，主页就打不开了！配置文件所在的目录是“/var/www/，修改后即时生效，不需要重启wordpress服务”。还有改源代码的方法，比如：<a href="http://www.chenxingweb.com/wordpress-xiangdui.html" target="_blank" rel="noopener">WordPress简单实现站内相对链接路径</a>。</p>
+<p>以下是舍不得删除的乱七八糟的草稿：</p>
+<p>DNS解析：在路由器中“DMZ”中将树莓派的内网地址对WAN公开。申请tk免费域名，或花钱申请顶级域名，绑定路由器的公网IP，当然也可以用花生壳发布公网IP。在当前的恶劣网络环境下，能不用大陆的网络服务就不要用，我在万网购买的”<a href="http://www.qdmcad.cn&quot;，目前的解析还不如免费的“www.zhangqihui.tk”呢。" target="_blank" rel="noopener">www.qdmcad.cn&quot;，目前的解析还不如免费的“www.zhangqihui.tk”呢。</a></p>
+<h4 id="2、搭建DNS服务器，参考："><a href="#2、搭建DNS服务器，参考：" class="headerlink" title="2、搭建DNS服务器，参考："></a>2、搭建DNS服务器，参考：</h4><p><a href="https://ruyetao.com/raspberrypi_unbound/" target="_blank" rel="noopener">RaspberryPi 利用 Unbound 搭建 DNS 服务器</a><br>以下安装配置dnscrypt-proxy和dnsmasq的步骤，需要补充官方手册！暂时按照上文尝试：<br>（1）编译安装libsodium（树莓派那可怜的编译速度啊，该买树莓派3了！）</p>
+<p><pre>sudo apt-get install build-essential<br>wget <a href="https://download.libsodium.org/libsodium/releases/LATEST.tar.gz" target="_blank" rel="noopener">https://download.libsodium.org/libsodium/releases/LATEST.tar.gz</a><br>tar zxf LATEST.tar.gz &amp;&amp; cd libsodium-*<br>./configure &amp;&amp; make &amp;&amp; sudo make install<br>sudo ldconfig #必须用sudo，否则会有权限错误提示<br></pre><br>（2）编译安装dnscrypt-proxy</p>
+<p><pre>cd #回到home目录<br>wget <a href="https://download.dnscrypt.org/dnscrypt-proxy/dnscrypt-proxy-1.7.0.tar.gz" target="_blank" rel="noopener">https://download.dnscrypt.org/dnscrypt-proxy/dnscrypt-proxy-1.7.0.tar.gz</a><br>tar zxf dnscrypt-proxy-1.7.0.tar.gz<br>cd dnscrypt-proxy-1.7.0<br>./configure<br>make &amp;&amp; sudo make install<br></pre><br>（3）启动dnscrypt-proxy，似乎出错了！</p>
+<p><pre>pi@raspberrypi:~/dnscrypt-proxy-1.7.0 $ cd<br>pi@raspberrypi:~ $ sudo dnscrypt-proxy –resolver-name=cisco –local-address=127.0.0.1:5678 –daemonize<br>[INFO] - [cisco] does not support DNS Security Extensions<br>[WARNING] - [cisco] logs your activity - a different provider might be better a choice if privacy is a concern<br></pre><br>DNS，是个一言难尽的事情。有两个相关的事情，一是避免DNS污染，二是正确解析家里的公网IP。<br><a href="https://www.zhihu.com/question/19751271" target="_blank" rel="noopener">怎样应对 DNS 污染？</a><br><a href="http://blog.hotwill.cn/2016/05/22/dnscrypt-proxy+dnsmasq%E6%90%AD%E5%BB%BA%E6%97%A0%E6%B1%A1%E6%9F%93DNS%E6%9C%8D%E5%8A%A1%E5%99%A8.html" target="_blank" rel="noopener">dnscrypt-proxy+dnsmasq搭建无污染DNS服务器</a><br><a href="https://wido.me/sunteya/use-openwrt-resolve-gfw-dns-spoofing" target="_blank" rel="noopener">openwrt 上通过 pdnsd 和 dnsmasq 解决 dns 污染</a></p>
+<p>关于一级域名，目前我申请了几个免费的tk域名，一个付费的cn域名。免费域名有hisense、zhangqihui、greydesign，付费域名有qdmcad。免费域名解析问题不大，付费的那个是在万网申请的，问题很多！</p>
+<h3 id="四、How-to-wordpress更改域名之后无法访问的完美解决办法"><a href="#四、How-to-wordpress更改域名之后无法访问的完美解决办法" class="headerlink" title="四、How to : wordpress更改域名之后无法访问的完美解决办法"></a>四、How to : wordpress更改域名之后无法访问的完美解决办法</h3><p>免费的二级域名，可以使用著名的花生壳。<br><a href="http://shenyu.wiki/2017/02/16/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E2%80%94%E2%80%94%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84DNS%E6%9C%8D%E5%8A%A1%E5%99%A8/" target="_blank" rel="noopener">科学上网——搭建自己的DNS服务器</a><br><a href="https://www.v2ex.com/t/111836" target="_blank" rel="noopener">请教如何能自己建立一个私有的 DNS 服务器呢？</a></p>
+<p>这几天<a href="http://www.freenom.com网站突然抽风了（也可能是我的网络出了问题），无法更新域名www.greydesign.tk到我的新外网ip，导致我的网站无法打开。" target="_blank" rel="noopener">www.freenom.com网站突然抽风了（也可能是我的网络出了问题），无法更新域名www.greydesign.tk到我的新外网ip，导致我的网站无法打开。</a><br>其实有一个一直困扰我的问题：明明树莓派服务器就在我的身边，我还要通过自己的域名<a href="http://www.greydesign.tk访问，无法通过本地ip地址来直接访问！现在好了，域名失效了，逼我通过ip地址访问。" target="_blank" rel="noopener">www.greydesign.tk访问，无法通过本地ip地址来直接访问！现在好了，域名失效了，逼我通过ip地址访问。</a><br>找到了一篇好文章：<br><a href="http://www.themepark.com.cn/wordpressggymzhwffwdwmjjbf.html" target="_blank" rel="noopener">wordpress更改域名之后无法访问的完美解决办法</a><br>以下是解决步骤：</p>
+<p><pre>1、通过putty访问我的树莓派，注意用户名是‘pi’；<br>2、cd /var/www/html/wp-content/themes/primer #我使用的theme是primer<br>3、sudo vi functions.php #增加两行内容，注意，我设置了https访问<br>update_option(‘siteurl’,’<a href="https://192.168.1.232’)" target="_blank" rel="noopener">https://192.168.1.232’)</a>;<br>update_option(‘home’,’<a href="http://https://192.168.1.232’)" target="_blank" rel="noopener">http://https://192.168.1.232’)</a>;<br></pre><br>好了，通过ip地址访问成功：<a href="https://192.168.1.232" target="_blank" rel="noopener">https://192.168.1.232</a></p>
+<p>后记：等freenom网站恢复了以后，我把设置文件中的两行ip地址解析删除了，但站内的链接还是通过ip地址，不能马上生效。wordpress能不能既支持ip地址，又支持域名解析呢？</p>
+<p>五、IBM DNS 9.9.9.9</p>
+<blockquote>
+<p>在公司ping 8.8.8.8 （Google的DNS），延时只有20多毫秒，但很快就请求超时。在家里，直接就超时了</p>
+<p>IBM 新提供了 9.9.9.9 DNS服务，在WiFi下，设置手机的DNS，并没有实现翻墙，FGW如何阻隔的？</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/20/e4-b8-96-e7-95-8c-ef-bc-8c-e6-82-a8-e5-a5-bd-ef-bc-81-e5-9c-a8-e6-a0-91-e8-8e-93-e6-b4-be-e4-b8-8a-e6-90-ad-e5-bb-bahexo-e7-ab-99-e7-82-b9/" rel="next" title="网络基础之搭建Hexo博客">
+                <i class="fa fa-chevron-left"></i> 网络基础之搭建Hexo博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/26/excel-e6-80-8e-e4-b9-88-e5-b0-86abc-e5-88-97-e6-94-b9-e4-b8-ba-e6-95-b0-e5-ad-97-e5-88-97-e6-88-96-e8-80-85-e6-95-b0-e5-ad-97-e6-94-b9-e4-b8-ba-e5-ad-97-e6-af-8d-e5-88-97/" rel="prev" title="EXCEL怎么将ABC列改为数字列或者数字改为字母列">
+                EXCEL怎么将ABC列改为数字列或者数字改为字母列 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Next"><span class="nav-number">1.</span> <span class="nav-text">Next</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#零、DNS基础知识"><span class="nav-number">3.</span> <span class="nav-text">零、DNS基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、拥有自己的顶级域名"><span class="nav-number">4.</span> <span class="nav-text">一、拥有自己的顶级域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#域名注册商选择问题："><span class="nav-number">5.</span> <span class="nav-text">域名注册商选择问题：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、同一个服务器，多个域名，多个网站，兼谈nginx配置"><span class="nav-number">6.</span> <span class="nav-text">二、同一个服务器，多个域名，多个网站，兼谈nginx配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、关于DNS的事情"><span class="nav-number">7.</span> <span class="nav-text">三、关于DNS的事情</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、问题提出"><span class="nav-number">7.1.</span> <span class="nav-text">1、问题提出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、搭建DNS服务器，参考："><span class="nav-number">7.2.</span> <span class="nav-text">2、搭建DNS服务器，参考：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、How-to-wordpress更改域名之后无法访问的完美解决办法"><span class="nav-number">8.</span> <span class="nav-text">四、How to : wordpress更改域名之后无法访问的完美解决办法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

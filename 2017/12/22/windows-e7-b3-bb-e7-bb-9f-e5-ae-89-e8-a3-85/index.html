@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="最近遇到台式机、笔记本的Windows 10系统同时重置失败的尴尬问题，觉得需要总结一下系统重装的问题，以及系统自动恢复（像韩国酒店那样）的问题。还有路由器5G速度竟然与2.4G差不多，咋回事？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows10系统安装与安全配置">
+<meta property="og:url" content="http://yoursite.com/2017/12/22/windows-e7-b3-bb-e7-bb-9f-e5-ae-89-e8-a3-85/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="最近遇到台式机、笔记本的Windows 10系统同时重置失败的尴尬问题，觉得需要总结一下系统重装的问题，以及系统自动恢复（像韩国酒店那样）的问题。还有路由器5G速度竟然与2.4G差不多，咋回事？">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.894Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows10系统安装与安全配置">
+<meta name="twitter:description" content="最近遇到台式机、笔记本的Windows 10系统同时重置失败的尴尬问题，觉得需要总结一下系统重装的问题，以及系统自动恢复（像韩国酒店那样）的问题。还有路由器5G速度竟然与2.4G差不多，咋回事？">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/22/windows-e7-b3-bb-e7-bb-9f-e5-ae-89-e8-a3-85/"/>
+
+
+
+
+
+  <title>Windows10系统安装与安全配置 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/22/windows-e7-b3-bb-e7-bb-9f-e5-ae-89-e8-a3-85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Windows10系统安装与安全配置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-22T23:02:06+08:00">
+                2017-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/Windows-10/" itemprop="url" rel="index">
+                    <span itemprop="name">Windows 10</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/Windows-10/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近遇到台式机、笔记本的Windows 10系统同时重置失败的尴尬问题，觉得需要总结一下系统重装的问题，以及系统自动恢复（像韩国酒店那样）的问题。还有路由器5G速度竟然与2.4G差不多，咋回事？</p>
+<a id="more"></a>
+<h3 id="系统安装篇"><a href="#系统安装篇" class="headerlink" title="系统安装篇"></a>系统安装篇</h3><p>参考：<a href="http://g.pconline.com.cn/bbs/topic-52397313-1.html" target="_blank" rel="noopener">Windows10 官方正式版“安装U盘”制作教程</a></p>
+<blockquote>
+<p>1、<a href="https://www.microsoft.com/zh-cn/software-download/windows10" target="_blank" rel="noopener">微软官方Windows10下载页面</a>：点击 <a href="https://go.microsoft.com/fwlink/?LinkId=691209" target="_blank" rel="noopener">立即下载工具</a>，运行，制作U盘安装工具，下载大约5分钟就够了，很快，很官方</p>
+<p>2、用U盘引导笔记本或者台式机，就可以重装系统了！<br>我的台式机、笔记本是通过Windows 10 数字版权激活的专业版正版。<br>暂时没有找到升级为“Windows 10 专业工作站版”的可靠方法，工作站版本用新的文件系统ReFS代替了NTFS，这个文件系统有什么优势吗？</p>
+</blockquote>
+<h3 id="用户权限管理"><a href="#用户权限管理" class="headerlink" title="用户权限管理"></a>用户权限管理</h3><p><a href="https://www.toutiao.com/a6521483749018829064/" target="_blank" rel="noopener">怎样获取win10系统最高管理权限？</a>#Windows 10 的administrator缺省时禁用的，开启方法：<code>我的电脑、管理、用户</code></p>
+<h3 id="安全配置篇"><a href="#安全配置篇" class="headerlink" title="安全配置篇"></a>安全配置篇</h3><p>使用Windows专业版的applocker</p>
+<p>需要补充火绒揭露腾讯软件流氓后台的技术要点。</p>
+<h3 id="截图工具"><a href="#截图工具" class="headerlink" title="截图工具"></a>截图工具</h3><blockquote>
+<p>Snipaste</p>
+<p>FASTONE</p>
+</blockquote>
+<h3 id="DOS模拟器"><a href="#DOS模拟器" class="headerlink" title="DOS模拟器"></a>DOS模拟器</h3><blockquote>
+<p>Windows : DOSBox，可以很好模拟老游戏</p>
+<p>Linux : DOSEMU</p>
+</blockquote>
+<h3 id="技巧篇"><a href="#技巧篇" class="headerlink" title="技巧篇"></a>技巧篇</h3><p>0、快速打开命令行窗口</p>
+<blockquote>
+<p>在任何目录按住shift键，鼠标右键菜单会多出一个有用的菜单：“在此处打开 Powershell 窗口”。</p>
+<p>注：Windows 7会显示菜单：“在此处打开命令窗口”<br>1、虚拟桌面<br>从WIndows 8版本开始，Win+Tab键可以管理虚拟桌面，可以解决因应用程序导致桌面死机的问题。</p>
+<p>任务栏菜单“显示任务视图按钮”，可调出虚拟桌面图标，点击或Win+Tab键，屏幕右下角出现“新建桌面”，总共可以新建9个桌面。</p>
+<p>创建新桌面：Win + Ctrl + D</p>
+<p>切换虚拟桌面：Win + Ctrl +左/右</p>
+<p>关闭当前虚拟桌面：Win + Ctrl + F4<br>2、网络链接<br>在目录“C:\用户\用户名\AppData\Roaming\Microsoft\Windows\Network Shortcuts\”下放置文件（不是链接），就会在文件管理器的“网络位置”看到这个文件。“Network Shortcuts”是个啥特殊目录？<br>3、关闭WPS Office广告与热点<br>Windows开始菜单、WPS、WPS配置工具、高级、其他选项：全部取消（升级设置：关闭自动更新）。<br>4、建立隐藏目录<br>方法1、使用<a href="http://cuiqingcai.com/1622.html" target="_blank" rel="noopener">attrib命令</a></p>
+<p>windows文件有四个属性：存档、系统、只读、隐藏<br>方法2、使用末尾带“.”或“..”的目录名</p>
+<p>d:\ #转到D盘根目录</p>
+<p>md adb..\ #建立“adb..”含有点的特殊目录</p>
+<p>rd adb..\ #删除特殊目录，如果特殊目录有子目录，还需要加上“\s”<br>方法3、使用windows设备名</p>
+<p>md d:\aux\ #建立aux目录</p>
+<p>rd /s \.\d:\aux #删除aux目录，含子目录<br>5、office word 2001无法打开某些doc文件，但wps就能打开<br>查看无法打开的office doc文件属性，<br>6、多屏管理</p>
+</blockquote>
+<p>&gt;快捷键 ：<code>win + p</code> 会打开屏幕投影选项，Windows 7、10都可以使用</p>
+<p>参考 <a href="https://zhidao.baidu.com/question/582377683242789485.html" target="_blank" rel="noopener"><span class="ask-title ">word 2010 如何自动去除“属性”里锁定？</span></a></p>
+<p>参考 ：<br><a href="https://www.douban.com/group/topic/57618318/" target="_blank" rel="noopener">https://www.douban.com/group/topic/57618318/</a><br><a href="http://blog.csdn.net/jiangqin115/article/details/48766031" target="_blank" rel="noopener">http://blog.csdn.net/jiangqin115/article/details/48766031</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/14/windows-e6-89-b9-e5-a4-84-e7-90-86-e4-bb-a5-e5-8f-8apowershell-e5-85-a5-e9-97-a8/" rel="next" title="Windows 10批处理以及Powershell入门">
+                <i class="fa fa-chevron-left"></i> Windows 10批处理以及Powershell入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/23/e5-9c-a8windows10-e8-bf-90-e8-a1-8cvisual-c-6-0/" rel="prev" title="在Windows10运行visual C++ 6.0">
+                在Windows10运行visual C++ 6.0 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统安装篇"><span class="nav-number">1.</span> <span class="nav-text">系统安装篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户权限管理"><span class="nav-number">2.</span> <span class="nav-text">用户权限管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全配置篇"><span class="nav-number">3.</span> <span class="nav-text">安全配置篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#截图工具"><span class="nav-number">4.</span> <span class="nav-text">截图工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOS模拟器"><span class="nav-number">5.</span> <span class="nav-text">DOS模拟器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧篇"><span class="nav-number">6.</span> <span class="nav-text">技巧篇</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

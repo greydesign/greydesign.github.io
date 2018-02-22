@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文是记录一些不成熟的思路、想法，以及目前自己力所不能及的项目。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="待补充设计思路汇总">
+<meta property="og:url" content="http://yoursite.com/2017/08/28/e5-be-85-e8-a1-a5-e5-85-85-e8-ae-be-e8-ae-a1-e6-80-9d-e8-b7-af-e6-b1-87-e6-80-bb/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文是记录一些不成熟的思路、想法，以及目前自己力所不能及的项目。">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.889Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="待补充设计思路汇总">
+<meta name="twitter:description" content="本文是记录一些不成熟的思路、想法，以及目前自己力所不能及的项目。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/28/e5-be-85-e8-a1-a5-e5-85-85-e8-ae-be-e8-ae-a1-e6-80-9d-e8-b7-af-e6-b1-87-e6-80-bb/"/>
+
+
+
+
+
+  <title>待补充设计思路汇总 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/e5-be-85-e8-a1-a5-e5-85-85-e8-ae-be-e8-ae-a1-e6-80-9d-e8-b7-af-e6-b1-87-e6-80-bb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">待补充设计思路汇总</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-28T10:34:27+08:00">
+                2017-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ASD/" itemprop="url" rel="index">
+                    <span itemprop="name">ASD</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ASD/Coding/" itemprop="url" rel="index">
+                    <span itemprop="name">Coding</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ASD/Coding/Product/" itemprop="url" rel="index">
+                    <span itemprop="name">Product</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ASD/Coding/Product/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文是记录一些不成熟的思路、想法，以及目前自己力所不能及的项目。</p>
+<a id="more"></a>
+<h3 id="太阳能板随动"><a href="#太阳能板随动" class="headerlink" title="太阳能板随动"></a>太阳能板随动</h3><blockquote>
+<p>太阳能板都是固定安装的，随动系统可以有效提高效率</p>
+</blockquote>
+<h3 id="局域网表单提交系统"><a href="#局域网表单提交系统" class="headerlink" title="局域网表单提交系统"></a>局域网表单提交系统</h3><blockquote>
+<p>内部统计用，比如统计大家的姓名、身份证号用于订票系统，比如统计大家的信息用于制作名片。客户端只能看到自己的信息，统计端将信息自动更新到数据库，可以导出电子表格用于提报。</p>
+</blockquote>
+<h3 id="手机接收蓝牙音乐，蓝牙畅听"><a href="#手机接收蓝牙音乐，蓝牙畅听" class="headerlink" title="手机接收蓝牙音乐，蓝牙畅听"></a>手机接收蓝牙音乐，蓝牙畅听</h3><blockquote>
+<p>应用场景：当需要保持环境安静时看电视，为了不打扰家人，手机接收电视的蓝牙伴音输出，用耳机播放，就不需要购买蓝牙耳机了。</p>
+<p>同品牌手机与电视蓝牙匹配，用手机耳机听电视伴音。可以先在手机间进行调试、开发。<br><a href="https://itimetraveler.github.io/2017/05/18/%E3%80%90Android%E3%80%91Audio%E9%9F%B3%E9%A2%91%E8%BE%93%E5%87%BA%E9%80%9A%E9%81%93%E5%88%87%E6%8D%A2%20-%20%E8%93%9D%E7%89%99%E3%80%81%E5%A4%96%E6%94%BE/" target="_blank" rel="noopener">【Android】Audio音频输出通道切换 - 蓝牙、外放</a></p>
+</blockquote>
+<h3 id="借助手机进行数量统计"><a href="#借助手机进行数量统计" class="headerlink" title="借助手机进行数量统计"></a>借助手机进行数量统计</h3><blockquote>
+<p>比如一堆螺钉，用手机拍照，然后对图像进行识别，统计出螺钉的数量。很实用的功能，难道没人开发吗？需要用到opencv开发包。</p>
+</blockquote>
+<h3 id="电视自动感应切换遥控器"><a href="#电视自动感应切换遥控器" class="headerlink" title="电视自动感应切换遥控器"></a>电视自动感应切换遥控器</h3><blockquote>
+<p>软件专利：自动感知信号源变化，切换电视输入口，不需要在电视遥控器上找切换HDMI端口。电视红外接收感应其他遥控器的指令，判断输入切换，并实施。</p>
+</blockquote>
+<h3 id="气压计"><a href="#气压计" class="headerlink" title="气压计"></a>气压计</h3><blockquote>
+<p>小米2之后的手机，苹果6都集成了气压计，和卡西欧的比精度如何？</p>
+<p>陀螺仪，加速度，地磁仪器，GPS加上气压计，以后带着IP6可以开飞机了</p>
+</blockquote>
+<h3 id="电热水器节能设计"><a href="#电热水器节能设计" class="headerlink" title="电热水器节能设计"></a>电热水器节能设计</h3><blockquote>
+<p>电热水器创新：如果需要早晨洗手的热水，将热水器整个加热到65度就不合算了，可否分段储存高温的水？也就是说热水器加热不要整个加热，而是局部加热，让热水循环到冷水中去。</p>
+</blockquote>
+<h3 id="分体遥控器"><a href="#分体遥控器" class="headerlink" title="分体遥控器"></a>分体遥控器</h3><blockquote>
+<p>有实际需求吗？</p>
+</blockquote>
+<h3 id="遥控器防水专利"><a href="#遥控器防水专利" class="headerlink" title="遥控器防水专利"></a>遥控器防水专利</h3><blockquote>
+<p>薄钢片，fpc</p>
+</blockquote>
+<h3 id="激光电视安装如何实现自动调整"><a href="#激光电视安装如何实现自动调整" class="headerlink" title="激光电视安装如何实现自动调整"></a>激光电视安装如何实现自动调整</h3><h4 id="一、-投影机介绍与分类"><a href="#一、-投影机介绍与分类" class="headerlink" title="一、 投影机介绍与分类"></a>一、 投影机介绍与分类</h4><h4 id="二、投影机技术指标"><a href="#二、投影机技术指标" class="headerlink" title="二、投影机技术指标"></a>二、投影机技术指标</h4><blockquote>
+<p>亮度</p>
+</blockquote>
+<h4 id="三、投影机安装调教"><a href="#三、投影机安装调教" class="headerlink" title="三、投影机安装调教"></a>三、投影机安装调教</h4><blockquote>
+<p>精确调整到幕布范围的要点<br>裂像对焦原理：</p>
+<p>幻灯机如何自动对焦</p>
+<p>投影机安装方法与要点、技巧</p>
+<p>图像识别 opencv</p>
+<p>参考文章：</p>
+<p>市售体感设备横评：微软、Intel、苹果、LeapMotion 哪家强！</p>
+</blockquote>
+<h3 id="跟随机器人"><a href="#跟随机器人" class="headerlink" title="跟随机器人"></a>跟随机器人</h3><blockquote>
+<p>智能跟随、防撞</p>
+<p>比如四轮推车</p>
+</blockquote>
+<h3 id="海尔、美的的空调自清洁功能重要吗"><a href="#海尔、美的的空调自清洁功能重要吗" class="headerlink" title="海尔、美的的空调自清洁功能重要吗"></a>海尔、美的的空调自清洁功能重要吗</h3><p><a href="https://mp.weixin.qq.com/s/jG9jUuPHyMX6X-txyPM87Q" target="_blank" rel="noopener">海尔黑科技里藏着的“自然世界”（迄今首次）</a><br><a href="https://www.zhihu.com/question/61016293" target="_blank" rel="noopener">空调是不是真的需要经常清洗？</a></p>
+<h3 id="为啥中央空调出风口会凝结水珠"><a href="#为啥中央空调出风口会凝结水珠" class="headerlink" title="为啥中央空调出风口会凝结水珠"></a>为啥中央空调出风口会凝结水珠</h3><h4 id="1、现象："><a href="#1、现象：" class="headerlink" title="1、现象："></a>1、现象：</h4><blockquote>
+<p>上班时间，远离门口、靠近门口的中央空调出风口会分别凝结大量水珠。</p>
+<p>和空气湿度、露点有关系吗？为啥家里的壁挂空调没有结露的问题？</p>
+</blockquote>
+<h4 id="2、原因分析："><a href="#2、原因分析：" class="headerlink" title="2、原因分析："></a>2、原因分析：</h4><blockquote>
+<p>露点和空气湿度、温度的关系（因为上班时间温度、湿度都较大）</p>
+</blockquote>
+<h4 id="3、现有产品的改进思路："><a href="#3、现有产品的改进思路：" class="headerlink" title="3、现有产品的改进思路："></a>3、现有产品的改进思路：</h4><h4 id="附、参考文章："><a href="#附、参考文章：" class="headerlink" title="附、参考文章："></a>附、参考文章：</h4><p><a href="http://www.yopai.com/show-2-178211-1.html" target="_blank" rel="noopener">中央空调水系统为何设计7℃-12℃供回水温度？都是洋首是瞻的谬误……</a></p>
+<p>基础知识：</p>
+<pre>绝对湿度 
+(1)定义或解释 
+①空气里所含水汽的压强，叫做空气的绝对湿度。 
+②单位体积空气中所含水蒸汽的质量，叫做空气的绝对湿度。 
+(2)单位 
+绝对湿度的单位习惯用毫米水银柱高来表示。也常用l立方米空气中所含水蒸汽的克数来表示。 
+(3)说明 
+①空气的干湿程度和单位体积的空气里所含水蒸汽的多少有关，在一定温度下，一定体积的空气中，水汽密度愈大，汽压也愈大，密度愈小，汽压也愈小。所以通常是用空气里水蒸汽的压强来表示湿度的。 ②湿度是表示空气的干湿程度的物理量。空气的湿度有多种表示方式，如绝对湿度，相对湿度、露点等。 
+
+相对湿度 
+(1)定义或解释 
+①空气中实际所含水蒸汽密度和同温度下饱和水蒸汽密度的百分比值，叫做空气的相对湿度。 
+②在某一温度时，空气的绝对湿度，跟在同一温度下的饱和水汽压的百分比值，叫做当时空气的相对湿度。 
+(2)说明 
+①实际上碰到许多跟湿度有关的现象并不跟绝对湿度直接有关，而是跟水汽离饱和状态的程度有直接关系，因此提出了一个能表示空气中的水汽离开饱和程度的新概念——相对湿度。也是空气湿度的一种表示方式。 
+②由于在温度相同时，蒸汽的密度和蒸汽压强成正比，所以相对湿度通常就是实际水蒸汽压强和同温度下饱和水蒸汽压强的百分比值。 
+
+露点 
+(1)定义或解释 
+①使空气里原来所含的未饱和水蒸汽变成饱和时的温度，叫做露点。 
+②空气的相对湿度变成100％时，也就是实际水蒸汽压强等于饱和水蒸汽压强时的温度，叫做露点。 
+(2)单位 
+习惯上，常用摄氏温度表示。 
+(3)说明 
+①人们常常通过测定露点，来确定空气的绝对湿度和相对湿度，所以露点也是空气湿度的一种表示方式。例如，当测得了在某一气压下空气的温度是20℃，露点是12℃那么，就可从表中查得20℃时的饱和蒸汽压为17.54mmHg，12℃时的饱和蒸汽压为lO.52mmHg。则此时：空气的绝对湿度p=10.52mmHg， 
+
+空气的相对湿度．B=(10.52/17.54)×100％=60％。 
+
+采用这种方法来确定空气的湿度，有着重大的实用价值。但这里很关键的一点，要求学生学会露点的测定方法。 
+
+②露点的测定，在农业上意义很大。由于空气的湿度下降到露点时，空气中的水蒸汽就凝结成露。如果露点在O℃以下，那末气温下降到露点时，水蒸汽就会直接凝结成霜。知道了露点，可以预报是否发生霜冻，使农作物免受损害。 
+⑨气温和露点的差值愈小，表示空气愈接近饱和。气温和露点接近，也就是此时的相对湿度百分比值大，人们感觉气候潮湿；气温和露点差值大，即此时的相对湿度百分比值小，人们感觉气候干燥。人体感到适中的相对湿度是60～70％。 
+④严格地说，露点时的饱和汽压和空气当时的水汽压强是不相等的。 
+由于未饱和汽的压强随温度的变化是遵循下列规律Pt=P0(1+t/273)。 
+
+在日常的温差下，压强的变化很小，所以近似地当作不变来处理。如上例中在某一汽压下，空气气温是20℃，露点是12℃，那么从图中可见直线几乎和t轴平行。 
+
+绝热饱和温度 
+
+空气的一个状态参数，绝热增湿过程中空气降温的极限。当流动空气同循环水绝热接触时，只要空气的相对湿度小于100％，水就会不断汽化。汽化需要吸收热量，使水温下降。空气通过对流传热将热量传给循环水，所以气体温度也会下降。当水经充分循环后，水温将维持恒定，由于它与空气充分接触，空气中水汽达到饱和，水和空气的温度也相同，空气与水之间在热量传递和质量传递两方面均达平衡。此平衡系统的温度，称为绝热饱和温度。 
+若取此温度为计算焓的基准温度，空气的焓在上述平衡中保持不变，由空气传给水的热量仍由水汽带回。绝热饱和温度的高低取决于空气的温度（常称干球温度）和湿度。当相对湿度等于100％时，绝热饱和温度就等于干球温度。相对湿度愈小，绝热饱和温度比干球温度降低得愈多</pre>
+相对湿度与露点
+<pre>相對濕度是表示空氣潮濕程度的常用指標。那麼氣溫10度，相對濕度20%跟氣溫30度，相對濕度20%有甚麼不同？ 
+相對濕度（relative humidity）是一個比值，表示現時空氣中水汽含量與空氣飽和時水汽含量之比。由於氣溫較高時可容納較多水汽，假如空氣中水汽含量不變，氣溫上升/下降會令相對濕度下降/上升，這亦解釋為何下午的相對濕度較低。
+
+由於相對濕度受氣溫變化影響，氣象學上我們使用露點（dew point）表示濕度。露點是假設壓力不變，把空氣冷卻至飽和（相對濕度100%）時的溫度。
+
+我們可計算上述情況的露點（氣壓可輸入1013millibars）：
+
+（a）氣溫10度，相對濕度20%，露點為-12.0度
+（b）氣溫30度，相對濕度20%，露點為4.6度
+
+露點越低，表示空氣中水汽含量越少（想想原因？）。雖然（a）及（b）情況之相對濕度相同，但前者空氣中之水汽含量比後者為低。
+
+只要空氣中水汽含量不變，露點不受氣溫、氣壓變化影響。
+
+顧名思義，露點與露（或霜）的出現有關。當地面氣溫降至露點，空氣中水汽凝結成水滴成為露。如露點低於冰點，水汽凝結成冰成為霜。
+
+冬天寒潮南下時，露點在冷暖空氣交界面附近常出現明顯差異，可以用來介定冷鋒的位置。
+</pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/28/e6-95-b4-e7-90-86/" rel="next" title="整理">
+                <i class="fa fa-chevron-left"></i> 整理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/29/e5-ae-b6-e5-ba-ad-e4-b9-98-e7-94-a8-e8-bd-a6-e5-ae-89-e5-85-a8-e9-85-8d-e7-bd-ae/" rel="prev" title="家庭乘用车安全配置">
+                家庭乘用车安全配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#太阳能板随动"><span class="nav-number">1.</span> <span class="nav-text">太阳能板随动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局域网表单提交系统"><span class="nav-number">2.</span> <span class="nav-text">局域网表单提交系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手机接收蓝牙音乐，蓝牙畅听"><span class="nav-number">3.</span> <span class="nav-text">手机接收蓝牙音乐，蓝牙畅听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#借助手机进行数量统计"><span class="nav-number">4.</span> <span class="nav-text">借助手机进行数量统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#电视自动感应切换遥控器"><span class="nav-number">5.</span> <span class="nav-text">电视自动感应切换遥控器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#气压计"><span class="nav-number">6.</span> <span class="nav-text">气压计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#电热水器节能设计"><span class="nav-number">7.</span> <span class="nav-text">电热水器节能设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分体遥控器"><span class="nav-number">8.</span> <span class="nav-text">分体遥控器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遥控器防水专利"><span class="nav-number">9.</span> <span class="nav-text">遥控器防水专利</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#激光电视安装如何实现自动调整"><span class="nav-number">10.</span> <span class="nav-text">激光电视安装如何实现自动调整</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、-投影机介绍与分类"><span class="nav-number">10.1.</span> <span class="nav-text">一、 投影机介绍与分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、投影机技术指标"><span class="nav-number">10.2.</span> <span class="nav-text">二、投影机技术指标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、投影机安装调教"><span class="nav-number">10.3.</span> <span class="nav-text">三、投影机安装调教</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跟随机器人"><span class="nav-number">11.</span> <span class="nav-text">跟随机器人</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#海尔、美的的空调自清洁功能重要吗"><span class="nav-number">12.</span> <span class="nav-text">海尔、美的的空调自清洁功能重要吗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为啥中央空调出风口会凝结水珠"><span class="nav-number">13.</span> <span class="nav-text">为啥中央空调出风口会凝结水珠</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、现象："><span class="nav-number">13.1.</span> <span class="nav-text">1、现象：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、原因分析："><span class="nav-number">13.2.</span> <span class="nav-text">2、原因分析：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、现有产品的改进思路："><span class="nav-number">13.3.</span> <span class="nav-text">3、现有产品的改进思路：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#附、参考文章："><span class="nav-number">13.4.</span> <span class="nav-text">附、参考文章：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

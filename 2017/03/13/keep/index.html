@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="内部看板： 初期目标：股份电视开发流程中问题解答百科，比如资源的人员分配，采购的人员分配，领料系统的物料对应人员，原型机实验项目需要注意哪些问题，原型机开发流程，PLM注意事项等。网页版，加密通信。  git版本：控制任务进展，知识分享，培训课程，设计、解决问题套路。 用户注册：通过公司邮箱。 用户通知：短信、微信、邮件。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Keep">
+<meta property="og:url" content="http://yoursite.com/2017/03/13/keep/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="内部看板： 初期目标：股份电视开发流程中问题解答百科，比如资源的人员分配，采购的人员分配，领料系统的物料对应人员，原型机实验项目需要注意哪些问题，原型机开发流程，PLM注意事项等。网页版，加密通信。  git版本：控制任务进展，知识分享，培训课程，设计、解决问题套路。 用户注册：通过公司邮箱。 用户通知：短信、微信、邮件。">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.884Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Keep">
+<meta name="twitter:description" content="内部看板： 初期目标：股份电视开发流程中问题解答百科，比如资源的人员分配，采购的人员分配，领料系统的物料对应人员，原型机实验项目需要注意哪些问题，原型机开发流程，PLM注意事项等。网页版，加密通信。  git版本：控制任务进展，知识分享，培训课程，设计、解决问题套路。 用户注册：通过公司邮箱。 用户通知：短信、微信、邮件。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/13/keep/"/>
+
+
+
+
+
+  <title>Keep | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/13/keep/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Keep</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-13T09:59:42+08:00">
+                2017-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Product/" itemprop="url" rel="index">
+                    <span itemprop="name">Product</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="内部看板："><a href="#内部看板：" class="headerlink" title="内部看板："></a>内部看板：</h3><ol>
+<li>初期目标：股份电视开发流程中问题解答百科，比如资源的人员分配，采购的人员分配，领料系统的物料对应人员，原型机实验项目需要注意哪些问题，原型机开发流程，PLM注意事项等。<br>网页版，加密通信。</li>
+</ol>
+<p>git版本：控制任务进展，知识分享，培训课程，设计、解决问题套路。</p>
+<p>用户注册：通过公司邮箱。</p>
+<p>用户通知：短信、微信、邮件。<br><a id="more"></a></p>
+<h3 id="一、结构设计新品开发试验标准"><a href="#一、结构设计新品开发试验标准" class="headerlink" title="一、结构设计新品开发试验标准"></a>一、结构设计新品开发试验标准</h3><h4 id="1、电视产品"><a href="#1、电视产品" class="headerlink" title="1、电视产品"></a>1、电视产品</h4><blockquote>
+<p>J07.511-2016电视产品各阶段试验检验项目和要求</p>
+<p>J07.507-2015平板电视机械性能试验方法和要求</p>
+<p>DFM标准</p>
+<p>壁挂试验标准</p>
+</blockquote>
+<h4 id="2、信息产品"><a href="#2、信息产品" class="headerlink" title="2、信息产品"></a>2、信息产品</h4><blockquote>
+<p>STRU01.02.01-2014海信信息产品用料设计规范</p>
+<p>QHMG JG T M 001-2015海信信息产品用料设计规范</p>
+</blockquote>
+<h3 id="二、常用局域网网址："><a href="#二、常用局域网网址：" class="headerlink" title="二、常用局域网网址："></a>二、常用局域网网址：</h3><p><strong>领料系统</strong></p>
+<blockquote>
+<p>gfmwms.hisense.com #2017年5月新上线领料系统，用邮箱账号登录</p>
+<p>衬垫：徐志国</p>
+<p>塑胶后壳：王鹏mj</p>
+<p>车队：每周几到黄岛领料？</p>
+<p>研发领料员：王华 13853225065</p>
+<p><a href="http://172.16.96.54:8083/Index.aspx" target="_blank" rel="noopener">http://172.16.96.54:8083/Index.aspx</a> #旧领料CAS系统，已作废</p>
+<p>用户名：gfcasmd</p>
+<p>密码：Md123456</p>
+<p>物料类型：原材料 #半成品是电路用的，不要选错！</p>
+<p>备注：添自己的名字</p>
+<p>采购员明细：</p>
+<p>纸隔板：刘宁</p>
+<p>衬垫：徐志国</p>
+<p>塑胶后壳：王鹏mj</p>
+<p>塑料罩：刘强</p>
+<p>塑料支架、盖板：于盛</p>
+<p>整机存放箱：刘宁<br><strong>PLM系统</strong><br><a href="http://172.16.45.11:8022/enovia/emxLogin.jsp" target="_blank" rel="noopener">http://172.16.45.11:8022/enovia/emxLogin.jsp</a> #PLM</p>
+<p><a href="http://hiway.hisense.com:8022/enovia/emxLogin.jsp" target="_blank" rel="noopener">http://hiway.hisense.com:8022/enovia/emxLogin.jsp</a></p>
+<p>物料属性注意事项：金属前后壳材料统一为材料大类“铝、钢、不锈钢”，不要用下拉菜单！</p>
+<p>同事账号，代审必须邮件通知！</p>
+<p>anbaijun:hisenseanbaijun@</p>
+<p>chengchuanyong:111111@</p>
+<p>jiawenpeng1:jiawenpeng1@</p>
+<p>sunyaomin:123@</p>
+<p>wanglimingf:123@</p>
+<p>xupeifei:xupeifei@</p>
+<p>zhouyekai:Zyk111111@<br><strong>集团共享文件目录</strong><br>\172.16.96.50 #[集团共享文件夹</p>
+<p>](http://\172.16.96.50)<br><strong>重置过期域密码</strong><br><a href="https://172.16.41.200/iisadmpwd/" target="_blank" rel="noopener">https://172.16.41.200/iisadmpwd/</a></p>
+<p>重置域密码步骤：将此网址输入到公司内部任意一台可上网的电脑，都可以打开，账号为用户名，密码为开机密码，修改的密码可与原来的密码一致。<br><strong>JIRA系统</strong><br><a href="http://zhangqihui:123@tvjira.hisense.com" target="_blank" rel="noopener">http://zhangqihui:123@tvjira.hisense.com</a> #整机JIRA</p>
+<p><a href="http://zhangqihui:123@dmtjira.hisense.com/secure/Dashboard.jspa" target="_blank" rel="noopener">http://zhangqihui:123@dmtjira.hisense.com/secure/Dashboard.jspa</a> #JIRA</p>
+<p>hisense1:mizhenbing</p>
+</blockquote>
+<pre>http://172.16.41.200 #Windows Server
+</pre>
+**股份OA系统**
+<pre>http://koa3.hisense.com/oa/km/doc/?categoryId=14c69dbc0bd2e512d08d8034ed3a7f97#cri.q=docStatus:30 #股份KOA规范浏览
+</pre>
+**专利申请**
+> 傅建伟 海信多媒体集团 知识产权部 硬件申请组
+> 
+> 电话:+86(0)532-55758282
+> 
+> Email：fujianwei1@hisense.com
+> 
+> 中国·青岛市崂山区松岭路399号 海信新研发中心 B1F3 266010
+**翻包管理办法（安佰军 2017-08-22）工业设计中心没有阅读权限**
+<pre>各位：
+     关于 翻包联系书的物料报废责任人，以及其他管理办法的学习，请按照如下链接学习。请刘所和王所向其他有有必要知晓的结构设计传达，并做好传达学习记录。
+     如果看不了这些链接，请来结构设计部电脑上学习。多谢。
+     近期大家在填写设计联系书时，物料报废的责任部门经常填错。
+1、[平板类彩色电视机交收检验细则](http://koa3.hisense.com/oa/km/doc/km_doc_knowledge/kmDocKnowledge.do?method=view&amp;fdId=15915dee17f1ebc4e4a1de34c22ab2b4)
+说明：电视产品出厂检验标准。判定产品是否存在问题的最重要依据。
+2、[LED产品结构设计规范](http://koa3.hisense.com/oa/km/doc/km_doc_knowledge/kmDocKnowledge.do?method=view&amp;fdId=14e43d19224dbea66f8e8a14fcd91c43)
+说明：从产品整体设计到部件设计，都有详细的规定
+3、[结构件新品质量控制管理办法](http://koa3.hisense.com/oa/km/doc/km_doc_knowledge/kmDocKnowledge.do?method=view&amp;fdId=1576a673a0641ff42e6ecb843a983f22)
+说明：办法规定了 新结构件开发过程中，开发，认定，资源三个主要部门的职责。是从事应市产品设计必看的管理办法。
+4、[部品认定管理办法](http://koa3.hisense.com/oa/km/doc/km_doc_knowledge/kmDocKnowledge.do?method=view&amp;fdId=15797f07c90e80e9e66dae34cfb94456)
+5、[工艺部职责](http://koa3.hisense.com/oa/sys/attachment/sys_att_main/sysAttMain.do?method=view&amp;fdId=14cf8ebb21e2a27e8d845a7401790e8d)
+说明：规定了工艺部职责，重点看一下部品认定职责
+6、[结构部品可靠性测试规范](http://koa3.hisense.com/oa/km/doc/km_doc_knowledge/kmDocKnowledge.do?method=view&amp;fdId=154cbf9ad063601f2b86e5c47f9b65e3)
+说明：规范对不同的结构件需要做哪些试验都做了规定，是从事新品设计和审核部品承认书中的试验项目是否完整 必看的规范。
+7、[不合格品控制管理办法](http://koa3.hisense.com/oa/sys/attachment/sys_att_main/sysAttMain.do?method=view&amp;fdId=156b6aecbeeed9537acd6eb4f0386526)
+说明：不合格物料如何处理的原始规定。150%，130%的公差放宽，30台开发打报告，100台资源打报告等，都是在此基础上协商或者规定的一些具体处理方式。
+8、[新产品风险评估管理办法](http://koa3.hisense.com/oa/km/doc/km_doc_knowledge/kmDocKnowledge.do?method=view&amp;fdId=15770313062113be427816543c581b71)
+说明：办法规定了各阶段成熟度要求，何种问题需要达到何种状态，不满足成熟度要求如何进行风险评估
+9、[多媒体集团新产品开发管理程序](http://koa3.hisense.com/oa/km/doc/km_doc_knowledge/kmDocKnowledge.do?method=view&amp;fdId=15ce207a886bb298cd6966e498a8dfe8)
+说明：本文件规定了海信多媒体研发中心新产品研发项目的开发阶段划分、各阶段主要活动，以及各部门主要职责，适用于研发中心模组、电视、移动终端、机顶盒、模组、激光电视、商显、医疗显示等应市产品的开发过程管理。
+10、[部品技术规格操作规程](http://koa3.hisense.com/oa/km/doc/km_doc_knowledge/kmDocKnowledge.do?method=view&amp;fdId=14d31a300d591116a1e58e14f6da6d47)
+说明：规定了部品规格确认过程中，各部门的职责和活动。
+11、[零部件引入管理程序](http://koa3.hisense.com/oa/km/doc/km_doc_knowledge/kmDocKnowledge.do?method=view&amp;fdId=1446cb3525df501e6a9cc964b00924cf)
+说明：文件只有5页，类似一个索引，说明了零部件从无到有，所需要的动作和对应的支撑办法
+12、[开发规范管理操作规程](http://koa3.hisense.com/oa/km/doc/km_doc_knowledge/kmDocKnowledge.do?method=view&amp;fdId=14d02e1a19e09437eabdd394d778160c)
+说明：想做一个管理办法，想修改一个管理办法，先看看这个文件
+13、电视新品制程报报废管理操作规程
+http://koa3.hisense.com/oa/km/doc/km_doc_knowledge/kmDocKnowledge.do?method=view&amp;fdId=1518120fac7d630a96db5b644149c749
+http://koa3.hisense.com/oa/km/doc/km_doc_knowledge/kmDocKnowledge.do?method=view&amp;fdId=1520c0ddb238ce80176f833414ab05a6
+说明：规定了多媒体研发中心电视新品阶段制程报废相关问题的管理要求，包括整机（含物料）报废责任划分的原则、比例、流程和判定标准，明确考核办法，以便系统地管控非正常报废，减少正常报废，最终降低研发成本。下发翻包文，搞不清物料更换(报废)责任部门的一定要看看。
+14、[工时损失管理办法](http://koa3.hisense.com/oa/km/doc/km_doc_knowledge/kmDocKnowledge.do?method=view&amp;fdId=15528ca978b82d64eeb637b4d64a2fdd)
+说明：进行影响工时 改判反馈前 必看的办法。
+</pre>
+
+<h3 id="三、内部分工："><a href="#三、内部分工：" class="headerlink" title="三、内部分工："></a>三、内部分工：</h3><p>20170606:开模招标人员分工</p>
+<pre>开发：王钦伟，每周二、五统一发放招标文件；
+</pre>
+20170606：计划人员分工
+<pre>新品：许田田
+试流：李晓燕
+</pre>
+20170406：PLM图纸认定人员分工：
+<pre>整机包装袋：shenlin 沈林
+衬垫：lixiaolong2 李晓龙
+绝缘垫片、板：zhaoanlu 赵安鲁
+</pre>
+20170314：IQC检验人员分工
+<pre>IQC检验班班长：王光新15054810150，丁明广13864886034。
+按键支架4922，按键帽0262：李刚 15954878919，结构已封样，需项目经理封样。
+4X塞帽0308：李刚 15954878919：外观不良，需结构、项目经理联合封样。
+端子板1585：李刚 15954878919：有缩水，需结构、项目经理联合封样。
+底座0993：卢建波 13730984252，利通外观不良，。孙舸 18562554340（IQC工程师）。
+前壳0241：李刚 15954878919：OK。
+感应按键1176211：闫素芬 13969725067：OK。（杨波13375321663，李文明15092056683协助）。
+盖板0306、0307：李刚 15954878919（盛尊友已封外观样）。
+盖板0310：
+包装衬垫5097、5102、5103、5104、5123、5124：张娜 13455288032，王绪森18560633723（采购资源），李晓龙17753299751（采购认定，刘冠军工不再负责）：上下衬垫缺箭头，不同意使用，海景重新送货。
+存放箱6941：
+后壳3694：（凯宇烫金）
+（大卡塞帽）盖板0311：
+（大卡塞帽）盖板0302：盖板\RSAG8.634.0302\黑\ROH（1174048）。已采购，通知产线领料。
+</pre>
+20170313
+<pre>1、100台试产，物料需要开发封样，IQC才能检验：xinge zhanggang 前壳还需要将色板的上中下限封样。
+2、前壳6块网布，铝型材开口加大1毫米，深0.3，解决外观问题，参考65的发变更单。
+3、55n8 100台物料齐套查询：
+   1）底座利通105套已到黄岛，汇锦80套14日到黄岛；
+   2）前壳：众宇物料12日已到黄岛；
+   3）后壳：13日上午试模，中午调好；
+   4）底座连接支架：坤厚德已处理完所有库存，今天提供全检尺寸报告；
+4、8700下前壳样件：样件14号到5件，试产物料18日到黄岛。
+5、PLM0 241前壳图纸错误，需要更新，网罩与铝型材底部闪缝0.2要求较高，加大到0.3。
+6、8700 BOM 升版。
+7、306、307盖板变形严重，306变形0.8毫米，307变形也较大，需要在图纸上加上要求。
+8、底座一体包装侧中衬垫，加松紧带的避让，厂家还没有改模，应张娜要求，PLM先换上旧图纸。
+</pre>
+
+<h3 id="四、快递"><a href="#四、快递" class="headerlink" title="四、快递"></a>四、快递</h3><blockquote>
+<p>股份结构设计部顺丰快递月结帐号：5323535411</p>
+</blockquote>
+<h3 id="五、班车信息"><a href="#五、班车信息" class="headerlink" title="五、班车信息"></a>五、班车信息</h3><h4 id="1、2017-07-31最新班车信息"><a href="#1、2017-07-31最新班车信息" class="headerlink" title="1、2017-07-31最新班车信息"></a>1、2017-07-31最新班车信息</h4><pre>研发中心各部门：
+    新研发至黄岛产业园的班车已经试运行一个多月，根据这一个多月的运行情况统计，每天乘坐人数没有达到预期的人员数量，平均乘坐人数达不到车辆总座数（49座）的一半，且江西路始发站全月仅有2人次乘坐，造成了公司资源的极大浪费。
+    根据股份公司总经办通知，为节约费用，早班车将交运大巴车调整为19座依维柯，取消江西路站，终点站调整为地铁大厦站口，其他车辆及路线不变。
+    切换时间：7月31日
+    切换后的路线如下：
+    一、青黄往返依维柯车【19座】路线：
+    1、**青岛→黄岛产业园：工作日早上，07:15 延吉路东站公交站发车（福州路上，南向北）**→07:35 东李立交桥公交站（黑龙江中路上，南向北）→07:55 虎山军体中心公交站（金水路上，东向西）→黄岛产业园
+    2、黄岛产业园→青岛：工作日晚上18:30 黄岛产业园7号楼和8号楼十字路口→地铁大厦地铁口
+    3、车辆信息：19座白色依维柯车，司机：苏师傅，联系方式：15305324780，车牌号：鲁B11988
+    二、青黄往返金杯车路线：
+    1、**青岛→黄岛产业园：工作日下午13:00 新研发中心A3大厅门口→黄岛产业园**
+    2、黄岛产业园→青岛：21:00黄岛产业园（根据生产结束时间可能会延后，提前预约）→青岛【可根据员工住址适当送至离家最近位置】
+    3、**车辆信息：10座金杯面包，司机：项师傅，联系方式：13325011106，车牌号：鲁UB9788**
+    4、提前预约：因座位有限，为了避免人员较多导致座位不足，请每天17:00之前与项师傅预约。
+    三、青黄往返依维柯车【11座】路线：
+    1、黄岛产业园→新研发中心：8:30黄岛产业园（7号楼和8号楼十字路口）→新研发中心
+    2、**新研发中心→黄岛产业园：16:30新研发园区门口旗杆处→黄岛产业园**
+    3、**车辆信息：11座依维柯，司机：薛师傅，车牌号：鲁B27700**
+    四、黄岛→青岛员工班车：
+    1、发车时间：每天17:30
+    2、发车地点：黄岛产业园（7号楼和8号楼十字路口），途径瑞昌路、手拉手、市北区疾控中心、鞍山路小学对面、建材厂4路总站，到达田家村公寓。
+    3、须当天购买班车票：每天下午16:00前到黄岛7号楼4楼后勤办公室，购买乘车票，票价￥7元/张，此费用可凭财务规定的交通票进行报销。
+    费用承担：根据各公司实际承担人数比例分摊运行费用
+    运行期间如有不合理之处或其他问题，请随时与综管部宋悦沟通，综管部将依据合理性进行适当调整，谢谢！
+</pre>
+
+<h4 id="2、已过时班车信息"><a href="#2、已过时班车信息" class="headerlink" title="2、已过时班车信息"></a>2、已过时班车信息</h4><pre>研发中心各部门： 
+    前期新研发中心往返黄岛产业园的交通方式是研发中心综合管理部、黄岛股份车队各一辆小型班车，股份小班车每天上午9:15从新研发中心发车，到达黄岛产业园已临近中午，影响正常生产，且随着前往黄岛跟线人员的逐渐增多，原来的车辆已经无法满足员工的乘坐需求。 
+    根据股份公司总经办通知，为节约成本和整合资源，结合集团领导要求，现整合新研发至产业园班车，由股份公司进行代管，现对往返青黄的班车调整安排如下：
+
+    一、股份公司租赁青岛交运大巴车： 
+    股份公司总经办从青岛交运租赁49座的大巴车，用于员工早、晚往返黄岛产业园和青岛，具体时间和路线如下： 
+    1、青岛→黄岛产业园：工作日早上07:00 江西路研发中心前门发车→07:15 延吉路东站公交站（福州路上，南向北）→07:35 东李立交桥公交站（黑龙江中路上，南向北）→07:55 虎山军体中心公交站（金水路上，东向西）→黄岛产业园 
+    2、黄岛产业园→青岛：工作日晚上18:30 黄岛产业园7号楼和8号楼十字路口→南昌路交运总站 
+    3、车辆信息：青岛交运的49座大巴车，司机：姜师傅，联系方式：13665321254，车牌号：鲁BN1317 
+
+    二、青黄往返金杯车路线：
+    1、青岛→黄岛产业园：工作日下午13:00 新研发中心A3大厅门口→黄岛产业园
+    2、黄岛产业园→青岛：21:00黄岛产业园（根据生产结束时间可能会延后，提前预约）→青岛【可根据员工住址适当送至离家最近位置】
+    3、车辆信息：10座金杯面包，司机：项师傅，联系方式：13325011106，车牌号：鲁UB9788
+    4、提前预约：因座位有限，为了避免人员较多导致座位不足，请每天17:00之前与项师傅预约。
+
+    三、青黄往返依维柯车路线：
+    1、黄岛产业园→新研发中心：8:30黄岛产业园（7号楼和8号楼十字路口）→新研发中心 
+    2、新研发中心→黄岛产业园：16:30新研发园区门口旗杆处→黄岛产业园 
+    3、车辆信息：14座依维柯，司机：苏师傅，联系方式：15305324780，车牌号：鲁B11988
+
+    四、黄岛→青岛员工班车：
+    1、发车时间：每天17:30
+    2、发车地点：黄岛产业园（7号楼和8号楼十字路口），途径瑞昌路、手拉手、市北区疾控中心、鞍山路小学对面、建材厂4路总站，到达田家村公寓。
+    3、须当天购买班车票：每天下午16:00前到黄岛7号楼4楼后勤办公室，购买乘车票，票价￥7元/张，此费用可凭财务规定的交通票进行报销。 
+
+    试运行期间如有不合理之处或其他问题，请随时与综管部宋悦沟通，综管部将依据合理性进行适当调整，谢谢！ 
+
+    附：发车路线及时间表
+![](https://www.greydesign.tk/wp-content/uploads/2017/03/班车.png)
+</pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/11/e8-80-81-e5-9e-8b-e5-8f-b7-e6-89-93-e5-8d-b0-e6-9c-ba-e5-ae-9e-e7-8e-b0-e7-bd-91-e7-bb-9c-e6-89-93-e5-8d-b0/" rel="next" title="HP Laserjet 1008 Windows 10驱动问题以及老型号打印机实现网络打印">
+                <i class="fa fa-chevron-left"></i> HP Laserjet 1008 Windows 10驱动问题以及老型号打印机实现网络打印
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/15/github-com-e6-98-af-e4-bb-80-e4-b9-88-trashed/" rel="prev" title="世界，你好！github">
+                世界，你好！github <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#内部看板："><span class="nav-number">1.</span> <span class="nav-text">内部看板：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、结构设计新品开发试验标准"><span class="nav-number">2.</span> <span class="nav-text">一、结构设计新品开发试验标准</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、电视产品"><span class="nav-number">2.1.</span> <span class="nav-text">1、电视产品</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、信息产品"><span class="nav-number">2.2.</span> <span class="nav-text">2、信息产品</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、常用局域网网址："><span class="nav-number">3.</span> <span class="nav-text">二、常用局域网网址：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、内部分工："><span class="nav-number">4.</span> <span class="nav-text">三、内部分工：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、快递"><span class="nav-number">5.</span> <span class="nav-text">四、快递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、班车信息"><span class="nav-number">6.</span> <span class="nav-text">五、班车信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、2017-07-31最新班车信息"><span class="nav-number">6.1.</span> <span class="nav-text">1、2017-07-31最新班车信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、已过时班车信息"><span class="nav-number">6.2.</span> <span class="nav-text">2、已过时班车信息</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

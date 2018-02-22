@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="首选编程语言廖雪峰的Python教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编程基础之Python语言">
+<meta property="og:url" content="http://yoursite.com/2017/08/10/python-e8-af-ad-e6-b3-95-e5-85-a5-e9-97-a8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="首选编程语言廖雪峰的Python教程">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.887Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编程基础之Python语言">
+<meta name="twitter:description" content="首选编程语言廖雪峰的Python教程">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/10/python-e8-af-ad-e6-b3-95-e5-85-a5-e9-97-a8/"/>
+
+
+
+
+
+  <title>编程基础之Python语言 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/10/python-e8-af-ad-e6-b3-95-e5-85-a5-e9-97-a8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">编程基础之Python语言</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-10T17:12:07+08:00">
+                2017-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding/" itemprop="url" rel="index">
+                    <span itemprop="name">Coding</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding/Network/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>首选编程语言<br><a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" target="_blank" rel="noopener">廖雪峰的Python教程</a><br><a id="more"></a></p>
+<h4 id="一、安装与配置"><a href="#一、安装与配置" class="headerlink" title="一、安装与配置"></a>一、安装与配置</h4><blockquote>
+<p>1、手册:<a href="https://docs.python.org" target="_blank" rel="noopener">在线官方文档</a>（在线或下载离线参考皆可，安装软件后本地也自带手册）</p>
+<p>2、<a href="https://docs.python.org/3.6/tutorial/index.html" target="_blank" rel="noopener">The Python Tutorial</a></p>
+<p>3、IDE环境：初学用python自带IDE，提高用<a href="http://www.jetbrains.com/pycharm/download" target="_blank" rel="noopener">PyCharm</a>（社区版是免费的），也可以用Sublime或Atom配置（还可以写Markdown）<br>PyCharm<br><a href="https://www.toutiao.com/a6514603668447166979/" target="_blank" rel="noopener">Python 集成开发工具，PyCharm 安装教程，包含注册码</a></p>
+<p><a href="https://www.jetbrains.com/pycharm/" target="_blank" rel="noopener">官方下载页面</a> #将近200M的包，暂时放弃，等编程水平高一点再说吧！<br>Windows10 配置sublime text编辑器，用于python集成开发环境：<br>缺省安装python与sublime text，就可以直接使用集成环境编写python了，具体配置文件位置：</p>
+<p>从sublime text的安装目录找到packages目录，例如：“C:\Program Files\Sublime Text 3\Packages”</p>
+<p>找到压缩包“Python.sublime-package”，其中的“Python.sublime-build”一般已经配置好了。</p>
+<p>问题：sublime text菜单“Preference-&gt;browse packages”打开的目录是放置用户自定义“build system”菜单的？</p>
+</blockquote>
+<h4 id="二、语法"><a href="#二、语法" class="headerlink" title="二、语法"></a>二、语法</h4><h5 id="1、元组（tuple）、列表（list）、字典（dictionary）、序列（集合？）的差异"><a href="#1、元组（tuple）、列表（list）、字典（dictionary）、序列（集合？）的差异" class="headerlink" title="1、元组（tuple）、列表（list）、字典（dictionary）、序列（集合？）的差异"></a>1、元组（tuple）、列表（list）、字典（dictionary）、序列（集合？）的差异</h5><blockquote>
+<p>数据定义：元组用小括号，列表用方括号，字典用大括号</p>
+<p>数据引用：元组用方括号，列表用方括号，字典用方括号</p>
+<p>数据修改：元组不能修改，列表可以修改</p>
+<p>问题：元组、列表数据的类型必须一致吗？</p>
+</blockquote>
+<h5 id="习题1、用列表（List）、元组、字典计算1-100的和"><a href="#习题1、用列表（List）、元组、字典计算1-100的和" class="headerlink" title="习题1、用列表（List）、元组、字典计算1~100的和"></a>习题1、用列表（List）、元组、字典计算1~100的和</h5><blockquote>
+<p>print(sum(list(range(1,101))) #列表实现</p>
+</blockquote>
+<h5 id="习题2、同一目录下简化重复的文件命名"><a href="#习题2、同一目录下简化重复的文件命名" class="headerlink" title="习题2、同一目录下简化重复的文件命名"></a>习题2、同一目录下简化重复的文件命名</h5><p>比如文件名“<a href="01">《Fearless》专辑</a> [Taylor Swift] Jump Then Fall.ape”，统一删除““<a href="”和“">《Fearless》专辑</a> [Taylor Swift] ”</p>
+<!--more-->
+<p>思路：</p>
+<blockquote>
+<p>1、列出目录中的文件名到列表1，并复制到列表2</p>
+<p>2、将列表2中的目录名清理空格，统一转换为小写 #<a href="http://python3-cookbook.readthedocs.io/zh_CN/latest/c02/p11_strip_unwanted_characters.html" target="_blank" rel="noopener">删除字符串中不需要的字符</a> 这个网址手册很棒</p>
+<p>3、统计列表2重复的字符，输出文件名简化方案，待用户确认</p>
+<p>4、用户如果确认，更改文件名，并输出到日志文件（更改前的文件名对应更改后的文件名）</p>
+<p>import os</p>
+<p>os.chdir(‘f:\baidunetdiskdownload\2008-fearless’) #会提示错误！估计是目录名太长了？ 转到f盘根目录，注意需要两个反斜杠，例如：os.chdir(‘f:\‘)</p>
+<p>os.listdir(os.getcwd())<br>很Low的代码：<br>import os</p>
+<p>cleardir=’2008-fearless’</p>
+<p>clearstr1=’[《Fearless》专辑]’</p>
+<p>clearstr2=’[Taylor Swift]’</p>
+<p>list1=os.listdir(cleardir)</p>
+<p>list2=list1</p>
+<p>i=1</p>
+<p>for namelist in list2:</p>
+<p>namelist=namelist.replace(clearstr1,’’)</p>
+<p>namelist=namelist.replace(clearstr2,’’)</p>
+<p>namelist=namelist.replace(‘ ‘,’’)</p>
+<p>print(i,namelist)</p>
+<p>i=i+1<br>问题：<br>关于目录、文件的函数，在语法书中涉及很少，在实际应用中，是不是需要直接看os模块呢？那些相关的模块在哪个目录中呢？</p>
+<p>Wordpress代码块支持python的Tab字符吗？<br>实践1：批量改名<br>proe批量解密文件批量改名问题：</p>
+<p>解密文件名自动增加“解密副本”，如果有几百个解密文件，proe无法检索，用python编程解决。</p>
+<p>需要补充代码：<br><a href="http://blog.csdn.net/scelong/article/details/6971917" target="_blank" rel="noopener">Python常见文件操作的函数示例</a><br><a href="http://blog.csdn.net/lsq2902101015/article/details/51305825" target="_blank" rel="noopener">Python获取指定文件夹下的文件名</a></p>
+</blockquote>
+<h5 id="实践2：搭建网站"><a href="#实践2：搭建网站" class="headerlink" title="实践2：搭建网站"></a>实践2：搭建网站</h5><p>a、用python命令实现内网web服务器：</p>
+<blockquote>
+<p>python -m http.server -8000 //python 3版本，缺省是8000端口</p>
+<p><span style="color: #555555;">手机用Termux也可以，但ip是10开头的，不是公网ip地址，无法实现手机临时网络，否则可以实现手机与电脑通过web传输文件了！看来需要通过内网穿透了，但如何通过家里的路由器或者vps实现呢？</span></p>
+<p><span style="color: #555555;">在linux shell下或者Windows CMD下运行没有问题，但在python shell下会提示错误：</span></p>
+<p><span style="color: #555555;">File “&lt;stdin&gt;”,line 1</span></p>
+<p><span style="color: #555555;">SyntaxError:invalid syntax</span></p>
+<p><span style="color: #555555;">问题：</span></p>
+<p><span style="color: #555555;">1、如何测试这个web服务器的性能，似乎响应很慢</span></p>
+<p><span style="color: #555555;">2、hexo建立内部网站如何实现？虚拟机是不是更好，用vmware还是docker好？</span><br>问题：以上方法在树莓派上无效，提示“No module named http”</p>
+</blockquote>
+<p>b、用lighthttpd搭建网站</p>
+<blockquote>
+<p>1、具体步骤待补充<br><a href="http://ju.outofmemory.cn/entry/19206" target="_blank" rel="noopener">树莓派上搭建基于Python+web.py+fastcgi+lighttpd的网站</a></p>
+</blockquote>
+<p>实践3、Netgear R7000 安装python</p>
+<p>我的路由器刷了小宝梅林固件，偶尔在华硕笔记本上用’python -m http.server –cgi 8000’ 开启网站，并在路由器中设置端口转发，发现外网能够成功访问，端口转发配置如下：</p>
+<blockquote>
+<p>服务名称：HTTP Server</p>
+<p>通信端口范围：8000</p>
+<p>本地 IP：192.168.1.165</p>
+<p>本地通信端口：8000</p>
+<p>通信协议：TCP<br>于是想在路由器上试验python一行启动网站，实现长期运行，却发现没有python，加上昨天发现小宝梅林固件也没有netstat命令，感觉需要研究小宝梅林固件添加linux软件功能。</p>
+</blockquote>
+<p><a href="https://www.chiphell.com/forum.php?mod=viewthread&amp;tid=841770" target="_blank" rel="noopener">在华硕原版固件merlin版安装goagent等功能</a></p>
+<p><a href="http://koolshare.cn/thread-73668-1-1.html" target="_blank" rel="noopener">[教程] 改版梅林下把entware和软件中心装入U盘，从此刷机不怕丢应用</a></p>
+<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><p>《Python编程：从入门到实践》</p>
+<blockquote>
+<p>知乎推荐首选，入门语法书籍推荐：Eirc Matthes</p>
+<p>竟然没有目录、文件名操作介绍<br>《<a href="http://download.csdn.net/download/l1505624/9770482" target="_blank" rel="noopener">Python核心编程 第3版 中文版</a>》<br>进阶语法书籍，mebook.cc网站可以下载到mobi版本，英文版在网络上也很好找<br>《Python核心编程（第2版）》<br>Python 2内容，过时了，不推荐<br>《流畅的的Python》<br>进阶书籍，我注册了<a href="http://www.wode5.com，下载了mobi版本" target="_blank" rel="noopener">http://www.wode5.com，下载了mobi版本</a><br>《Python学习手册（原书第4版）》<br>从mebook.cc下载，翻译及其糟糕，原书废话也较多<br>&nbsp;</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/07/e4-bb-8e-e4-ba-92-e8-81-94-e7-bd-91-e4-b8-8b-e8-bd-bd-e5-a4-a7-e6-96-87-e4-bb-b6/" rel="next" title="从互联网下载大文件">
+                <i class="fa fa-chevron-left"></i> 从互联网下载大文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/11/e9-82-ae-e4-bb-b6-e8-ae-be-e7-bd-ae-e4-b8-ad-e7-9a-84pop3-e4-b8-8eimap-e6-9c-89-e5-95-a5-e5-8c-ba-e5-88-ab/" rel="prev" title="Python基础之发送邮件">
+                Python基础之发送邮件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、安装与配置"><span class="nav-number">1.</span> <span class="nav-text">一、安装与配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、语法"><span class="nav-number">2.</span> <span class="nav-text">二、语法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、元组（tuple）、列表（list）、字典（dictionary）、序列（集合？）的差异"><span class="nav-number">2.1.</span> <span class="nav-text">1、元组（tuple）、列表（list）、字典（dictionary）、序列（集合？）的差异</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#习题1、用列表（List）、元组、字典计算1-100的和"><span class="nav-number">2.2.</span> <span class="nav-text">习题1、用列表（List）、元组、字典计算1~100的和</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#习题2、同一目录下简化重复的文件命名"><span class="nav-number">2.3.</span> <span class="nav-text">习题2、同一目录下简化重复的文件命名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实践2：搭建网站"><span class="nav-number">2.4.</span> <span class="nav-text">实践2：搭建网站</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附录"><span class="nav-number"></span> <span class="nav-text">附录</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、实现python发送邮件 参考：简单三步，用 Python 发邮件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python基础之发送邮件">
+<meta property="og:url" content="http://yoursite.com/2017/08/11/e9-82-ae-e4-bb-b6-e8-ae-be-e7-bd-ae-e4-b8-ad-e7-9a-84pop3-e4-b8-8eimap-e6-9c-89-e5-95-a5-e5-8c-ba-e5-88-ab/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、实现python发送邮件 参考：简单三步，用 Python 发邮件">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.887Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python基础之发送邮件">
+<meta name="twitter:description" content="一、实现python发送邮件 参考：简单三步，用 Python 发邮件">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/11/e9-82-ae-e4-bb-b6-e8-ae-be-e7-bd-ae-e4-b8-ad-e7-9a-84pop3-e4-b8-8eimap-e6-9c-89-e5-95-a5-e5-8c-ba-e5-88-ab/"/>
+
+
+
+
+
+  <title>Python基础之发送邮件 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/11/e9-82-ae-e4-bb-b6-e8-ae-be-e7-bd-ae-e4-b8-ad-e7-9a-84pop3-e4-b8-8eimap-e6-9c-89-e5-95-a5-e5-8c-ba-e5-88-ab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python基础之发送邮件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-11T14:41:28+08:00">
+                2017-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding/" itemprop="url" rel="index">
+                    <span itemprop="name">Coding</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding/Network/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一、实现python发送邮件</p>
+<p>参考：<a href="https://zhuanlan.zhihu.com/p/24180606" target="_blank" rel="noopener">简单三步，用 Python 发邮件</a><a id="more"></a></p>
+<p>1、发送测试：</p>
+<blockquote>
+<p>import smtplib</p>
+<p>from email.mime.text import MIMEText</p>
+<p>#设置服务器所需信息</p>
+<p>#163邮箱服务器地址</p>
+<p>mail_host = ‘smtp.163.com’</p>
+<p>#163用户名</p>
+<p>mail_user = ‘159<strong>*</strong>02’</p>
+<p>#密码(部分邮箱为授权码)</p>
+<p>mail_pass = ‘7<strong>**</strong>x’</p>
+<p>#邮件发送方邮箱地址</p>
+<p>sender = <a href="mailto:&#39;159*****02@163.com" target="_blank" rel="noopener">&#39;159*****02@163.com</a>‘</p>
+<p>#邮件接受方邮箱地址，注意需要[]包裹，这意味着你可以写多个邮件地址群发</p>
+<p>receivers = [<a href="mailto:&#39;59*****02@qq.com" target="_blank" rel="noopener">&#39;59*****02@qq.com</a>‘]</p>
+<p>#设置email信息</p>
+<p>#邮件内容设置</p>
+<p>message = MIMEText(‘content’,’plain’,’utf-8’)</p>
+<p>#邮件主题</p>
+<p>message[‘Subject’] = ‘title’</p>
+<p>#发送方信息</p>
+<p>message[‘From’] = sender</p>
+<p>#接受方信息</p>
+<p>message[‘To’] = receivers[0]</p>
+<p>#登录并发送邮件</p>
+<p>try:</p>
+<p>smtpObj = smtplib.SMTP()</p>
+<p>#连接到服务器</p>
+<p>smtpObj.connect(mail_host,25)</p>
+<p>#登录到服务器</p>
+<p>smtpObj.login(mail_user,mail_pass)</p>
+<p>#发送</p>
+<p>smtpObj.sendmail(</p>
+<p>sender,receivers,message.as_string())</p>
+<p>#退出</p>
+<p>smtpObj.quit()</p>
+<p>print(‘success’)</p>
+<p>except smtplib.SMTPException as e:</p>
+<p>print(‘error’,e) #打印错误<br>测试结果：<br>用163信箱发公司信箱 #OK</p>
+<p>用公司信箱发给自己 #NG，把 <code>smtpObj.connect(mail_host,25)</code> 换为 <code>smtpObj = smtplib.SMTP_SSL(mail_host)</code> 也不行<br>邮件设置中的POP3与IMAP有啥区别<br>简单说，POP3客户端不改变邮箱服务器的内容，而IMAP客户端会与邮箱服务器内容“同步”。<br>二、实现python自动发出路由器ip地址更新邮件<br>登录路由器 #Windows 10下，cmd或power shell下，ssh都无法登录路由器，git bash可以，为什么？</p>
+<p>ip addr | mail @example.com # ip信息复杂混乱，路由器梅林固件提示 <code>-sh mail : not found</code></p>
+<p>curl ifconfig.co | mail @example.com #curl 获得外网ip</p>
+<p>curl “<a href="https://yoursite.com:passwd@dyn.dns.he.net/nic/update?hostname=yoursite.com&quot;" target="_blank" rel="noopener">https://yoursite.com:passwd@dyn.dns.he.net/nic/update?hostname=yoursite.com&quot;</a> #用 DDNS 服务动态更新 A 记录，没验证，这个功能狂赞啊！<br><a href="https://www.v2ex.com/t/422524" target="_blank" rel="noopener">有这样的程序吗？有动态公网 IP 的机器，一旦 IP 发生改变，就给设定好的邮箱发邮件告知最新的 IP？</a></p>
+</blockquote>
+<p>三、python自动更新DNS中路由器ip地址解析</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/10/python-e8-af-ad-e6-b3-95-e5-85-a5-e9-97-a8/" rel="next" title="编程基础之Python语言">
+                <i class="fa fa-chevron-left"></i> 编程基础之Python语言
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/12/e5-a6-82-e4-bd-95-e5-b0-86-e7-ac-94-e8-ae-b0-e6-9c-ac-e3-80-81-e6-89-8b-e6-9c-ba-e7-9a-84-e8-a7-86-e9-a2-91-e9-80-9a-e8-bf-87-e7-94-b5-e8-a7-86-e6-92-ad-e6-94-be-ef-bc-9f/" rel="prev" title="编程基础之JavaScrip语言">
+                编程基础之JavaScrip语言 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

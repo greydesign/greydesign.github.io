@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言梅林固件是针对华硕路由器，由第三方开发并获得华硕认可的路由器固件。官方网址：待补充">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络基础之路由器梅林固件">
+<meta property="og:url" content="http://yoursite.com/2017/08/12/e8-b7-af-e7-94-b1-e5-99-a8-e6-a2-85-e6-9e-97-e5-9b-ba-e4-bb-b6-e6-93-8d-e4-bd-9c-e5-85-a5-e9-97-a8-e5-ae-89-e8-a3-85xshell-e4-b8-8elinux-e7-b3-bb-e7-bb-9f/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言梅林固件是针对华硕路由器，由第三方开发并获得华硕认可的路由器固件。官方网址：待补充">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.887Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络基础之路由器梅林固件">
+<meta name="twitter:description" content="前言梅林固件是针对华硕路由器，由第三方开发并获得华硕认可的路由器固件。官方网址：待补充">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/12/e8-b7-af-e7-94-b1-e5-99-a8-e6-a2-85-e6-9e-97-e5-9b-ba-e4-bb-b6-e6-93-8d-e4-bd-9c-e5-85-a5-e9-97-a8-e5-ae-89-e8-a3-85xshell-e4-b8-8elinux-e7-b3-bb-e7-bb-9f/"/>
+
+
+
+
+
+  <title>网络基础之路由器梅林固件 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/12/e8-b7-af-e7-94-b1-e5-99-a8-e6-a2-85-e6-9e-97-e5-9b-ba-e4-bb-b6-e6-93-8d-e4-bd-9c-e5-85-a5-e9-97-a8-e5-ae-89-e8-a3-85xshell-e4-b8-8elinux-e7-b3-bb-e7-bb-9f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">网络基础之路由器梅林固件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-12T17:29:05+08:00">
+                2017-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/VPS/" itemprop="url" rel="index">
+                    <span itemprop="name">VPS</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/VPS/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>梅林固件是针对华硕路由器，由第三方开发并获得华硕认可的路由器固件。官方网址：待补充<br><a id="more"></a><br>小宝梅林固件是在梅林固件基础上，国内大神开发的路由器固件。先从小宝路由入手学习、使用，再转到官方梅林固件。<br>我的路由器是Netgear R7000，刷了小宝梅林固件，安装了软件中心的ss。由于5G信号有问题（我甚至怀疑有后门！），重置后从7.4升级到7.6版本，涉及到如下几个方面需要记录：</p>
+<blockquote>
+<p>1、固件下载以及md5校验：</p>
+<p>2、重置以及分区jeffs格式化：</p>
+<p>3、路由器ip地址设置：为啥2了，被联通盒子抢占了912.168.1.1。如何关闭联通盒子的WiFi？</p>
+<p>4、如何放弃小宝固件？</p>
+<p>5、为啥看不见5G信号？把QDMCAD_5G改为QDMCAD-5G就好了，为啥？</p>
+<p>6、系统记录：通信端口转发中，记录了NAS的端口占用情况，看来QNAP占用了好多啊，如何不通过路由器设置，就实现的呢？<br>路由器设置：<br>PPP</p>
+<p>053202569962 123456</p>
+<p>2.4G QDMCAD</p>
+<p>5G QDMACD-5G</p>
+<p><a href="http://router.asus.com/index.asp" target="_blank" rel="noopener">http://router.asus.com/index.asp</a> =&gt; <a href="https://router.asus.com:8443/Main_Login.asp" target="_blank" rel="noopener">https://router.asus.com:8443/Main_Login.asp</a></p>
+<p>qdmcad:j..2H</p>
+<p>192.168.1.232 B8:27:EB:AE:9D:FE raspberrypi</p>
+<p>192.168.1.92 64:09:80:23:A6:F5 chuangmi-plug-v1_miio368514</p>
+<p>192.168.1.93 64:09:80:2A:36:F0 chuangmi-plug-v1_miio798589</p>
+<p>192.168.1.100 00:08:9B:E3:65:60 NAS-QDMCAD</p>
+<p>192.168.1.101 94:DE:80:A4:9C:76 DESKTOP-LIANLI</p>
+<p>192.168.1.102 DC:F0:90:86:7F:BE Private</p>
+<p>192.168.1.107 7C:11:CB:17:54:EA Honor_V8</p>
+<p>192.168.1.108 68:3E:34:2A:9C:B2 PRO5</p>
+<p>192.168.1.165 38:BC:1A:D0:64:EF ASUS</p>
+<p>192.168.1.191 38:BC:1A:D0:64:EF meilan-note</p>
+</blockquote>
+<h4 id="一、小宝梅林固件（Next：安装xshell与linux系统）"><a href="#一、小宝梅林固件（Next：安装xshell与linux系统）" class="headerlink" title="一、小宝梅林固件（Next：安装xshell与linux系统）"></a>一、小宝梅林固件（Next：安装xshell与linux系统）</h4><p>0、通过外接U盘，添加虚拟内存</p>
+<p>为何要添加虚拟内存</p>
+<blockquote>
+<p>1、aria2下载器</p>
+<p>2、路由器软件中心“frps穿透服务器”提示：<em>为了Frps稳定运行，请开启虚拟内存功能！！！</em>    <a href="http://koolshare.cn/thread-65379-1-1.html" target="_blank" rel="noopener"><em>服务器搭建教程</em></a><br>问题：<br>1、虚拟内存设置多大合适？</p>
+<p>2、有网友反映设置了虚拟内存，使用率为0，如何解决？</p>
+<p>3、可以通过将U盘分区，搭建个人网站吗？<br>具体步骤：<br>软件中心安装“虚拟内存”</p>
+<p>在路由器USB3端口插入2G U盘 # “虚拟内存”提示“USB磁盘tfat格式不符合要求！”</p>
+<p>ssh登录路由器</p>
+<p>df -h # 查看U盘为 /dev/sda4 -&gt; /tmp/mnt/T2，啥意思？</p>
+<p>umount /dev/sda4</p>
+<p>mkfs.ext4 -T largefile /dev/sda4</p>
+<p>mount /dev/sda4 /tmp/mnt/T2</p>
+<p>df -h #确认一下</p>
+<p>软件中心的“虚拟内存”，设置为推荐的 512M swap #提示“已挂载虚拟内存文件/tmp/mnt/T2/swapfile”<br>以上步骤，参考：<br><a href="http://koolshare.cn/thread-78681-1-2.html" target="_blank" rel="noopener">opkg U盘安装，无需提前格式化</a><br><a href="http://koolshare.cn/thread-8253-1-10.html" target="_blank" rel="noopener">[固件讨论] 如何用路由器将硬盘格式化为EXT4 </a><br><a href="http://koolshare.cn/thread-73668-1-1.html" target="_blank" rel="noopener">[教程] 改版梅林下把entware和软件中心装入U盘，从此刷机不怕丢应用</a></p>
+</blockquote>
+<p>1、安装xshell</p>
+<p>2、安装Debian</p>
+<p><a href="https://www.hqt.ro/how-to-install-debian-jessie-arm/" target="_blank" rel="noopener">How to Install Debian Jessie - Arm</a></p>
+<p>3、设置IPv6</p>
+<blockquote>
+<p>1、注册HE账号 <a href="https://tunnelbroker.net/register.php" target="_blank" rel="noopener">https://tunnelbroker.net/register.php</a>，注意保证用户名、邮箱、密码无误，我选的美国，其他乱填。</p>
+<p>2、打开注册用邮箱，通过注册邮件链接激活账号。</p>
+<p>3、创建IPv6通道</p>
+<blockquote>
+<p>1）打开路由器梅林固件管理界面，在防火墙一般设置中打开ping（响应 ICMP Echo (ping) 要求）</p>
+<p>2）在HE页面左侧，点击 <a href="https://www.tunnelbroker.net/new_tunnel.php" target="_blank" rel="noopener">Create Regular Tunnel</a> ，输入自己路由器的公网ip，选择日本东京线路，点击底部的“Create Tunnel”按钮 #提示：IP is blocked. (dns attacks)！失败！我遭受DNS攻击了吗？怪不得最近google服务有问题！重启路由器，因为更换了公网ip，问题解除。小宝梅林果真有后门？</p>
+</blockquote>
+<p>不要着急关闭页面，有两个重要网页用于配置路由器信息</p>
+<blockquote>
+<p>1、<a href="https://tunnelbroker.net/" target="_blank" rel="noopener">https://tunnelbroker.net/</a></p>
+<p>2、上个网页底部的：Configured Tunnels (1 / 5 maximum)，进入Tunnel Details页面</p>
+</blockquote>
+<p>4、配置路由器DDNS（外部网络、打开DDNS）</p>
+<blockquote>
+<p>1）服务器：WWW.TUNNELBROKER.NET</p>
+<p>2）主机名：Tunnel ID（6位数字字符串）</p>
+<p>3）用户名称或email账号：User ID（25位字符串）</p>
+<p>4）密码或DDNS密钥：Tunnel Details、Advanced、Update Key</p>
+<p>5）Forced refresh interval (in days)：21（缺省值）</p>
+<p>6）启用 WAN IP 及主机名称检查：否（缺省值）</p>
+</blockquote>
+<p>5、配置路由器IPv6</p>
+<blockquote>
+<p>1）联机类型：</p>
+<p>2）服务器 IPv4 地址：</p>
+<p>3）用户端 IPv6 地址：</p>
+<p>4）IPv6 前缀长度：</p>
+<p>5）服务器 IPv6 地址：</p>
+<p>6）通道 MTU：0（缺省）</p>
+<p>7）通道 TTL：255（缺省）</p>
+<p>8）内部网络 IPv6 前缀：</p>
+<p>9）IPv6 DNS 服务器 1：</p>
+<p>10）是否启动 Router Advertisement：是（缺省）</p>
+</blockquote>
+<p>6、IPv6测试</p>
+<blockquote>
+<p>1、<a href="https://ipv6.google.com/" target="_blank" rel="noopener">https://ipv6.google.com/</a> #关闭ss测试成功，关键是gmail.com似乎很好用，但与ss冲突</p>
+<p>2、<a href="http://test-ipv6.com/" target="_blank" rel="noopener">http://test-ipv6.com/</a> #测试成功10/10，开启ss得分9/10，主要是本地IPv4地址显示的是ss地址</p>
+<p>3、Twitter、Facebook、Youtube、Tumble、Google Play、Gmail中，只有Facebook在关闭ss情况下还可以连接，提前开启网页版gmail也可以顺利使用（无法在手机上新开），其他都无法连接了。<br><a href="http://koolshare.cn/thread-97277-1-1.html" target="_blank" rel="noopener">华硕路由器：免费设置 IPv6 教程（1/3）</a><br><a href="http://koolshare.cn/thread-98193-1-1.html" target="_blank" rel="noopener">华硕路由器：使用顶级域名 DDNS 教程（2/3）</a><br><a href="http://koolshare.cn/thread-99728-1-1.html" target="_blank" rel="noopener">华硕路由器：免费 SSL 证书申请教程（3/3）</a><br><a href="http://koolshare.cn/thread-119745-1-1.html" target="_blank" rel="noopener">我是一只肉鸡，一天上传3TB！</a> #如何检查自己是不是肉鸡，我怀疑自己就是！<br><a href="http://koolshare.cn/thread-105955-1-1.html" target="_blank" rel="noopener">华硕路由器需要注销另外一名用户才能登录的解决方法</a><br><a href="http://koolshare.cn/thread-105955-1-1.html" target="_blank" rel="noopener">华硕路由器官方固件开机自动运行脚本方法</a> #保护路由器JFFS分区的内容值得研究<br><a href="http://post.m.smzdm.com/p/590974/" target="_blank" rel="noopener">#原创新人#上海电信利用R7000桥接拨号上网、IPTV的一些心得分享</a></p>
+</blockquote>
+</blockquote>
+<p>4、提供frp服务</p>
+<p>5、安装python</p>
+<h4 id="二、官方梅林固件"><a href="#二、官方梅林固件" class="headerlink" title="二、官方梅林固件"></a>二、官方梅林固件</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/12/e5-a6-82-e4-bd-95-e5-b0-86-e7-ac-94-e8-ae-b0-e6-9c-ac-e3-80-81-e6-89-8b-e6-9c-ba-e7-9a-84-e8-a7-86-e9-a2-91-e9-80-9a-e8-bf-87-e7-94-b5-e8-a7-86-e6-92-ad-e6-94-be-ef-bc-9f/" rel="next" title="编程基础之JavaScrip语言">
+                <i class="fa fa-chevron-left"></i> 编程基础之JavaScrip语言
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/13/e6-bd-ae-e6-b1-90-e4-b8-80-e5-a4-a9-e5-87-a0-e6-ac-a1-ef-bc-9f/" rel="prev" title="潮汐一天几次？">
+                潮汐一天几次？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一、小宝梅林固件（Next：安装xshell与linux系统）"><span class="nav-number">2.</span> <span class="nav-text">一、小宝梅林固件（Next：安装xshell与linux系统）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、官方梅林固件"><span class="nav-number">3.</span> <span class="nav-text">二、官方梅林固件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

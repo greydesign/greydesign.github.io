@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、SSH为方便笔记本访问手机Termux，开启SSH Server：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android之Termux终端">
+<meta property="og:url" content="http://yoursite.com/2018/01/20/android-e4-b9-8btermux-e7-bb-88-e7-ab-af-trashed/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、SSH为方便笔记本访问手机Termux，开启SSH Server：">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.902Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android之Termux终端">
+<meta name="twitter:description" content="一、SSH为方便笔记本访问手机Termux，开启SSH Server：">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/20/android-e4-b9-8btermux-e7-bb-88-e7-ab-af-trashed/"/>
+
+
+
+
+
+  <title>Android之Termux终端 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/20/android-e4-b9-8btermux-e7-bb-88-e7-ab-af-trashed/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android之Termux终端</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-20T16:25:32+08:00">
+                2018-01-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/VPS/" itemprop="url" rel="index">
+                    <span itemprop="name">VPS</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/VPS/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="一、SSH"><a href="#一、SSH" class="headerlink" title="一、SSH"></a>一、SSH</h4><p>为方便笔记本访问手机Termux，开启SSH Server：<br><a id="more"></a></p>
+<p>参考 <a href="https://termux.com/ssh.html" target="_blank" rel="noopener">Using SSH</a> ，由官方帮助了解到：</p>
+<blockquote>
+<p>1、Termux下的sshd缺省端口是8022</p>
+<p>2、通过<code>ssh-keygen</code>生成密钥</p>
+<p>3、私钥放在<code>~/.ssh/authorized_keys</code>中，来验证ssh登录</p>
+<p>4、Termux是单用户系统，ssh登录不能通过用户名与密码，只能通过公钥、私钥方式登录<br>1、Termux端操作：<br>apt update</p>
+<p>apt install openssh #在/data/data/com.termux/files/usr/etc/ssh下生成rsa、dsa、esdsa三对密钥对，有啥用？通过命令<code>whoami</code>可以查看查看Termux用户名，例如u0_a181，其实通过名利<code>ls -al</code>看任意文件详情也可以看到Termux用户名</p>
+<p>ssh-keygen #可以省略参数<code>-t rsa</code></p>
+<p>cd ~/.ssh #看到生成的三个文件，私钥：id_rsa、公钥：id_rsa.pub、空文件authorized_keys。chmod命令不需要执行，因为查看文件已经是600、目录已经是700权限了。</p>
+<p>cat id_rsa.pub &gt;&gt; authorized_keys</p>
+<p>ssh localhost -p 8022 #本地ssh登录，测试OK</p>
+<p>cp ~/.ssh/id_rsa /sdcard #复制私钥（为什么？）到Android手机根目录下，通过airdroid传输到PC端</p>
+<p>sshd #start the ssh server，可以通过pkill sshd停止服务进程<br>2、PC端<br>在id_rsa目录下启动git bash #将id_rsa文件复制到Windows用户下的.ssh目录，例如C:\Users\qdmca.ssh</p>
+<p>ssh 192.168.2.108 -p 8022 -i id_rsa #顺利登录手机，庆贺！不需要类似<code>ssh u0_a181@192.168.2.108 -p 8022</code> 指定用户名，还有将id_rsa复制到Windows用户的./ssh目录下，用ssh 192.168.2.108 -p 8022登录手机，会提示密钥格式非法，为什么？还需要试用msys2环境登录试试。<br>其他基本命令：<br>apt list #列出可用的软件包</p>
+<p>apt install nmap #安装端口扫描工具，大约占用25M磁盘空间</p>
+<p>apt install python #安装python，安装了3.6.1版本</p>
+<p>ps #查看当前手机运行进程</p>
+<p>cat /proc/cpuinfo #查看手机硬件配置</p>
+<p>ssh root@ip -p port #例如 ssh <a href="mailto:root@www.zhangqihui.tk" target="_blank" rel="noopener">root@www.zhangqihui.tk</a>就可以登录我的VPS，ssh <a href="mailto:pi@www.greydesign.tk" target="_blank" rel="noopener">pi@www.greydesign.tk</a> 登录家里的树莓派服务器<br>不对啊！我的树莓派是通过DMZ访问的，与路由器用的是同一个公网ip地址，岂不是登录了路由器的22端口了？幸亏路由器缺省是关闭ssh的。<br>路由器从6.6版本升级梅林固件到7.4，无法远程访问路由器了，，由于宽带提供商屏蔽了缺省的80端口。<br>需要手工配置为其他端口，比如以前我用的8085。这次升级我通过https管理路由器，端口就是8443了。<br>用SCP命令复制文件，应该比在windows界面下拷贝稳定吧？</p>
+</blockquote>
+<h4 id="二、配置C开发环境"><a href="#二、配置C开发环境" class="headerlink" title="二、配置C开发环境"></a>二、配置C开发环境</h4><blockquote>
+<p>pkg install clang #安装c语言开发环境，apt也可以吧？</p>
+<p>apt install vim</p>
+<p>mkdir c</p>
+<p>cd c</p>
+<p>vim hello.c</p>
+<p>gcc -o hello hello.c</p>
+<p>chmod +r hello</p>
+<p>./hello</p>
+</blockquote>
+<h4 id="三、配置golang开发环境"><a href="#三、配置golang开发环境" class="headerlink" title="三、配置golang开发环境"></a>三、配置golang开发环境</h4><blockquote>
+<p>pkg install golang</p>
+<p>go version</p>
+</blockquote>
+<h4 id="四、通过证书配置ssh访问github账户（meizu-Pro5）："><a href="#四、通过证书配置ssh访问github账户（meizu-Pro5）：" class="headerlink" title="四、通过证书配置ssh访问github账户（meizu Pro5）："></a>四、通过证书配置ssh访问github账户（meizu Pro5）：</h4><blockquote>
+<p>pkg install git #安装git</p>
+<p>cd ~</p>
+<p>mkdir pro5</p>
+<p>cd pro5</p>
+<p>git init #将 ~/pro5作为git目录，会产生一个 .git 子目录</p>
+<p>git config user.name “greydesign”</p>
+<p>git config user.email “<a href="mailto:qdmcad@outlook.com" target="_blank" rel="noopener">qdmcad@outlook.com</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:qdmcad@outlook.com" target="_blank" rel="noopener">qdmcad@outlook.com</a>“</p>
+<p>回车确认key文件“~/.ssh/id_rsa”</p>
+<p>回车确认 no passphrase</p>
+<p>回车<br>提示生成了两个文件:identification文件“id_rsa”、public key文件“id_rsa.pub”。<br>The key fingerprint is :SHA256:Au9+fkYIdVbtyGtIMI0p6rgcdqPEa359iPfJPORwic <a href="mailto:qdmcad@outlook.com" target="_blank" rel="noopener">qdmcad@outlook.com</a> 这长串是啥，我是不是不应该把它放在我的博客上啊？<br>termux-setup-storage #建立与手机存储卡的关联 参考 <a href="https://termux.com/storage.html" target="_blank" rel="noopener">https://termux.com/storage.html</a></p>
+<p>cp ~/.ssh/id_rsa.pub ~/storage/downloads<br>复制公钥的手机downloads目录，注意，实际是手机的download目录，不知道为啥差一个s。还有，手机不认识下划线，改名字才能看到。把公钥复制到github的用户设置“SSH and GPG keys”下，我添加了一项pro5，以与我的手机型号一致，利于记忆。<br>ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a> #测试ssh，提示如下：</p>
+</blockquote>
+<p><pre>The authenticity of host ‘github.com(192.30.255.113)’ can’t be established.<br>RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.<br>Are you sure you want to conginue connecting(yes/no)?yes #输入yes<br>Warning:Permanently added ‘github.com,192.30,255.113’(RSA) to he list of kown hosts.<br>Hi greydesign!You’ve successfully authenticated,but GitHub does not provide shell access.</pre><br>问题：</p>
+<blockquote>
+<p>1、这算测试通过了吗？</p>
+<p>2、为啥不提供shell？是因为那个参数“-T”吗？</p>
+<p>3、192.30.255.113是谁的IP？我查了，<a href="http://www.github.com的IP是192.30.255.112。" target="_blank" rel="noopener">www.github.com的IP是192.30.255.112。</a></p>
+<p>4、.ssh目录下的kown_hosts是干啥用的？如何妥善保存公钥、私钥？</p>
+<p>5、实现了通过密钥访问，如何禁止通过密码ssh访问？</p>
+<p>6、GPG是什么鬼，与密钥哪个更有优势？<br>注意：我将两个域名<a href="http://www.zhangqihui.tk和www.hisense.tk的DNS" target="_blank" rel="noopener">www.zhangqihui.tk和www.hisense.tk的DNS</a> IP解析互换了一下，用<a href="http://www.hisense.tk指向美国服务器，Termux竟然能通过原来的www.zhangqihui.tk访问，两者指向同一个IP，这算一个bug了吧？" target="_blank" rel="noopener">www.hisense.tk指向美国服务器，Termux竟然能通过原来的www.zhangqihui.tk访问，两者指向同一个IP，这算一个bug了吧？</a></p>
+</blockquote>
+<p>&nbsp;</p>
+<p>参考：<br><a href="http://blackwolfsec.cc/2016/12/10/termux/" target="_blank" rel="noopener">基于Termux打造Android手机渗透神器</a><br><a href="http://www.arthurtoday.com/2017/04/termux-install-and-config-ssh-server.html" target="_blank" rel="noopener">Termux 設定 SSH Server</a><br><a href="https://www.jianshu.com/p/2e6c8152a2ba" target="_blank" rel="noopener">电脑通过ssh连接android手机上的termux</a> #密钥为何在电脑端生成？写反了吧？<br><a href="https://glow.li/technology/2015/11/06/run-an-ssh-server-on-your-android-with-termux/" target="_blank" rel="noopener">Run an SSH server on your Android with Termux</a> #介绍了<code>-i</code>参数的用法<br><a href="https://glow.li/technology/2016/9/20/access-termux-via-usb/" target="_blank" rel="noopener">Access Termux via USB</a><br><a href="https://toutiao.io/posts/440230/app_preview" target="_blank" rel="noopener">在 Android 上构建桌面版的开发和工作环境</a> #能实现桌面？<br><a href="https://freewechat.com/a/MzA5NjE3ODExNQ==/2652981027/1" target="_blank" rel="noopener">好用到哭 | Android Linux 环境：Termux</a> #文章实现的几个功能需要尝试一下<br><a href="http://www.jianshu.com/p/f094914317ec" target="_blank" rel="noopener">Android在终端下编译一个C程序</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/20/e5-a6-82-e4-bd-95-e6-9f-a5-e7-9c-8b-e7-bd-91-e7-bb-9c-e4-b8-8a-e7-9a-84-e4-bf-a1-e6-81-af-e6-b5-81/" rel="next" title="如何查看网络上的信息流">
+                <i class="fa fa-chevron-left"></i> 如何查看网络上的信息流
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/21/e5-b9-b2-e5-87-80-e7-9a-84dns/" rel="prev" title="干净的DNS">
+                干净的DNS <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、SSH"><span class="nav-number">1.</span> <span class="nav-text">一、SSH</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、配置C开发环境"><span class="nav-number">2.</span> <span class="nav-text">二、配置C开发环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、配置golang开发环境"><span class="nav-number">3.</span> <span class="nav-text">三、配置golang开发环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、通过证书配置ssh访问github账户（meizu-Pro5）："><span class="nav-number">4.</span> <span class="nav-text">四、通过证书配置ssh访问github账户（meizu Pro5）：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

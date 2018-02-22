@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、前言我最早接触的数据同步软件是Dropbox，在公司进行的设计文档，自动同步到云端，回家打开笔记本，云端的文件就自动同步到本地，完全不需要人为干预，非常方便快捷。然后…就没有然后了，因为被墙了！Dropbox是基于云端服务的。对于个人而言，去中心化的，开源的、有穿越能力的同步软件，才是未来方向。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于数据同步的那些事儿">
+<meta property="og:url" content="http://yoursite.com/2017/08/04/e5-85-b3-e4-ba-8e-e5-90-8c-e6-ad-a5-e7-9a-84-e9-82-a3-e4-ba-9b-e4-ba-8b-e5-84-bfsyncthing-e5-91-a8-e6-9c-ab-e4-bd-9c-e4-b8-9a/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、前言我最早接触的数据同步软件是Dropbox，在公司进行的设计文档，自动同步到云端，回家打开笔记本，云端的文件就自动同步到本地，完全不需要人为干预，非常方便快捷。然后…就没有然后了，因为被墙了！Dropbox是基于云端服务的。对于个人而言，去中心化的，开源的、有穿越能力的同步软件，才是未来方向。">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.887Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于数据同步的那些事儿">
+<meta name="twitter:description" content="一、前言我最早接触的数据同步软件是Dropbox，在公司进行的设计文档，自动同步到云端，回家打开笔记本，云端的文件就自动同步到本地，完全不需要人为干预，非常方便快捷。然后…就没有然后了，因为被墙了！Dropbox是基于云端服务的。对于个人而言，去中心化的，开源的、有穿越能力的同步软件，才是未来方向。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/04/e5-85-b3-e4-ba-8e-e5-90-8c-e6-ad-a5-e7-9a-84-e9-82-a3-e4-ba-9b-e4-ba-8b-e5-84-bfsyncthing-e5-91-a8-e6-9c-ab-e4-bd-9c-e4-b8-9a/"/>
+
+
+
+
+
+  <title>关于数据同步的那些事儿 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/04/e5-85-b3-e4-ba-8e-e5-90-8c-e6-ad-a5-e7-9a-84-e9-82-a3-e4-ba-9b-e4-ba-8b-e5-84-bfsyncthing-e5-91-a8-e6-9c-ab-e4-bd-9c-e4-b8-9a/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">关于数据同步的那些事儿</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-04T21:21:06+08:00">
+                2017-08-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>我最早接触的数据同步软件是Dropbox，在公司进行的设计文档，自动同步到云端，回家打开笔记本，云端的文件就自动同步到本地，完全不需要人为干预，非常方便快捷。然后…就没有然后了，因为被墙了！Dropbox是基于云端服务的。对于个人而言，去中心化的，开源的、有穿越能力的同步软件，才是未来方向。<a id="more"></a></p>
+<p>最近看到一条新闻，<code>Resilio Sync</code>（就是原来的<code>BitTorrent Sync</code>）国内代理发布了煽情公告与大家告别，维基百科的介绍：<code>Resilio Sync使用P2P协议同步软件。该协议用于在多个设备间传递大文件时非常有效，与µTorrent和BitTorrent使用的协议类似</code>。服务器端不开源，客户端开源。</p>
+<h3 id="二、Syncthing（官方网站-https-syncthing-net-）"><a href="#二、Syncthing（官方网站-https-syncthing-net-）" class="headerlink" title="二、Syncthing（官方网站:https://syncthing.net/）"></a>二、Syncthing（<a href="https://syncthing.net/" target="_blank" rel="noopener">官方网站</a>:<a href="https://syncthing.net/）" target="_blank" rel="noopener">https://syncthing.net/）</a></h3><p>Syncthing是开源的同步软件，适合个人使用。问题：为啥提示有同步用的Server，不是说好了去中心化吗？</p>
+<h4 id="实践1、在Windows下安装使用"><a href="#实践1、在Windows下安装使用" class="headerlink" title="实践1、在Windows下安装使用"></a>实践1、在Windows下安装使用</h4><blockquote>
+<p>1、官网下载对应的版本，比如<code>Windows 64bit</code>，将下载的zip文件解压，比如目录<code>C:\sbin</code>下</p>
+<p>2、运行syncthing.exe，弹出命令行和浏览器窗口</p>
+<p>3、浏览器窗口，点击“Default Folder”，“文件夹路径”是运行Syncthing时建立的，放一个需要同步的测试文件到这个目录中去</p>
+<p>4、</p>
+</blockquote>
+<h4 id="实践2、在Android手机上安装使用"><a href="#实践2、在Android手机上安装使用" class="headerlink" title="实践2、在Android手机上安装使用"></a>实践2、在Android手机上安装使用</h4><blockquote>
+<p>1、通过Google Play安装“Syncthing”和ZXingTeam的“条码扫描器”，开启Syncthing</p>
+<p>2、在Windows浏览器端，选右上角的“操作”、“显示ID”</p>
+<p>3、选设备，点击右上角的“+”，点击设备标识右侧的二维码图标，扫描上步Windows端的二维码</p>
+</blockquote>
+<h4 id="实践3、本地局域网实现同步"><a href="#实践3、本地局域网实现同步" class="headerlink" title="实践3、本地局域网实现同步"></a>实践3、本地局域网实现同步</h4><h4 id="实践4、在VPS上安装使用"><a href="#实践4、在VPS上安装使用" class="headerlink" title="实践4、在VPS上安装使用"></a>实践4、在VPS上安装使用</h4><h4 id="实践5、公司内网与外网实现同步"><a href="#实践5、公司内网与外网实现同步" class="headerlink" title="实践5、公司内网与外网实现同步"></a>实践5、公司内网与外网实现同步</h4><p>公司内网无法访问syncthing官网，Windows 7 64bit下也启动syncthing可以打开浏览器界面（注意把缺省浏览器改为最新版本的chrome！）。<br>是不是需要首先要解决内网穿透的问题呢？<br><a href="http://www.senra.me/nat-traversal-series-frp-next-generation-high-performance-ngrok-alternative/" title="内网穿透系列——frp （新一代高性能内网穿透工具）" target="_blank" rel="noopener">内网穿透系列——frp （新一代高性能内网穿透工具）</a>| <a href="http://www.senra.me/nat-traversal-series-ssh-reverse-tunnel-the-easies-solution/" title="内网穿透系列——SSH反向隧道 （最简单的内网穿透方案）" target="_blank" rel="noopener">内网穿透系列——SSH反向隧道 （最简单的内网穿透方案）</a>| <a href="http://www.senra.me/nat-traversal-series-selfhosted-ngrok-a-well-known-solution/" title="内网穿透系列——ngrok （老牌开源内网穿透工具）" target="_blank" rel="noopener">内网穿透系列——ngrok （老牌开源内网穿透工具）</a></p>
+<h4 id="实践6、Syncthing进阶知识"><a href="#实践6、Syncthing进阶知识" class="headerlink" title="实践6、Syncthing进阶知识"></a>实践6、Syncthing进阶知识</h4><h5 id="1、（自定义同步目录）笔记本同步到手机"><a href="#1、（自定义同步目录）笔记本同步到手机" class="headerlink" title="1、（自定义同步目录）笔记本同步到手机"></a>1、（自定义同步目录）笔记本同步到手机</h5><blockquote>
+<p>1、Windows端，点“添加文件夹”，设置“文件夹标签”、“文件夹路径”、勾选“共享给”的设备。问题：”文件夹ID”可以自己设置吗？</p>
+<p>2、手机端提示“新文件夹”：“asus13想将xxx文件夹共享给您，添加新文件夹？”，点“添加”</p>
+<p>3、指定手机本地目录。问题：可以在设置中创建吗？</p>
+</blockquote>
+<h5 id="2、手机照片同步到笔记本上"><a href="#2、手机照片同步到笔记本上" class="headerlink" title="2、手机照片同步到笔记本上"></a>2、手机照片同步到笔记本上</h5><blockquote>
+<p>1、手机端通过左上角的图标，打开“页面管理页面”</p>
+<p>2、点击“文件夹”下的“摄像机”，确认“文件夹路径”是“/storage/emulated/0/DCIM”，“文件夹类型”是“仅发送”</p>
+<p>3、点击“远程设备”中的对应笔记本，我的是“asus13”，点“选项”、“将指定文件夹共享给设备”、“摄像机”，确认点“保存”，回到“文件夹”下的“摄像机”</p>
+<p>4、笔记本提示手机端有共享，设置到笔记本本地的文件夹后，会自动同步。</p>
+</blockquote>
+<h5 id="3、设置同步选项"><a href="#3、设置同步选项" class="headerlink" title="3、设置同步选项"></a>3、设置同步选项</h5><h5 id="4、命令行窗口的内容解析"><a href="#4、命令行窗口的内容解析" class="headerlink" title="4、命令行窗口的内容解析"></a>4、命令行窗口的内容解析</h5><blockquote>
+<p>1、关于设备标识：V2UJ7</p>
+<p>2、关于服务器： Using discovery server<br>5、Windows端的设置文件</p>
+</blockquote>
+<h5 id="6、Android端的设置文件"><a href="#6、Android端的设置文件" class="headerlink" title="6、Android端的设置文件"></a>6、Android端的设置文件</h5><h5 id="7、VPS端的设置文件（以下是编译好的版本，需补充从源代码编译安装的方法）"><a href="#7、VPS端的设置文件（以下是编译好的版本，需补充从源代码编译安装的方法）" class="headerlink" title="7、VPS端的设置文件（以下是编译好的版本，需补充从源代码编译安装的方法）"></a>7、VPS端的设置文件（以下是编译好的版本，需补充从源代码编译安装的方法）</h5><blockquote>
+<p>1、cd ~</p>
+<p>2、wget <a href="https://github.com/syncthing/syncthing/releases/download/v0.14.33/syncthing-linux-amd64-v0.14.33.tar.gz" target="_blank" rel="noopener">https://github.com/syncthing/syncthing/releases/download/v0.14.33/syncthing-linux-amd64-v0.14.33.tar.gz</a> #从官网查询的最新版本</p>
+<p>3、tar -zxvf  syncthing-linux-amd64-v0.14.33.tar.gz</p>
+<p>4、cd  syncthing-linux-amd64-v0.14.33</p>
+<p>5、cp syncthing /usr/local/bin #设置路径的方法好奇怪啊！</p>
+<p>6、cd ~</p>
+<p>7、syncthing #运行一次，以生成配置文件，然后Ctrl+C退出</p>
+<p>8、vi ~/.config/syncthing/config.xml #修改配置文件中的“127.0.0.1：8384”为“0.0.0.0:8384”</p>
+<p>9、/sbin/iptables -I INPUT -p tcp –dport 8384 -j ACCEPT #放行防火墙8384端口</p>
+<p>10、/etc/init.d/iptables save #找不到，看来Centos 7没有这个文件了！</p>
+<p>11、service iptables restart</p>
+<p>12、syncthing #再次运行，在浏览器中输入地址“<a href="http://www.hisense.tk:8384/”" target="_blank" rel="noopener">http://www.hisense.tk:8384/”</a> #8384端口被封锁就麻烦了，可以自定义端口吧？<br>第12行命令，浏览器有两条警告：<br>1、危险！<span class="ng-scope" translate="">当前配置允许在不使用密码的情况下远程访问 Syncthing 管理界面。</span> <strong><span class="ng-scope" translate="">这会让骇客能够轻而易举地访问及修改您的文件。</span></strong> <span class="ng-scope" translate="">请在设置对话框中设置 GUI 验证用户及其密码。</span></p>
+<p>2、提示：Syncthing should not run as a privileged or system user. Please consider using a normal user account.<br>第11行命令返回的错误：</p>
+</blockquote>
+<pre>Redirecting to /bin/systemctl restart iptables.service
+Failed to restart iptables.service: Unit not found.
+</pre>
+运行iptables -Ln | grep 8384“”返回的错误
+<pre>iptables: No chain/target/match by that name.
+[root@vultr ~]# iptable
+-bash: iptable: command not found
+[root@vultr ~]# iptables
+iptables v1.4.21: no command specified
+Try `iptables -h' or 'iptables --help' for more information.
+</pre>
+如下是第一次运行syncthing的信息（第7行命令，哪些是敏感信息，需要修改一下呢？）
+<pre>[monitor] 09:45:52 INFO: Starting syncthing
+[start] 09:45:52 INFO: Generating ECDSA key and certificate for syncthing...
+[LBLQ4] 09:45:52 INFO: syncthing v0.14.33 "Dysprosium Dragonfly" (go1.8.3 linux-                                                                                        amd64) unknown-user@9b8983e226ea 2017-07-13 06:55:12 UTC
+[LBLQ4] 09:45:52 INFO: My ID: LBLQ44J-Q2UCGLM-O4ARCPU-HUSVQPW-OAASHJ5-BTRUNDO-LJ                                                                                        22JOO-6BQLIQX
+[LBLQ4] 09:45:53 INFO: Single thread SHA256 performance is 268 MB/s using minio/                                                                                        sha256-simd (259 MB/s using crypto/sha256).
+[LBLQ4] 09:45:54 INFO: Hashing performance with weak hash is 215.27 MB/s
+[LBLQ4] 09:45:55 INFO: Hashing performance without weak hash is 251.32 MB/s
+[LBLQ4] 09:45:55 INFO: Default folder created and/or linked to new config
+[LBLQ4] 09:45:55 INFO: Defaults saved. Edit /root/.config/syncthing/config.xml t                                                                                        o taste or use the GUI
+[LBLQ4] 09:45:55 INFO: Weak hash enabled, as it has an acceptable performance im                                                                                        pact.
+[LBLQ4] 09:45:55 INFO: Ready to synchronize "Default Folder" (default) (readwrit                                                                                        e)
+[LBLQ4] 09:45:55 INFO: Send rate is unlimited, receive rate is unlimited
+[LBLQ4] 09:45:55 INFO: Rate limits do not apply to LAN connections
+[LBLQ4] 09:45:55 INFO: Using discovery server https://discovery-v4-2.syncthing.n                                                                                        et/v2/?id=DVU36WY-H3LVZHW-E6LLFRE-YAFN5EL-HILWRYP-OC2M47J-Z4PE62Y-ADIBDQC
+[LBLQ4] 09:45:55 INFO: Using discovery server https://discovery-v4-3.syncthing.n                                                                                        et/v2/?id=VK6HNJ3-VVMM66S-HRVWSCR-IXEHL2H-U4AQ4MW-UCPQBWX-J2L2UBK-NVZRDQZ
+[LBLQ4] 09:45:55 INFO: Using discovery server https://discovery-v4-4.syncthing.n                                                                                        et/v2/?id=LYXKCHX-VI3NYZR-ALCJBHF-WMZYSPK-QG6QJA3-MPFYMSO-U56GTUK-NA2MIAW
+[LBLQ4] 09:45:55 INFO: Using discovery server https://discovery-v6-2.syncthing.n                                                                                        et/v2/?id=DVU36WY-H3LVZHW-E6LLFRE-YAFN5EL-HILWRYP-OC2M47J-Z4PE62Y-ADIBDQC
+[LBLQ4] 09:45:55 INFO: Using discovery server https://discovery-v6-3.syncthing.n                                                                                        et/v2/?id=VK6HNJ3-VVMM66S-HRVWSCR-IXEHL2H-U4AQ4MW-UCPQBWX-J2L2UBK-NVZRDQZ
+[LBLQ4] 09:45:55 INFO: Using discovery server https://discovery-v6-4.syncthing.n                                                                                        et/v2/?id=LYXKCHX-VI3NYZR-ALCJBHF-WMZYSPK-QG6QJA3-MPFYMSO-U56GTUK-NA2MIAW
+[LBLQ4] 09:45:55 INFO: TCP listener ([::]:22000) starting
+[LBLQ4] 09:45:55 INFO: Loading HTTPS certificate: open /root/.config/syncthing/h                                                                                        ttps-cert.pem: no such file or directory
+[LBLQ4] 09:45:55 INFO: Creating new HTTPS certificate
+[LBLQ4] 09:45:55 INFO: Completed initial scan (rw) of "Default Folder" (default)
+[LBLQ4] 09:45:55 INFO: GUI and API listening on 127.0.0.1:8384
+[LBLQ4] 09:45:55 INFO: Access the GUI via the following URL: http://127.0.0.1:83                                                                                        84/
+[LBLQ4] 09:45:55 INFO: Device LBLQ44J-Q2UCGLM-O4ARCPU-HUSVQPW-OAASHJ5-BTRUNDO-LJ                                                                                        22JOO-6BQLIQX is "vultr.guest" at [dynamic]
+[LBLQ4] 09:45:55 WARNING: Syncthing should not run as a privileged or system use                                                                                        r. Please consider using a normal user account.
+[LBLQ4] 09:46:05 INFO: Joined relay relay://24.55.153.158:22067
+[LBLQ4] 09:46:06 INFO: Detected 0 NAT devices
+</pre>
+
+<h3 id="三、seafile"><a href="#三、seafile" class="headerlink" title="三、seafile"></a>三、seafile</h3><p>seafile也是开源软件？可以部署在NAS或VPS上，适合团队使用。</p>
+<p>由于文件是分块加密的，会不会出现数据灾难？</p>
+<h3 id="四、Nextcloud"><a href="#四、Nextcloud" class="headerlink" title="四、Nextcloud"></a>四、Nextcloud</h3><h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><p><a href="https://mlapp.cn/358.html" target="_blank" rel="noopener">树莓派折腾记:安装和配置Syncthing</a> | <a href="https://mlapp.cn/366.html" target="_blank" rel="noopener">Syncthing:高效文件同步工具</a><br><a href="http://www.jianshu.com/p/4235cc85c32d" target="_blank" rel="noopener">「玩物志」Syncthing的安装与使用</a> | <a href="https://www.freehao123.com/syncthing/" target="_blank" rel="noopener">Syncthing免费开源的文件同步工具-带版本控制可用于构建个人云存储</a><br><a href="https://www.xiaoz.me/archives/7708" target="_blank" rel="noopener">Centos安装Syncthing同步工具</a></p>
+<p><a href="https://www.howtoforge.com/tutorial/how-to-install-seafile-with-nginx-on-centos-7/" target="_blank" rel="noopener">How to Install Seafile with Nginx on CentOS 7</a> | <a href="https://www.howtoing.com/how-to-install-seafile-with-nginx-on-centos-7/" target="_blank" rel="noopener">如何安装Seafile与Nginx在CentOS 7</a></p>
+<p><a href="http://www.jianshu.com/p/4532be9e6d3a" target="_blank" rel="noopener">VirtualBox &amp; CentOS7 &amp; SSH &amp; Seafile &amp; ngrok 搭建私有云盘</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/21/e9-97-ae-e7-ad-94-ef-bc-9a-e4-be-9d-e9-9d-a0-e7-94-b5-e7-ba-bf-e6-9d-86-ef-bc-8c-e7-9c-9f-e7-9a-84-e7-9c-81-e5-8a-9b-e5-90-97-ef-bc-9f/" rel="next" title="问答：依靠电线杆，真的省力吗？">
+                <i class="fa fa-chevron-left"></i> 问答：依靠电线杆，真的省力吗？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/05/e5-85-b3-e4-ba-8e-e6-89-8b-e6-9c-ba-e6-8c-87-e7-ba-b9-e6-98-af-e8-af-86-e5-88-ab-e7-9a-84-e5-ae-89-e5-85-a8-e9-97-ae-e9-a2-98/" rel="prev" title="关于手机指纹识别的安全问题">
+                关于手机指纹识别的安全问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、Syncthing（官方网站-https-syncthing-net-）"><span class="nav-number">2.</span> <span class="nav-text">二、Syncthing（官方网站:https://syncthing.net/）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实践1、在Windows下安装使用"><span class="nav-number">2.1.</span> <span class="nav-text">实践1、在Windows下安装使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践2、在Android手机上安装使用"><span class="nav-number">2.2.</span> <span class="nav-text">实践2、在Android手机上安装使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践3、本地局域网实现同步"><span class="nav-number">2.3.</span> <span class="nav-text">实践3、本地局域网实现同步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践4、在VPS上安装使用"><span class="nav-number">2.4.</span> <span class="nav-text">实践4、在VPS上安装使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践5、公司内网与外网实现同步"><span class="nav-number">2.5.</span> <span class="nav-text">实践5、公司内网与外网实现同步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践6、Syncthing进阶知识"><span class="nav-number">2.6.</span> <span class="nav-text">实践6、Syncthing进阶知识</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、（自定义同步目录）笔记本同步到手机"><span class="nav-number">2.6.1.</span> <span class="nav-text">1、（自定义同步目录）笔记本同步到手机</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、手机照片同步到笔记本上"><span class="nav-number">2.6.2.</span> <span class="nav-text">2、手机照片同步到笔记本上</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、设置同步选项"><span class="nav-number">2.6.3.</span> <span class="nav-text">3、设置同步选项</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、命令行窗口的内容解析"><span class="nav-number">2.6.4.</span> <span class="nav-text">4、命令行窗口的内容解析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6、Android端的设置文件"><span class="nav-number">2.6.5.</span> <span class="nav-text">6、Android端的设置文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7、VPS端的设置文件（以下是编译好的版本，需补充从源代码编译安装的方法）"><span class="nav-number">2.6.6.</span> <span class="nav-text">7、VPS端的设置文件（以下是编译好的版本，需补充从源代码编译安装的方法）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、seafile"><span class="nav-number">3.</span> <span class="nav-text">三、seafile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、Nextcloud"><span class="nav-number">4.</span> <span class="nav-text">四、Nextcloud</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考："><span class="nav-number">5.</span> <span class="nav-text">参考：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

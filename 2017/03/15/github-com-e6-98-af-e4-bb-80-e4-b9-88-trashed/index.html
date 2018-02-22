@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="git与github的区别 git是一个版本控制工具，是Linux的上帝Linus写的：Git教程 github是一个用git做版本控制的项目托管平台，是世界程序员的圣地，兲朝想屏蔽，但会引起大陆IT技术的闭关锁国，被强烈反弹后又开放了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="世界，你好！github">
+<meta property="og:url" content="http://yoursite.com/2017/03/15/github-com-e6-98-af-e4-bb-80-e4-b9-88-trashed/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="git与github的区别 git是一个版本控制工具，是Linux的上帝Linus写的：Git教程 github是一个用git做版本控制的项目托管平台，是世界程序员的圣地，兲朝想屏蔽，但会引起大陆IT技术的闭关锁国，被强烈反弹后又开放了。">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.900Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="世界，你好！github">
+<meta name="twitter:description" content="git与github的区别 git是一个版本控制工具，是Linux的上帝Linus写的：Git教程 github是一个用git做版本控制的项目托管平台，是世界程序员的圣地，兲朝想屏蔽，但会引起大陆IT技术的闭关锁国，被强烈反弹后又开放了。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/15/github-com-e6-98-af-e4-bb-80-e4-b9-88-trashed/"/>
+
+
+
+
+
+  <title>世界，你好！github | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/15/github-com-e6-98-af-e4-bb-80-e4-b9-88-trashed/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">世界，你好！github</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-15T06:53:20+08:00">
+                2017-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding/" itemprop="url" rel="index">
+                    <span itemprop="name">Coding</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding/Markdown/" itemprop="url" rel="index">
+                    <span itemprop="name">Markdown</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding/Markdown/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding/Markdown/Network/VPS/" itemprop="url" rel="index">
+                    <span itemprop="name">VPS</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding/Markdown/Network/VPS/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="git与github的区别"><a href="#git与github的区别" class="headerlink" title="git与github的区别"></a>git与github的区别</h4><blockquote>
+<p>git是一个版本控制工具，是Linux的上帝Linus写的：<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">Git教程</a></p>
+<p>github是一个用git做版本控制的项目托管平台，是世界程序员的圣地，兲朝想屏蔽，但会引起大陆IT技术的闭关锁国，被强烈反弹后又开放了。<br><a id="more"></a></p>
+</blockquote>
+<h3 id="一、用github建立个人博客"><a href="#一、用github建立个人博客" class="headerlink" title="一、用github建立个人博客"></a>一、用github建立个人博客</h3><p>（可以注册多个用户吗？）参考：</p>
+<blockquote>
+<p><a href="https://github.com/rainzhaojy/blogs/issues/1" target="_blank" rel="noopener">利用GitHub写博客的几种方式</a> #讲述了博客分支的概念</p>
+<p><a href="http://warjiang.github.io/devcat/2016/02/24/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8githubpages%E6%9D%A5%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84blog/" target="_blank" rel="noopener">如何利用githubpages来搭建自己的blog</a> #讲述了博客分支的概念</p>
+</blockquote>
+<h4 id="1、github提供了pages功能："><a href="#1、github提供了pages功能：" class="headerlink" title="1、github提供了pages功能："></a>1、github提供了pages功能：</h4><blockquote>
+<p>1、repo下有两种pages：user pages和project pages，一个账号只有一个user pages，但可以有多个project pages。</p>
+<p>2、user pages必须在<code>master</code>分支上，其<code>gh-pages</code>分支是空的，可以用来做个人主页，project pages必须在<code>gh-pages</code>分支上，其<code>master</code>分支是空的。</p>
+<p>3、个人主页URL必须是<code>https://&amp;lt;username&amp;gt;.github.io</code> #博客用github.io域名，github.com域名</p>
+<p>项目URL是<code>https://&amp;lt;username&amp;gt;.github.io/&amp;lt;projectname&amp;gt;</code><br>举例：<br>比如我的github用户名是greydesign，个人博客地址就是<a href="https://greydesgin.github.io" target="_blank" rel="noopener">https://greydesgin.github.io</a></p>
+<p>问题：我建了一个repo：Asus，也放在了master分支下，可以吗？</p>
+</blockquote>
+<h4 id="2、Hexo配置："><a href="#2、Hexo配置：" class="headerlink" title="2、Hexo配置："></a>2、Hexo配置：</h4><p><a href="http://blog.csdn.net/sdujava2011/article/details/53885268" target="_blank" rel="noopener">Jekyll + Coding Pages 搭建静态博客</a><br><a href="https://jingyan.baidu.com/article/f71d603796d91a1ab641d1e8.html" target="_blank" rel="noopener">教你在 Coding 上搭建 Hexo 个人博客</a><br>Hexo与Jekyll的区别</p>
+<blockquote>
+<p>1、Hexo用 NodeJS，Jekyll用Ruby，Hexo快一个数量级（高并发场景），对于个人网但站差异不大</p>
+<p>2、Hexo 是本地生成 html 再上傳，Jekyll 是把原文上傳 github，直接生成博客，也可以在線編輯</p>
+<p>3、很多人从Jekyll转向了Hexo</p>
+</blockquote>
+<h3 id="二、其他"><a href="#二、其他" class="headerlink" title="二、其他"></a>二、其他</h3><p>&nbsp;</p>
+<p>可以参考如下指导建立自己的github博客：<br><a href="http://www.jianshu.com/p/834d7cc0668d" target="_blank" rel="noopener">我的博客是如何搭建的（github pages + HEXO + 域名绑定）</a><br>以下是我建立github博客的具体步骤：</p>
+<h4 id="一、注册github，创建github-pages，实现域名解析"><a href="#一、注册github，创建github-pages，实现域名解析" class="headerlink" title="一、注册github，创建github pages，实现域名解析"></a>一、注册github，创建github pages，实现域名解析</h4><p>注意：一般的教程是最后绑定域名，我觉得首先应该在github端完全配置好了，再本地配置hexo。因为hexo的很多错误，其实是github端的问题。<br>官网网址：<a href="https://github.com/" target="_blank" rel="noopener">github</a><br>我的用户名当然是<code>greydesign</code>啦。建立自己的仓库（repositories）。需要注意的有如下几点：</p>
+<h5 id="1、仓库名与目录类型："><a href="#1、仓库名与目录类型：" class="headerlink" title="1、仓库名与目录类型："></a>1、仓库名与目录类型：</h5><p>如果想实现静态博客，仓库必须与注册名一致，比如我的博客仓库名就必须是<code>greydesign</code>，而且github pages必须是<code>master</code>目录（<code>gh-pages</code>和<code>/docs</code>目录不行吗？）。</p>
+<h5 id="2、通过二级域名访问自己的github-pages"><a href="#2、通过二级域名访问自己的github-pages" class="headerlink" title="2、通过二级域名访问自己的github pages"></a>2、通过二级域名访问自己的github pages</h5><p>通过<a href="https://github.com/greydesign/greydesign.github.io" target="_blank" rel="noopener">https://github.com/greydesign/greydesign.github.io</a>可以访问仓库，但无法通过<a href="http://greydesign.github.io" target="_blank" rel="noopener">greydesign.github.io</a>访问博客页面，这是因为github pages还没有运行起来（没有主页等文件，是空的）。查看自家的仓库<code>settings</code>，看到在<code>GitHub Pages</code>有提示：</p>
+<pre>GitHub Pages is currently disabled. You must first add content to your repository before you can publish a GitHub Pages site.</pre>
+解决的办法参考：[hexo初探---让写作飞起来](http://www.jianshu.com/p/e7c58f57f60e)，选择一个theme即可，现在就可以通过访问`greydesign.github.io/`了（需要注意的是，自动会转向https访问，好棒！）。而网址`https://github.com/greydesign/greydesign.github.io`看到的是页面的仓库文件信息。
+
+##### 3、绑定顶级域名（因为无法在github上配置自己的https CA证书，最终放弃）
+
+参考：[hexo搭建的Github博客绑定域名](http://www.jianshu.com/p/cea41e5c9b2a)，我在万网注册了`zhangqihui.me`，设置CNAME域名解析：
+<pre>记录类型：CNAME
+主机记录：@
+解析线路：默认
+记录值：greydesign.github.io
+TTL：10分钟
+</pre>
+用`zhangqihui.me`访问，依然会提示404错误：
+<pre>There isn't a GitHub Pages site here.
+
+If you're trying to publish one, [read the full documentation](https://help.github.com/pages/) to learn how to set up GitHub Pages for your repository, organization, or user account.
+</pre>
+通过ping这两个网址，只想的ip是相同的，为什么还会出错呢？这是因为虽然在域名服务上那里设置了CNAME，但github端还没有设置好。
+参考[添加 CNAME 文件到你的存储库中](http://wiki.jikexueyuan.com/project/github-pages-basics/cname-file.html)，添加CNAME的master目录中，`create new file`，会开启一个编辑页面，文件名添`CNAME`，内容添`zhangqihui.me`，在页面底部提交。刷新`zhangqihui.me`页面，终于和`greydesign.github.io`一致了。
+
+##### 4、实现https访问（不要试图用自己的域名，还是无法配置自定义证书的原因）
+
+github全站缺省支持https访问，但如果设置了CNAME，就不再支持了。
+为了安全起见，也为了自己的博客在搜索引擎中排名靠前，还是需要实现https的。但新的问题出现了，提交`CNAME`前，原来的`greydesign.github.io`会自动转换为https访问，`zhangqihui.me`不会转且显示404错误信息。提交`CNAME`后，`greydesign.github.io`会转向`http://zhangqihui.me`访问，而`zhangqihui.me`会转向不安全的https访问。
+
+github提供二级域名的https访问，但还不支持自定义域名的https配置，放弃自定义域名吧，把github的CNAME文件删除，阿里云的CNAME域名解析也删除掉，老老实实用二级域名也不错。原则：自定义顶级域名实现https访问，只有在VPS上合适，在github或者wordpress上实施并不合适。
+
+需要注意的是，为了实现https，不要用301跳转，因为会被劫持。至于为啥，我不懂！
+[CloudFlare 的 Flexible SSL](https://hexo.crboy.net/2016/09/cloudflare-flexible-ssl/)
+[慎用免费HTTPS：看似美好的免费“通用SSL证书”](http://www.freebuf.com/articles/neopoints/45822.html)
+[Let's Encrypt，免费好用的 HTTPS 证书](https://imququ.com/post/letsencrypt-certificate.html)
+
+#### 二、参考[官方教程](https://hexo.io/zh-cn/docs/)安装Hexo（我的常用电脑操作系统是Windows 10）：
+
+1、安装Windows版本的git，从[官方](https://git-scm.com/)下载的是`Git-2.13.0-64-bit.exe`，采用缺省设置安装；
+2、安装Windows版本的Node.js，从[官方下载](http://www.runoob.com/nodejs/nodejs-install-setup.html)的是`node-v8.0.0-x64.msi`，采用缺省设置安装；
+3、打开Git Bash（从开始菜单-&gt;Git程序组-&gt;Git Bash，或者在桌面，通过鼠标右键Git Bash  here打开），只需要使用 npm 即可完成 Hexo 的安装:`npm install -g hexo-cli`
+<pre>qdmca@DESKTOP-LIANLI MINGW64 ~
+$ npm install -g hexo-cli
+C:\Users\qdmca\AppData\Roaming\npm\hexo -&gt; C:\Users\qdmca\AppData\Roaming\npm\no                                                                                                                                                                                               de_modules\hexo-cli\bin\hexo
+
+&gt; fsevents@1.1.1 install C:\Users\qdmca\AppData\Roaming\npm\node_modules\hexo-cl                                                                                                                                                                                               i\node_modules\fsevents
+&gt; node install
+
+&gt; dtrace-provider@0.8.2 install C:\Users\qdmca\AppData\Roaming\npm\node_modules\                                                                                                                                                                                               hexo-cli\node_modules\dtrace-provider
+&gt; node scripts/install.js
+
+&gt; hexo-util@0.6.0 postinstall C:\Users\qdmca\AppData\Roaming\npm\node_modules\he                                                                                                                                                                                               xo-cli\node_modules\hexo-util
+&gt; npm run build:highlight
+
+&gt; hexo-util@0.6.0 build:highlight C:\Users\qdmca\AppData\Roaming\npm\node_module                                                                                                                                                                                               s\hexo-cli\node_modules\hexo-util
+&gt; node scripts/build_highlight_alias.js &gt; highlight_alias.json
+
+added 221 packages in 27.329s
+
+qdmca@DESKTOP-LIANLI MINGW64 ~
+$
+</pre>
+
+<h4 id="三、建站"><a href="#三、建站" class="headerlink" title="三、建站"></a>三、建站</h4><p>在windows下开启命令行界面，新建<code>c:\Hexo</code>目录</p>
+<pre>&gt;cd \
+C:\&gt;mkdir Hexo
+c:\&gt;cd Hexo
+c:\Hexo &gt; hexo init greydesign #在c:\Hexo\目录下生成一个子目录greydesign，具体操作如下一个代码框
+C:\Hexo&gt;cd greydesign
+C:\Hexo\greydesign&gt;npm install
+up to date in 1.827s
+C:\Hexo\greydesign&gt;
+</pre>
+<pre>C:\Hexo&gt;hexo init greydesign
+INFO  Cloning hexo-starter to C:\Hexo\greydesign
+Cloning into 'C:\Hexo\greydesign'...
+remote: Counting objects: 53, done.
+remote: Total 53 (delta 0), reused 0 (delta 0), pack-reused 53
+Unpacking objects: 100% (53/53), done.
+Submodule 'themes/landscape' (https://github.com/hexojs/hexo-theme-landscape.git) registered for path 'themes/landscape'
+Cloning into 'C:/Hexo/greydesign/themes/landscape'...
+remote: Counting objects: 781, done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 781 (delta 0), reused 1 (delta 0), pack-reused 775
+Receiving objects: 100% (781/781), 2.54 MiB | 778.00 KiB/s, done.
+Resolving deltas: 100% (397/397), done.
+Submodule path 'themes/landscape': checked out 'decdc2d9956776cbe95420ae94bac87e22468d38'
+[32mINFO [39m Install dependencies
+��Ϣ: ���ṩ��ģʽ�޷��ҵ��ļ���
+npm WARN deprecated swig@1.4.2: This package is no longer maintained
+npm WARN prefer global marked@0.3.6 should be installed with -g
+
+&gt; fsevents@1.1.1 install C:\Hexo\greydesign\node_modules\fsevents
+&gt; node install
+
+&gt; dtrace-provider@0.8.2 install C:\Hexo\greydesign\node_modules\dtrace-provider
+&gt; node scripts/install.js
+
+&gt; hexo-util@0.6.0 postinstall C:\Hexo\greydesign\node_modules\hexo-util
+&gt; npm run build:highlight
+
+&gt; hexo-util@0.6.0 build:highlight C:\Hexo\greydesign\node_modules\hexo-util
+&gt; node scripts/build_highlight_alias.js &gt; highlight_alias.json
+
+npm notice created a lockfile as package-lock.json. You should commit this file.
+added 440 packages in 31.308s
+INFO  Start blogging with Hexo!
+C:\Hexo&gt;</pre>
+修改`_config.yml`文件
+<pre>deploy:
+  type:github
+  repo:https://github.com/greydesign/greydesign.github.io.git
+  branch:master
+</pre>
+
+<h4 id="四、发布："><a href="#四、发布：" class="headerlink" title="四、发布："></a>四、发布：</h4><p><pre>C:\Hexo&gt;cd greydesign</pre></p>
+<p>C:\Hexo\greydesign&gt;hexo s<br>(node:7432) [DEP0061] DeprecationWarning: fs.SyncWriteStream is deprecated.<br>INFO  Start processing<br>INFO  Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>. Press Ctrl+C to stop.<br>INFO  Bye!<br>终止批处理操作吗(Y/N)? y</p>
+<p>C:\Hexo\greydesign&gt;hexo clean<br>(node:6376) [DEP0061] DeprecationWarning: fs.SyncWriteStream is deprecated.<br>INFO  Deleted database.</p>
+<p>C:\Hexo\greydesign&gt;hexo g<br>(node:4860) [DEP0061] DeprecationWarning: fs.SyncWriteStream is deprecated.<br>INFO  Start processing<br>INFO  Files loaded in 222 ms<br>INFO  Generated: index.html<br>INFO  Generated: archives/index.html<br>INFO  Generated: <a href="mailto:fancybox/fancybox_loading@2x.gif" target="_blank" rel="noopener">fancybox/fancybox_loading@2x.gif</a><br>INFO  Generated: fancybox/jquery.fancybox.css<br>INFO  Generated: fancybox/blank.gif<br>INFO  Generated: fancybox/fancybox_loading.gif<br>INFO  Generated: fancybox/jquery.fancybox.js<br>INFO  Generated: fancybox/jquery.fancybox.pack.js<br>INFO  Generated: <a href="mailto:fancybox/fancybox_sprite@2x.png" target="_blank" rel="noopener">fancybox/fancybox_sprite@2x.png</a><br>INFO  Generated: fancybox/fancybox_sprite.png<br>INFO  Generated: fancybox/fancybox_overlay.png<br>INFO  Generated: archives/2017/index.html<br>INFO  Generated: archives/2017/06/index.html<br>INFO  Generated: css/fonts/FontAwesome.otf<br>INFO  Generated: fancybox/helpers/jquery.fancybox-buttons.js<br>INFO  Generated: js/script.js<br>INFO  Generated: css/style.css<br>INFO  Generated: fancybox/helpers/jquery.fancybox-buttons.css<br>INFO  Generated: fancybox/helpers/jquery.fancybox-media.js<br>INFO  Generated: fancybox/helpers/jquery.fancybox-thumbs.css<br>INFO  Generated: css/fonts/fontawesome-webfont.eot<br>INFO  Generated: css/fonts/fontawesome-webfont.woff<br>INFO  Generated: fancybox/helpers/jquery.fancybox-thumbs.js<br>INFO  Generated: fancybox/helpers/fancybox_buttons.png<br>INFO  Generated: css/fonts/fontawesome-webfont.ttf<br>INFO  Generated: 2017/06/11/hello-world/index.html<br>INFO  Generated: css/images/banner.jpg<br>INFO  Generated: css/fonts/fontawesome-webfont.svg<br>INFO  28 files generated in 624 ms<br>C:\Hexo\greydesign&gt;npm install hexo-deployer-git –save<br>added 2 packages in 6.372s<br>C:\Hexo\greydesign&gt;hexo d<br>(node:10200) [DEP0061] DeprecationWarning: fs.SyncWriteStream is deprecated. #啥意思，发布了吗？如何看git个人博客？</p>
+<p>C:\Hexo\greydesign&gt;<br><br>打开git bash，生成密钥（<a href="http://www.cnblogs.com/liulangmao/p/4323064.html" target="_blank" rel="noopener">使用hexo搭建github.io博客(一)</a>）：</p>
+<p><pre>qdmca@DESKTOP-LIANLI MINGW64 ~<br>$ ls -al ~/.ssh<br>ls: cannot access ‘/c/Users/qdmca/.ssh’: No such file or directory</pre></p>
+<p>qdmca@DESKTOP-LIANLI MINGW64 ~<br>$ ssh-keygen -t rsa -b 4096 -C “<a href="mailto:qdmcad@gmail.com" target="_blank" rel="noopener">qdmcad@gmail.com</a>“<br>Generating public/private rsa key pair.<br>Enter file in which to save the key (/c/Users/qdmca/.ssh/id_rsa):<br>Created directory ‘/c/Users/qdmca/.ssh’.<br>Enter passphrase (empty for no passphrase):<br>Enter same passphrase again:<br>Your identification has been saved in /c/Users/qdmca/.ssh/id_rsa.<br>Your public key has been saved in /c/Users/qdmca/.ssh/id_rsa.pub.<br>The key fingerprint is:<br>SHA256:P6XxYI/iJncOqOEqfrd8p9HGSmHhUz323urRagqJ4pI <a href="mailto:qdmcad@gmail.com" target="_blank" rel="noopener">qdmcad@gmail.com</a><br>The key’s randomart image is:<br>+—[RSA 4096]—-+<br>|                 |<br>|          .      |<br>|       . . +     |<br>|      . o . o    |<br>|       =S + ..   |<br>|      ..<em>o.O. o  |<br>|    o..+o</em>= oo o |<br>|.  Eo++o<em>+o. .+  |<br>|.oo.=+o</em>+o..++   |<br>+—-[SHA256]—–+</p>
+<p>qdmca@DESKTOP-LIANLI MINGW64 ~<br>$<br><br><a href="https://linghucong.js.org/2016/04/15/2016-04-15-hexo-github-pages-blog/" target="_blank" rel="noopener">手把手教你使用Hexo + Github Pages搭建个人独立博客</a><br><a href="http://opiece.me/2015/04/09/hexo-guide/" target="_blank" rel="noopener">使用Hexo搭建个人博客(基于hexo3.0)</a><br><a href="https://xuanwo.org/2015/03/26/hexo-intor/" target="_blank" rel="noopener">史上最详细的Hexo博客搭建图文教程</a><br>python : send mobi to my email</p>
+<h4 id="六、在Coding-Pages上托管Hexo博客（国内的服务，自定义域名收费，还有备案等麻烦，没有尝试就放弃了，放点静态页面，做做测试罢了）"><a href="#六、在Coding-Pages上托管Hexo博客（国内的服务，自定义域名收费，还有备案等麻烦，没有尝试就放弃了，放点静态页面，做做测试罢了）" class="headerlink" title="六、在Coding Pages上托管Hexo博客（国内的服务，自定义域名收费，还有备案等麻烦，没有尝试就放弃了，放点静态页面，做做测试罢了）"></a>六、在Coding Pages上托管Hexo博客（国内的服务，自定义域名收费，还有备案等麻烦，没有尝试就放弃了，放点静态页面，做做测试罢了）</h4><p>参考： <a href="https://huangjiaming.com/2017/07/28/CodingPages/" target="_blank" rel="noopener">将hexo博客托管于Coding Pages</a></p>
+<blockquote>
+<p>1、在<a href="https://coding.net" target="_blank" rel="noopener">官网</a>注册greydesign用户；</p>
+<p><span style="font-family: 'Roboto Slab'; font-size: 18px; color: #555555;">附：非程序员的Git生活</span><br>git用来做版本控制，比svn多了一个缓存区。</p>
+</blockquote>
+<p>我有一个大胆的想法：用来进行结构设计的协同设计与版本控制，当然也可以在工业设计师中推广。</p>
+<p>七、Gitlab</p>
+<blockquote>
+<p>公开 repo 放 github，私有 repo 放码云，公司 repo 放公司内网 gitlab<br><a href="https://lax.v2ex.com/t/388782" target="_blank" rel="noopener">大家除了 Github 还用啥国内的 Git 服务？</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/13/keep/" rel="next" title="Keep">
+                <i class="fa fa-chevron-left"></i> Keep
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/16/proxifier/" rel="prev" title="proxifier sock5">
+                proxifier sock5 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#git与github的区别"><span class="nav-number">1.</span> <span class="nav-text">git与github的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、用github建立个人博客"><span class="nav-number"></span> <span class="nav-text">一、用github建立个人博客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、github提供了pages功能："><span class="nav-number">1.</span> <span class="nav-text">1、github提供了pages功能：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、Hexo配置："><span class="nav-number">2.</span> <span class="nav-text">2、Hexo配置：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、其他"><span class="nav-number"></span> <span class="nav-text">二、其他</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、注册github，创建github-pages，实现域名解析"><span class="nav-number">1.</span> <span class="nav-text">一、注册github，创建github pages，实现域名解析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、仓库名与目录类型："><span class="nav-number">1.1.</span> <span class="nav-text">1、仓库名与目录类型：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、通过二级域名访问自己的github-pages"><span class="nav-number">1.2.</span> <span class="nav-text">2、通过二级域名访问自己的github pages</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、建站"><span class="nav-number">2.</span> <span class="nav-text">三、建站</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、发布："><span class="nav-number">3.</span> <span class="nav-text">四、发布：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六、在Coding-Pages上托管Hexo博客（国内的服务，自定义域名收费，还有备案等麻烦，没有尝试就放弃了，放点静态页面，做做测试罢了）"><span class="nav-number">4.</span> <span class="nav-text">六、在Coding Pages上托管Hexo博客（国内的服务，自定义域名收费，还有备案等麻烦，没有尝试就放弃了，放点静态页面，做做测试罢了）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

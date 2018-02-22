@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="目的：基于hexo的github pages，实现markdown写作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android之搭建Hexo博客">
+<meta property="og:url" content="http://yoursite.com/2017/10/07/e5-9c-a8android-e6-89-8b-e6-9c-ba-e4-b8-8a-e6-90-ad-e5-bb-ba-e6-9c-8d-e5-8a-a1-e5-99-a8-trashed/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="目的：基于hexo的github pages，实现markdown写作">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.900Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android之搭建Hexo博客">
+<meta name="twitter:description" content="目的：基于hexo的github pages，实现markdown写作">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/07/e5-9c-a8android-e6-89-8b-e6-9c-ba-e4-b8-8a-e6-90-ad-e5-bb-ba-e6-9c-8d-e5-8a-a1-e5-99-a8-trashed/"/>
+
+
+
+
+
+  <title>Android之搭建Hexo博客 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/07/e5-9c-a8android-e6-89-8b-e6-9c-ba-e4-b8-8a-e6-90-ad-e5-bb-ba-e6-9c-8d-e5-8a-a1-e5-99-a8-trashed/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android之搭建Hexo博客</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-07T20:59:48+08:00">
+                2017-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Markdown/" itemprop="url" rel="index">
+                    <span itemprop="name">Markdown</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Markdown/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Markdown/Network/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>目的：基于hexo的github pages，实现markdown写作<a id="more"></a></p>
+<p>遇到的难以解决的问题：</p>
+<blockquote>
+<p>1、安装debian会走ss流量，如果 ss延迟较大，会提示失败，关闭ss直接连接 ftp.debian 没有网络问题，但比优质ss网速慢很多，说明防火墙的影响还是很明显的。</p>
+<p>2、不小心退出xfce，再进入就没有桌面了，不知道如何恢复。还有xfce桌面分辨率为1920*1080，太高了，如何降低？</p>
+<p>3、如何在xfce中安装firefox？<br>新手需要注意的问题：<br>1、开启ssh与vnc</p>
+<p>2、如何完全卸载linux实例</p>
+<p>3、busybox用来扩充linux命令？<br><!--more--></p>
+</blockquote>
+<p>手机搭建服务器的优缺点</p>
+<blockquote>
+<p>Pro：</p>
+<p>1、功耗低，不需要另外购置硬件，减少开销</p>
+<p>2、随着无限流量时代的到来，可以做到服务器在手</p>
+<p>3、Android手机通过LTE上网，获得的是IP v6？是不是可以轻松看YouTube？<br><a href="https://mlapp.cn/134.html" target="_blank" rel="noopener">Linux Deploy:在Android上部署Linux</a><br><a href="http://www.jianshu.com/p/f5e107180b45" target="_blank" rel="noopener">旧手机小用途：在Android手机上建网站，较完全指南</a><br><a href="http://www.voidcn.com/article/p-rfzroork-od.html" target="_blank" rel="noopener">用Linux Deploy在Android上安装Linux</a></p>
+</blockquote>
+<p>实践1：安装首个debian实例</p>
+<blockquote>
+<p>路由器中给手机固定局域网IP地址，例如192.168.1.191</p>
+<p>手机root</p>
+<p>通过官网下载<a href="https://github.com/meefik/linuxdeploy/releases" target="_blank" rel="noopener">Linux Deploy</a>并安装运行</p>
+<p>右上角菜单“配置”中选中ssh与vnc</p>
+<p>右上角菜单“安装”，直到提示“deploy”</p>
+<p>左下角“启动”，直到提示“start”</p>
+<p>右下角图标查看账号密码信息，通过putty ssh连接ok</p>
+<p>通过vnc viewer连接ok，但是图形界面分辨率过高，改LXDE为xfce可以吗？<br>实践2：测试性能（连接debian服务器需要翻墙？反正自己的ss开启有问题时无法更新，换购买的ss就好了）<br>sudo apt-get update #问题：su的密码是啥?我是通过“sudo passwd root”修改了root密码来解决的。</p>
+<p>sudo apt-get install sysbench</p>
+<p>sysbench –test=cpu –cpu-max-prime=20000 run<br>魅蓝一代note成绩是344秒，比我的树莓派一代1460秒快很多，也比树莓派3代快一些。相信魅族Pro5的性能会更好。详细内容如下：<br>Doing CPU performance benchmark</p>
+<p>Threads started!</p>
+<p>Done.</p>
+<p>Maximum prime number checked in CPU test: 20000</p>
+<p>Test execution summary:</p>
+<p>total time: 344.6957s</p>
+<p>total number of events: 10000</p>
+<p>total time taken by event execution: 344.6883</p>
+<p>per-request statistics:</p>
+<p>min: 34.20ms</p>
+<p>avg: 34.47ms</p>
+<p>max: 51.72ms</p>
+<p>approx. 95 percentile: 34.66ms</p>
+<p>Threads fairness:</p>
+<p>events (avg/stddev): 10000.0000/0.00</p>
+<p>execution time (avg/stddev): 344.6883/0.00<br>问题:我想在魅族Pro5上测试sysbench，但是手机没有安装linux deploy，只有termux，无法安装sysbench。如何解决？</p>
+</blockquote>
+<p>实践3：搭建hexo环境<br>参考</p>
+<blockquote>
+<p><a href="http://www.heartnn.com/2016/12/24/hexo-blog-on-android/" target="_blank" rel="noopener">在Android手机搭建Hexo博客环境</a></p>
+<p><a href="http://www.jianshu.com/p/5fc4672b7d2e" target="_blank" rel="noopener">Hexo博客搭建全攻略(一):基于Hexo+Github环境搭建</a><br>sudo apt-get install git-core</p>
+<p>wget -qO- <a href="https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh" target="_blank" rel="noopener">https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh</a> | bash<br>实践4：安装codeblock开发环境<br>sudo apt-get install build-essential #安装编译器</p>
+<p>sudo apt-get install gdb #安装debug工具</p>
+<p>g++ -c hello.cpp #编译一个简单的c++程序</p>
+<p>g++ -o hello hello.o #链接，如果不用 -o，g++ hello.cpp会不生成 hello.o 文件，直接输出可执行文件 a.out</p>
+<p>./hello #执行</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/07/e7-bc-96-e7-a8-8b-e4-b8-9b-e4-b9-a6/" rel="next" title="编程丛书">
+                <i class="fa fa-chevron-left"></i> 编程丛书
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/19/e7-85-a7-e6-98-8e-e8-ae-be-e8-ae-a1/" rel="prev" title="照明设计">
+                照明设计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

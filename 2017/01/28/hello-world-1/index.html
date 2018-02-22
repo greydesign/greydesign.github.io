@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这是一个建立在一片树莓派上的服务器，它就放在我的显示器旁边：信用卡大小，连着一根网线，一条5V供电线而已。树莓派是几年前买的闲置物品，插一片16G SD卡，刷入“RASPBIAN JESSIE LITE”，不支持显示器，纯服务器。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="世界，你好！在树莓派上搭建Wordpress站点">
+<meta property="og:url" content="http://yoursite.com/2017/01/28/hello-world-1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="这是一个建立在一片树莓派上的服务器，它就放在我的显示器旁边：信用卡大小，连着一根网线，一条5V供电线而已。树莓派是几年前买的闲置物品，插一片16G SD卡，刷入“RASPBIAN JESSIE LITE”，不支持显示器，纯服务器。">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.875Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="世界，你好！在树莓派上搭建Wordpress站点">
+<meta name="twitter:description" content="这是一个建立在一片树莓派上的服务器，它就放在我的显示器旁边：信用卡大小，连着一根网线，一条5V供电线而已。树莓派是几年前买的闲置物品，插一片16G SD卡，刷入“RASPBIAN JESSIE LITE”，不支持显示器，纯服务器。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/28/hello-world-1/"/>
+
+
+
+
+
+  <title>世界，你好！在树莓派上搭建Wordpress站点 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/28/hello-world-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">世界，你好！在树莓派上搭建Wordpress站点</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-28T10:55:44+08:00">
+                2017-01-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/" itemprop="url" rel="index">
+                    <span itemprop="name">IoT</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这是一个建立在一片树莓派上的服务器，它就放在我的显示器旁边：信用卡大小，连着一根网线，一条5V供电线而已。<br>树莓派是几年前买的闲置物品，插一片16G SD卡，刷入“RASPBIAN JESSIE LITE”，不支持显示器，纯服务器。</p>
+<p><a id="more"></a>2017年在树莓派上运行wordpress，2018年想全新安装，竟然失败了，主要是两个错误：</p>
+<blockquote>
+<p>php5模块找不到</p>
+<p>PDO Driver for SQLite is missing.<br>因此，需要有时间研究这些问题，关键是wordpress或者树莓派有没有官方的安装指导呢！？从2017年10月左右，树莓派的这个站点就在web上不可见了，我打算修改https的缺省端口继续发布，竟然出了如此意外，晕！</p>
+</blockquote>
+<p><a href="https://lnmp.org/" target="_blank" rel="noopener">LNMP一键安装包</a><br><a href="https://codex.wordpress.org/zh-cn:%E5%AE%89%E8%A3%85_WordPress" target="_blank" rel="noopener">zh-cn:安装 WordPress</a><br>在树莓派上使用Wordpress，有两种主流方案：</p>
+<blockquote>
+<p>1、LAMP方案：Linux + Apache + MySQL + WordPress</p>
+<p>2、LNMP方案：Linux + Nginx + SQLite + WordPress<br>我第一次搭建用了LAMP方案，并且通过自签名的https，实现了外网访问，LAMP方案官方指导：<a href="https://www.raspberrypi.org/learning/lamp-web-server-with-wordpress/worksheet/" target="_blank" rel="noopener">Build a LAMP Web Server with WordPress</a></p>
+</blockquote>
+<p>因为第二种LNMP方案是轻量级的，对硬件要求较低，以下是LNMP方案的详细步骤：</p>
+<h4 id="1、安装树莓派操系统"><a href="#1、安装树莓派操系统" class="headerlink" title="1、安装树莓派操系统"></a>1、安装树莓派操系统</h4><h5 id="a、在Windows下格式化TF卡："><a href="#a、在Windows下格式化TF卡：" class="headerlink" title="a、在Windows下格式化TF卡："></a>a、在Windows下格式化TF卡：</h5><h5 id="windows不识别linux分区，写入树莓操作系统的卡片容量会“变小”。有两种方法解决：用软件sdformat格式化，或者用windows自带的命令行diskpart格式化，相关的6条命令行如下："><a href="#windows不识别linux分区，写入树莓操作系统的卡片容量会“变小”。有两种方法解决：用软件sdformat格式化，或者用windows自带的命令行diskpart格式化，相关的6条命令行如下：" class="headerlink" title="windows不识别linux分区，写入树莓操作系统的卡片容量会“变小”。有两种方法解决：用软件sdformat格式化，或者用windows自带的命令行diskpart格式化，相关的6条命令行如下："></a>windows不识别linux分区，写入树莓操作系统的卡片容量会“变小”。有两种方法解决：用软件sdformat格式化，或者用windows自带的命令行<code>diskpart</code>格式化，相关的6条命令行如下：</h5><blockquote>
+<p>diskpart #在Windows命令行下输入diskpart命令</p>
+<p>DISKPART&gt;list disk</p>
+<p>DISKPART&gt;select disk x #TF卡所在的盘符，看清容量，不要选错了！</p>
+<p>DISKPART&gt;clean</p>
+<p>DISKPART&gt;create partition primary</p>
+<p>DISKPART&gt;format quick</p>
+</blockquote>
+<h5 id="b、下载树莓派操作系统"><a href="#b、下载树莓派操作系统" class="headerlink" title="b、下载树莓派操作系统"></a>b、下载树莓派操作系统</h5><p>到<a href="https://www.raspberrypi.org" target="_blank" rel="noopener">树莓派官方网站</a>，点选在顶部的downloads，点选RASPBIAN，因为是建服务器，不需要图形界面，点选Download ZIP，下载LITE版本。<br>下载页面有<a href="https://www.raspberrypi.org/documentation/installation/installing-images/README.md" target="_blank" rel="noopener">installation guilde</a>链接，底部有<a href="https://www.raspberrypi.org/documentation/installation/installing-images/windows.md" target="_blank" rel="noopener">Windows</a>安装指导链接，下载<a href="https://sourceforge.net/projects/win32diskimager/" target="_blank" rel="noopener">Win32DiskImager</a>，写入tf卡片，直到出现Write Successful提示出现。</p>
+<h5 id="c、打开树莓的ssh端口"><a href="#c、打开树莓的ssh端口" class="headerlink" title="c、打开树莓的ssh端口"></a>c、打开树莓的ssh端口</h5><p>从2016年11月起，树莓派RASPBIAN缺省ssh是关闭的，需要在windows分区<code>boot</code>根目录下写入文件名为“ssh”的空文件，注意不要有扩展名。<br>是否注意到Windows下的卡片存储大小变小很多，大约只有64兆？这个因为在Windows下无法看到Linux分区，如果需要重新安装树莓派系统，必须将Windows下的linux分区找回来，否则空间就不够啦，格式化方法见上文。<br>问题：如果缺省关闭ssh 22端口，树莓派如何网络连接？</p>
+<h5 id="d、确定树莓派局域网IP地址"><a href="#d、确定树莓派局域网IP地址" class="headerlink" title="d、确定树莓派局域网IP地址"></a>d、确定树莓派局域网IP地址</h5><p>将写好的卡片插入树莓派，接好网线与电源线开机，在路由器中查看树莓派的IP地址，通过mac地址，手工指定树莓派的内网地址。<br>当然也可以使用扫描工具搜索树莓派的内网地址，推荐“PortScan”。</p>
+<h4 id="2、用ssh连接树莓派，安装nginx-php-sqlite："><a href="#2、用ssh连接树莓派，安装nginx-php-sqlite：" class="headerlink" title="2、用ssh连接树莓派，安装nginx+php+sqlite："></a>2、用ssh连接树莓派，安装<code>nginx+php+sqlite</code>：</h4><p>Windows 7下使用软件<a href="http://www.putty.org/" target="_blank" rel="noopener">putty</a>（Windows10不需要），用ssh登录，端口是22，缺省用户名<code>pi</code>，对应的缺省密码是<code>raspberry</code>，成功登录后，执行命令：</p>
+<blockquote>
+<p>passwd #为了系统安全，先把用户pi的缺省密码更改掉，注意sudo passwd命令更改的是root用户的密码 sudo apt-get update #更新树莓派的软件库信息 sudo apt-get install nginx php5-fpm php5-sqlite sqlite #安装nginx、php和sqlite sudo /etc/init.d/nginx start #设置nginx服务随系统启动<br>测试nginx是否正常工作：<br>打开浏览器输入树莓派的ip地址，如果显示<code>Welcome to nginx on Debian!...</code>，就表示nginx正常工作了。</p>
+</blockquote>
+<h4 id="3、配置php："><a href="#3、配置php：" class="headerlink" title="3、配置php："></a>3、配置php：</h4><p>nginx配置文件<code>/etc/nginx/nginx.conf</code>中有一行<code>include /etc/nginx/sites-enabled/*;</code>，表示此目录下的所有文件，都是可以使用的虚拟机。<br>查看<code>sites-enabled</code>目录，只有一个<code>default</code>文件，<code>default</code>文件中有一行内容<code>root /var/www/html;</code>表示浏览器打开的树莓派主页是目录<code>/var/www/html</code>下的文件，<code>default</code>文件中还有一行内容<code>index index.html index.htm index.nginx-debian.html;</code>表示浏览器打开主页所在目录文件的次序。测试nginx时，实际是打开了index.nginx-debian.html文件，因为到目前为止，/var/www/html目录下只有这个文件。在这个目录中增加index.php文件：</p>
+<blockquote>
+<p>sudo vi /var/www/html/index.php #新建一个php测试主页文件，写入一个显示phpinfo的语句<code>&amp;lt;? phpinfo(); ?&amp;gt;</code></p>
+<p>sudo vi /etc/nginx/sites-enabled/default #修改nginx配置文件，加入index.php索引和php支持<br>把索引文件行加入index.php:<br>index inxde.php index.html index.htm index.nginx-debian.html;<br>加入php支持，参考<a href="https://www.raspberrypi.org/documentation/remote-access/web-server/nginx.md" target="_blank" rel="noopener">SETTING UP AN NGINX WEB SERVER ON A RASPBERRY PI</a>，<strong>问题：官方参考配置里，fastcgi是啥东东？</strong><br>location ~ .php$ {</p>
+<p>fastcgi_split_path_info ^(.+.php)(/.+)$;</p>
+<h1 id="include-snippets-fastcgi-php-conf"><a href="#include-snippets-fastcgi-php-conf" class="headerlink" title="include snippets/fastcgi-php.conf;"></a>include snippets/fastcgi-php.conf;</h1><p>#</p>
+<h1 id="With-php5-cgi-alone"><a href="#With-php5-cgi-alone" class="headerlink" title="# With php5-cgi alone:"></a># With php5-cgi alone:</h1><h1 id="fastcgi-pass-127-0-0-1-9000"><a href="#fastcgi-pass-127-0-0-1-9000" class="headerlink" title="fastcgi_pass 127.0.0.1:9000;"></a>fastcgi_pass 127.0.0.1:9000;</h1><h1 id="With-php5-fpm"><a href="#With-php5-fpm" class="headerlink" title="# With php5-fpm:"></a># With php5-fpm:</h1><p>fastcgi_pass unix:/var/run/php5-fpm.sock;</p>
+<p>fastcgi_index index.php;</p>
+<p>include fastcgi.conf;</p>
+<p>}<br>测试php是否正常工作：<br>sudo /etc/init.d/nginx reload #重启nginx使更改生效。打开浏览器输入树莓派的ip地址，如果显示phpinfo的详细信息，就表示nginx正常工作了。</p>
+</blockquote>
+<h4 id="4、通过自签名证书（不建议，用免费的let’s-encrypt证书吧），改用https访问树莓派"><a href="#4、通过自签名证书（不建议，用免费的let’s-encrypt证书吧），改用https访问树莓派" class="headerlink" title="4、通过自签名证书（不建议，用免费的let’s encrypt证书吧），改用https访问树莓派"></a>4、通过自签名证书（不建议，用免费的let’s encrypt证书吧），改用https访问树莓派</h4><blockquote>
+<p>sudo mkdir /etc/cert</p>
+<p>cd /etc/cert</p>
+<p>sudo openssl genrsa -out greydesign.key 1024 #生成私钥key文件</p>
+<p>sudo openssl req -new -key greydesign.key -out greydesign.csr #生成证书申请csr文件</p>
+<p>sudo openssl x509 -req -days 3650 -in greydesign.csr -signkey greydesign.key -out greydesign.crt #生成自签发证书crt文件</p>
+<p>sudo vi /etc/nginx/sites-enabled/default #修改nginx配置文件，加入https支持<br>生成csr证书时，注意<code>Common Name (e.g. server FQDN or YOUR name) []:</code>写入自己的域名，比如<code>www.greydesign.tk</code>，最后两个问题直接回车即可：<br>Country Name (2 letter code) [AU]:CN</p>
+<p>State or Province Name (full name) [Some-State]:Shangdong</p>
+<p>Locality Name (eg, city) []:Qingdao</p>
+<p>Organization Name (eg, company) [Internet Widgits Pty Ltd]:greydesign</p>
+<p>Organizational Unit Name (eg, section) []:greydesign</p>
+<p>Common Name (e.g. server FQDN or YOUR name) []:<a href="http://www.greydesign.tk" target="_blank" rel="noopener">www.greydesign.tk</a></p>
+<p>Email Address []:<a href="mailto:qdmcad@gmail.com" target="_blank" rel="noopener">qdmcad@gmail.com</a></p>
+<p>Please enter the following ‘extra’ attributes</p>
+<p>to be sent with your certificate request</p>
+<p>A challenge password []:</p>
+<p>An optional company name []:<br>nginx配置文件，加入https支持：<br>listen 443 ssl default_server; #取消注释</p>
+<p>listen [::]:443 ssl default_server; #取消注释</p>
+<p>ssl on; #打开ssl，再用http访问主页就会出错，提示The plain HTTP request was sent to HTTPS port</p>
+<p>ssl_certificate /etc/cert/greydesign.crt; #公钥</p>
+<p>ssl_certificate_key /etc/cert/greydesign.key; #私钥<br>重启nginx，用https访问自己的主页试试，应该外网也可以顺利访问了。遗留问题：用http访问会提示400错误，如何自动转向https访问？<br>sudo nginx -t #检测nginx配置</p>
+<p>sudo nginx -s reload #重启nginx</p>
+</blockquote>
+<h4 id="5、安装Wordpress以及mysql插件"><a href="#5、安装Wordpress以及mysql插件" class="headerlink" title="5、安装Wordpress以及mysql插件"></a>5、安装Wordpress以及mysql插件</h4><blockquote>
+<p>cd /var/www/html/</p>
+<p>sudo rm * #清空主页目录，可选</p>
+<p>sudo wget <a href="http://wordpress.org/latest.tar.gz" target="_blank" rel="noopener">http://wordpress.org/latest.tar.gz</a> #下载最新版wordpress</p>
+<p>sudo tar xzf latest.tar.gz</p>
+<p>sudo mv wordpress/* .</p>
+<p>sudo rm -rf wordpress latest.tar.gz<br>现在访问自己的主页，会提示<code>Your PHP installation appears to be missing the MySQL extension which is required by WordPress.</code>，因为还需要安装支持wordpress的mysql插件：<br>cd /var/www/html/wp-content/plugins</p>
+<p>sudo wget <a href="https://downloads.wordpress.org/plugin/sqlite-integration.1.8.1.zip" target="_blank" rel="noopener">https://downloads.wordpress.org/plugin/sqlite-integration.1.8.1.zip</a> #版本如何选择？</p>
+<p>sudo unzip sqlite-integration.1.8.1.zip</p>
+<p>sudo rm sqlite-integration.1.8.1.zip</p>
+<p>sudo mv ./sqlite-integration/db.php /var/www/html/wp-content</p>
+<p>cd /var/www/html</p>
+<p>sudo  cp wp-config-sample.php wp-config.php</p>
+<p>sudo vi wp-config.php #加入一行 define(‘USE_MYSQL’, false);</p>
+</blockquote>
+<p>问题：如果需要使用Mysql，把那行改为true就可以了，是吧？</p>
+<p>现在访问自己的主页，会提示错误</p>
+<blockquote>
+<p>Unable to create the required directory! Please check your server settings.<br>这是因为目录权限问题，在/var/www/html后加入的文件与目录所有者是nobody，所有组是nogroup，改一下：<br>sudo chown -R www-data: .<br>访问wordpress面板<a href="https://192.168.1.232/wp-admin/setup-config.php会提示错误：" target="_blank" rel="noopener">https://192.168.1.232/wp-admin/setup-config.php会提示错误：</a><br>The file ‘wp-config.php’ already exists. If you need to reset any of the configuration items in this file, please delete it first. You may try installing now.<br>删除新创建的wp-config.php文件，刷新<code>https://192.168.1.232/wp-admin/setup-config.php</code>，就进入wordpress首次设置。选择简体中文，点击<code>继续</code>，<br>欢迎使用WordPress。在开始前，我们需要您数据库的一些信息。请准备好如下信息。</p>
+<p>数据库名</p>
+<p>数据库用户名</p>
+<p>数据库密码</p>
+<p>数据库主机</p>
+<p>数据表前缀（table prefix，特别是当您要在一个数据库中安装多个WordPress时）</p>
+<p>我们会使用这些信息来创建一个wp-config.php文件。 如果自动创建未能成功，不用担心，您要做的只是将数据库信息填入配置文件。您也可以在文本编辑器中打开wp-config-sample.php，填入您的信息，并将其另存为wp-config.php。<br>点击<code>现在就开始</code><br>数据库名称：greydesign</p>
+<p>用户名：qdmcad #这里是不是应该添root？</p>
+<p>密码：j2</p>
+<p>数据库主机：localhost</p>
+<p>表前缀：wp_<br>点击<code>提交</code>，出现<code>HTTP ERROR 500</code>错误，无法继续进行下一步配置，访问主页，会重新进入wordpress配置，为啥？先换mysql！<br>$sudo apt-get install mysql-server php5-mysql #安装mysql</p>
+<p>Reading package lists… Done</p>
+<p>Building dependency tree</p>
+<p>Reading state information… Done</p>
+<p>The following extra packages will be installed:</p>
+<p>libaio1 libdbd-mysql-perl libdbi-perl libhtml-template-perl libmysqlclient18</p>
+<p>libterm-readkey-perl mysql-client-5.5 mysql-common mysql-server-5.5</p>
+<p>mysql-server-core-5.5</p>
+<p>Suggested packages:</p>
+<p>libclone-perl libmldbm-perl libnet-daemon-perl libsql-statement-perl</p>
+<p>libipc-sharedcache-perl mailx tinyca</p>
+<p>The following NEW packages will be installed:</p>
+<p>libaio1 libdbd-mysql-perl libdbi-perl libhtml-template-perl libmysqlclient18</p>
+<p>libterm-readkey-perl mysql-client-5.5 mysql-common mysql-server</p>
+<p>mysql-server-5.5 mysql-server-core-5.5 php5-mysql</p>
+<p>0 upgraded, 12 newly installed, 0 to remove and 69 not upgraded.</p>
+<p>Need to get 8,372 kB of archives.</p>
+<p>After this operation, 89.5 MB of additional disk space will be used.<br>会提示设置root密码，我输入j2两次，问题，这是mysql的数据库密码吧？<br>建立mysql数据库：<br>mysql -uroot -p</p>
+<p>mysql&gt; create database wordpress;</p>
+<p>Ctrl + D<br>在浏览器打开主页，我的是<a href="https://www.greydesign.tk，会显示wordpress设置，注意用户名是root，密码是刚才设置的j2，设置站点标题为“Grey" target="_blank" rel="noopener">https://www.greydesign.tk，会显示wordpress设置，注意用户名是root，密码是刚才设置的j2，设置站点标题为“Grey</a> Design”，用户名为qdmcad，密码j2，电子邮件为<a href="mailto:qdmcad@gmail.com" target="_blank" rel="noopener">qdmcad@gmail.com</a>，点击安装wordpress，又出现HTTP ERROR 500错误！后来设置数据库名mysql而不是greydesign，提示500错误后，再重新刷新一次主页，却提示wordpress已配置好了，登录wordpress，用qdmcad:j2，顺利登录，先用着，以后重装，把数据库这段搞明白。进入面板，更新wordpress到WordPress 4.7.2–zh_CN版本。更新成功后，导入qdmcad.wordpress.com博客，选择了primer主题，有两个问题，在chrome上与firefox上看主页，字体不一致，如何设计网站缺省字体？还有，代码块为啥在chrome上没有底色？</p>
+</blockquote>
+<h4 id="6、安装配置Wordpress的注意事项："><a href="#6、安装配置Wordpress的注意事项：" class="headerlink" title="6、安装配置Wordpress的注意事项："></a>6、安装配置Wordpress的注意事项：</h4><p>a、中文地址问题：<br>我的几篇文章用了中文题目，Wordpress就用了中文地址，开始访问没有问题，晚上回家后，发现中文地址都出现了访问错误，只好挨个手动改成了英文地址。如果网站规模庞大，岂不得累死？有高效的检查链接有效性的办法吗？后来发现文章分类的中文地址也失效了，别名改成英文就好了。<br>b、网站备份：<br>自己写的文章，满含多日的付出与心得，不小心丢失了可受不了。先提出自己的需求吧。备份成tar.zip文件不直观，不考虑。备份到本地的话，我喜欢将文章打印成册，基本达到出版的要求，目前还没有看到好的教程。备份到异地的话，首先我喜欢同步到我的wordpress.com站点。就朝这两个方向努力吧。同步到自己的wordpress站点的步骤：<br>将本地文章export：a、进入仪表盘界面；b、工具c、导出d、所有内容e、下载导出的文件。然后到目标wordpress站点import就可以了。<br>d、私密文章：<br>wordpress博客，有些文章不想公开，如何设置呢？<br>手机上可以将博客设置为私密，网页编辑时，右上角的眼睛符号，也可以将博客设置为Private。<br>浏览自己的博客主页时，自己的私密博客标题，会被加上<code>私密：</code></p>
+<h4 id="7、Wordpress需要掌握的基本语法"><a href="#7、Wordpress需要掌握的基本语法" class="headerlink" title="7、Wordpress需要掌握的基本语法"></a>7、Wordpress需要掌握的基本语法</h4><blockquote>
+<p>1、代码段美化显示：文本模式，用&lt;pre&gt;&lt;/pre&gt;，或用&lt;code&gt;&lt;/code&gt;；</p>
+<p>2、&lt;blockquote&gt;&lt;/blockquote&gt;：可视化模式，在行首输入“&lt;”，行尾回车即可实现；</p>
+<p>3、下一页（分页）：&lt;!–nextpage–&gt;</p>
+<p>4、继续阅读（折叠）：&lt;!–more–&gt;</p>
+</blockquote>
+<h4 id="8、Wordpress美化"><a href="#8、Wordpress美化" class="headerlink" title="8、Wordpress美化"></a>8、Wordpress美化</h4><blockquote>
+<p>1、主题选择：为了实现“继续阅读”，theme一直使用<code>Primer</code>，自从学会&lt;!–more–&gt;，就换了<code>Flat</code>主题。</p>
+</blockquote>
+<h2 id="参考网页："><a href="#参考网页：" class="headerlink" title="参考网页："></a>参考网页：</h2><p><a href="https://www.moonfly.net/784.html" target="_blank" rel="noopener">NGINX配置HTTPS加密访问–自签CA</a><br><a href="http://blog.creke.net/762.html" target="_blank" rel="noopener">为nginx配置https并自签名证书</a><br><a href="https://blog.gtwang.org/linux/nginx-create-and-install-ssl-certificate-on-ubuntu-linux/" title="NGINX 設定 HTTPS 網頁加密連線，建立自行簽署的 SSL 憑證" target="_blank" rel="noopener">NGINX 設定 HTTPS 網頁加密連線，建立自行簽署的 SSL 憑證</a><br><a href="http://blog.51cto.com/nineep/1844048" target="_blank" rel="noopener">树莓派-nginx+php-fpm +sqlite+wordpress</a><br><a href="https://sofree.cc/wordpress-more-nextpage/" target="_blank" rel="noopener">如何讓WordPress有「繼續閱讀」和「下一頁」按鈕？</a> | <a href="https://en.support.wordpress.com/more-tag/" target="_blank" rel="noopener">More Tag</a><br><a href="https://codex.wordpress.org/zh-cn:WordPress_%E6%96%B0%E6%89%8B_-_%E5%A6%82%E4%BD%95%E5%BC%80%E5%A7%8B" target="_blank" rel="noopener">zh-cn:WordPress 新手 - 如何开始</a> #官方手册，好好学习</p>
+<p><!--more-->更多内容</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/28/3design/" rel="prev" title="三维设计">
+                三维设计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、安装树莓派操系统"><span class="nav-number">1.</span> <span class="nav-text">1、安装树莓派操系统</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#a、在Windows下格式化TF卡："><span class="nav-number">1.1.</span> <span class="nav-text">a、在Windows下格式化TF卡：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#windows不识别linux分区，写入树莓操作系统的卡片容量会“变小”。有两种方法解决：用软件sdformat格式化，或者用windows自带的命令行diskpart格式化，相关的6条命令行如下："><span class="nav-number">1.2.</span> <span class="nav-text">windows不识别linux分区，写入树莓操作系统的卡片容量会“变小”。有两种方法解决：用软件sdformat格式化，或者用windows自带的命令行diskpart格式化，相关的6条命令行如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#b、下载树莓派操作系统"><span class="nav-number">1.3.</span> <span class="nav-text">b、下载树莓派操作系统</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#c、打开树莓的ssh端口"><span class="nav-number">1.4.</span> <span class="nav-text">c、打开树莓的ssh端口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#d、确定树莓派局域网IP地址"><span class="nav-number">1.5.</span> <span class="nav-text">d、确定树莓派局域网IP地址</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、用ssh连接树莓派，安装nginx-php-sqlite："><span class="nav-number">2.</span> <span class="nav-text">2、用ssh连接树莓派，安装nginx+php+sqlite：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、配置php："><span class="nav-number">3.</span> <span class="nav-text">3、配置php：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#include-snippets-fastcgi-php-conf"><span class="nav-number"></span> <span class="nav-text">include snippets/fastcgi-php.conf;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#With-php5-cgi-alone"><span class="nav-number"></span> <span class="nav-text"># With php5-cgi alone:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fastcgi-pass-127-0-0-1-9000"><span class="nav-number"></span> <span class="nav-text">fastcgi_pass 127.0.0.1:9000;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#With-php5-fpm"><span class="nav-number"></span> <span class="nav-text"># With php5-fpm:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4、通过自签名证书（不建议，用免费的let’s-encrypt证书吧），改用https访问树莓派"><span class="nav-number">1.</span> <span class="nav-text">4、通过自签名证书（不建议，用免费的let’s encrypt证书吧），改用https访问树莓派</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5、安装Wordpress以及mysql插件"><span class="nav-number">2.</span> <span class="nav-text">5、安装Wordpress以及mysql插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6、安装配置Wordpress的注意事项："><span class="nav-number">3.</span> <span class="nav-text">6、安装配置Wordpress的注意事项：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7、Wordpress需要掌握的基本语法"><span class="nav-number">4.</span> <span class="nav-text">7、Wordpress需要掌握的基本语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8、Wordpress美化"><span class="nav-number">5.</span> <span class="nav-text">8、Wordpress美化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考网页："><span class="nav-number"></span> <span class="nav-text">参考网页：</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

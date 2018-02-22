@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言：关于网站安全证书，知乎在chrome中提示的是“信息或不安全”。我的greydesign网站提示的是“不安全或者危险”，这是因为我是自己制作的证书啦，和12306网站一个级别，哈哈。Microsoft 安全公告：SSL/TLS 证书的 SHA-1 弃用：2017 年 5 月 9 日 后门：https://www.zhihu.com/question/22343037 公司邮件网址缺省是htt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSH、SSL、TLS、CA、HTTPS等安全概念">
+<meta property="og:url" content="http://yoursite.com/2017/07/03/ssl-e3-80-81ca-e3-80-81https-e7-ad-89-e5-ae-89-e5-85-a8-e6-a6-82-e5-bf-b5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言：关于网站安全证书，知乎在chrome中提示的是“信息或不安全”。我的greydesign网站提示的是“不安全或者危险”，这是因为我是自己制作的证书啦，和12306网站一个级别，哈哈。Microsoft 安全公告：SSL/TLS 证书的 SHA-1 弃用：2017 年 5 月 9 日 后门：https://www.zhihu.com/question/22343037 公司邮件网址缺省是htt">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.886Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SSH、SSL、TLS、CA、HTTPS等安全概念">
+<meta name="twitter:description" content="前言：关于网站安全证书，知乎在chrome中提示的是“信息或不安全”。我的greydesign网站提示的是“不安全或者危险”，这是因为我是自己制作的证书啦，和12306网站一个级别，哈哈。Microsoft 安全公告：SSL/TLS 证书的 SHA-1 弃用：2017 年 5 月 9 日 后门：https://www.zhihu.com/question/22343037 公司邮件网址缺省是htt">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/03/ssl-e3-80-81ca-e3-80-81https-e7-ad-89-e5-ae-89-e5-85-a8-e6-a6-82-e5-bf-b5/"/>
+
+
+
+
+
+  <title>SSH、SSL、TLS、CA、HTTPS等安全概念 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/03/ssl-e3-80-81ca-e3-80-81https-e7-ad-89-e5-ae-89-e5-85-a8-e6-a6-82-e5-bf-b5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SSH、SSL、TLS、CA、HTTPS等安全概念</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-03T17:12:29+08:00">
+                2017-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/" itemprop="url" rel="index">
+                    <span itemprop="name">IoT</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/Network/VPS/" itemprop="url" rel="index">
+                    <span itemprop="name">VPS</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/Network/VPS/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h3><p>关于网站安全证书，知乎在chrome中提示的是“信息或不安全”。我的greydesign网站提示的是“不安全或者危险”，这是因为我是自己制作的证书啦，和12306网站一个级别，哈哈。<br><a href="https://support.microsoft.com/zh-cn/help/4010323/title" target="_blank" rel="noopener">Microsoft 安全公告：SSL/TLS 证书的 SHA-1 弃用：2017 年 5 月 9 日</a></p>
+<p>后门：<a href="https://www.zhihu.com/question/22343037" target="_blank" rel="noopener">https://www.zhihu.com/question/22343037</a></p>
+<p>公司邮件网址缺省是http，也就是说提交的用户名与密码是明码，是不安全的。那在局域网中有人通过网页登录邮箱，个人密码就会乱飞吧？</p>
+<h3 id="一、SSH"><a href="#一、SSH" class="headerlink" title="一、SSH"></a>一、SSH</h3><a id="more"></a>
+<h4 id="基础：SSH配置"><a href="#基础：SSH配置" class="headerlink" title="基础：SSH配置"></a>基础：SSH配置</h4><p><a href="http://www.cnblogs.com/foohack/p/4103212.html" target="_blank" rel="noopener">SSL和SSH和OpenSSH，OpenSSL有什么区别</a></p>
+<h3 id="二、SSL、TLS"><a href="#二、SSL、TLS" class="headerlink" title="二、SSL、TLS"></a>二、SSL、TLS</h3><p><a href="http://www.jianshu.com/p/92b6d4a6ecd5" target="_blank" rel="noopener">为自定义域名的GitHub Pages添加SSL 完整方案</a></p>
+<p>可以认为SSL与TLS是一样的。</p>
+<h3 id="二、CA"><a href="#二、CA" class="headerlink" title="二、CA"></a>二、CA</h3><p><a href="http://www.jianshu.com/p/8b14dae8324c" target="_blank" rel="noopener">数字证书及 CA 的扫盲介绍</a><br><a href="http://www.cnbeta.com/articles/tech/535629.htm" target="_blank" rel="noopener">国内CA机构沃通错误颁发GitHub域名SSL证书</a><br><a href="http://www.techug.com/post/how-wosign-gave-me-an-ssl-certificate-for-github.html" target="_blank" rel="noopener">我是如何迫使沃通给我签发Github的SSL证书的</a><br><a href="https://bitmingw.com/2016/09/14/now-support-https/" target="_blank" rel="noopener">本博客现已启用全站 HTTPS 加密通讯</a></p>
+<blockquote>
+<p>问题：</p>
+<p>1、在android手机的Termux应用中，既没有sudo命令，也找不到letsencrypt软件包，如何解决？</p>
+<p>2、在树莓派中也找不到letsencrypt软件包，那个启用全站https加密通讯的内容过时了，还是树莓派不支持？</p>
+<p>3、letsencrypt官方指导在哪个页面呢？</p>
+</blockquote>
+<h3 id="三、HTTPS"><a href="#三、HTTPS" class="headerlink" title="三、HTTPS"></a>三、HTTPS</h3><p><a href="https://www.zixundingzhi.com/Windows/b2fcf39e2dec5658.html" target="_blank" rel="noopener">看完你就知道什麼是 HTTPS 了</a>#简单介绍了对称加密、非对称加密以及证书等概念<br><a href="https://imququ.com/" target="_blank" rel="noopener">Jerry Qu</a>的博客里有很多关于HTTPS的文章，值得学习<br><a href="http://blog.csdn.net/phunxm/article/details/45083335" target="_blank" rel="noopener">Mac下git通过SSH进行免密码安全连接github</a><br><a href="http://www.jianshu.com/p/0d7038102cd6" target="_blank" rel="noopener">生成ssh公钥并连接到github</a><br><a href="http://www.jianshu.com/p/268064e67719" target="_blank" rel="noopener">GPG入门指南（加密/签名）</a><br><a href="https://www.jianshu.com/p/6b19adb84150?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation" target="_blank" rel="noopener">深入解析HTTPS</a></p>
+<blockquote>
+<p>“~”是当前用户的home目录，问题：“.ssh”目录一定在home目录下吗？</p>
+<p>具体操作见本博客博文：Android下有哪些好用的ssh应用？下关于Termuxd的内容，在我的手机上实际操作成功！</p>
+</blockquote>
+<h4 id="实践0、在树莓派上，配置nginx制作自签名证书实现https访问"><a href="#实践0、在树莓派上，配置nginx制作自签名证书实现https访问" class="headerlink" title="实践0、在树莓派上，配置nginx制作自签名证书实现https访问"></a>实践0、在树莓派上，配置nginx制作自签名证书实现https访问</h4><blockquote>
+<p>1、通过openssl生成私钥文件</p>
+<p>2、生成证书申请文件</p>
+<p>3、通过自签名证书申请文件（设定域名等信息），生成公钥文件</p>
+<p>4、配置nginx文件，开启https并指向公钥、私钥文件<br>具体操作见在本站的树莓派上搭建wordpress博文。</p>
+</blockquote>
+<p>&nbsp;</p>
+<blockquote>
+<p>mkdir ssl  &amp; cd ssl</p>
+<p>openssl genrsa <span class="hljs-number">4096</span> &gt; account.key #创建账号</p>
+<p>openssl genrsa <span class="hljs-number">4096</span> &gt; domain.key #创建 RSA 私钥</p>
+<p>openssl ecparam -genkey -name secp256r1 | openssl ec -out domain.key #创建 ECC 私钥secp256r1，什么鬼？</p>
+<p>openssl ecparam -genkey -name secp384r1 | openssl ec -out domain.key ##创建 ECC 私钥secp384r1</p>
+<p>openssl req -new -sha256 -key domain.key -out domain.csr #生成 CSR 文件,common name如何输入多个？<br>注意：参考我自己的博文：世界，你好！在树莓派上搭建WordPress站点，我的自签名证书是放在/etc/cert目录下的，注意别给覆盖了。</p>
+</blockquote>
+<p>再往下的步骤涉及到目录 /etc/ssl ，谨慎一下，先暂停。<br><a href="http://leeon.me/a/nginx-with-https-raspberrypi" target="_blank" rel="noopener">【原创】在树莓派3上给Nginx部署免费HTTPS证书</a></p>
+<h4 id="实践4、给路由器配置证书"><a href="#实践4、给路由器配置证书" class="headerlink" title="实践4、给路由器配置证书"></a>实践4、给路由器配置证书</h4><p>【R7000】如何给 梅林固件 添加自己的SSL证书</p>
+<h4 id="实践5、通过密钥实现免密码ssh登录github"><a href="#实践5、通过密钥实现免密码ssh登录github" class="headerlink" title="实践5、通过密钥实现免密码ssh登录github"></a>实践5、通过密钥实现免密码ssh登录github</h4><p><a href="http://www.bijishequ.com/detail/382895?p=68" target="_blank" rel="noopener">如何配置 SSH 免密码登录</a>| <a href="http://yynotes.net/ssh-without-password-using-ssh-keygen/" target="_blank" rel="noopener">使用ssh-keygen实现ssh无密码登陆</a> | github配置密钥实现ssh免密码登录（具体见本文的Termux相关步骤：通过证书配置ssh访问github账户）</p>
+<p>通过域名免密码登录，如果服务器ip地址发生变更，Termux文件“~/.ssh/known_hosts”中的记录检查就通不过，会有DNS警告并失败。解决的方法是…待补充。</p>
+<h4 id="实践6、通过密钥实现免密码登录树莓派"><a href="#实践6、通过密钥实现免密码登录树莓派" class="headerlink" title="实践6、通过密钥实现免密码登录树莓派"></a>实践6、通过密钥实现免密码登录树莓派</h4><p><a href="https://www.raspberrypi.org/documentation/remote-access/ssh/passwordless.md" target="_blank" rel="noopener">PASSWORDLESS SSH ACCESS</a> | <a href="http://blog.csdn.net/qinxiandiqi/article/details/39206323" target="_blank" rel="noopener">使用SSH无密码验证访问树莓派</a></p>
+<p>基本步骤就是在远程计算机上生成私钥、公钥，把公钥配置到树莓派上。<br>注意：一下生成密钥的操在是在远程计算机上，不是在树莓派上的操作！以下是在树莓排上误操作的，新生成了.ssh目录</p>
+<blockquote>
+<p>ls ~/.ssh #cannot access … 当前用户目录下没有.ssh目录</p>
+<p>ssh-keygen -t rsa -C zqh@pi232 #全部回车确认默认值，放在目录“/home/pi/.ssh”,no passphrase,生成私钥“/home/pi/.ssh/id_rsa”,公钥“/home/pi/.ssh/id_rsa.pub”,key fingerprint is :af:58:7a:65:4f:96:58:15:fc:50:66:d8:01:8b:14:a3 zqh@pi232（需要保密吗？）,还有那个“key’s randomart image”有啥用？<br>以下是在Termux下的具体操作：<br>ls ~/.ssh #目录已经存在，有三个文件“id_rsa”、“id_rsa.pub”、“known_hosts”，哪时候生成的？<br>注：本文用了wordpress对markdown的初步支持，在文字前输入“&gt;”，行尾回车，文字就会自动被标记<code>blockquote</code>包围</p>
+</blockquote>
+<p>&nbsp;</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/28/e6-b5-b7-e6-b7-98/" rel="next" title="海淘">
+                <i class="fa fa-chevron-left"></i> 海淘
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/07/e7-89-b9-e6-ae-8a-e5-ad-97-e7-ac-a6/" rel="prev" title="特殊字符">
+                特殊字符 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言："><span class="nav-number">1.</span> <span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、SSH"><span class="nav-number">2.</span> <span class="nav-text">一、SSH</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础：SSH配置"><span class="nav-number">2.1.</span> <span class="nav-text">基础：SSH配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、SSL、TLS"><span class="nav-number">3.</span> <span class="nav-text">二、SSL、TLS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、CA"><span class="nav-number">4.</span> <span class="nav-text">二、CA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、HTTPS"><span class="nav-number">5.</span> <span class="nav-text">三、HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实践0、在树莓派上，配置nginx制作自签名证书实现https访问"><span class="nav-number">5.1.</span> <span class="nav-text">实践0、在树莓派上，配置nginx制作自签名证书实现https访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践4、给路由器配置证书"><span class="nav-number">5.2.</span> <span class="nav-text">实践4、给路由器配置证书</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践5、通过密钥实现免密码ssh登录github"><span class="nav-number">5.3.</span> <span class="nav-text">实践5、通过密钥实现免密码ssh登录github</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实践6、通过密钥实现免密码登录树莓派"><span class="nav-number">5.4.</span> <span class="nav-text">实践6、通过密钥实现免密码登录树莓派</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

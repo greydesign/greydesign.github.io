@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="git与github的区别 git是一个版本控制工具，是Linux的上帝Linus写的：Git教程。其他版本管理工具还有hg github是基于git的项目托管平台，是世界程序员的圣地，兲朝曾经屏蔽过。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git_在Windows 10上配置GitHub个人博客">
+<meta property="og:url" content="http://yoursite.com/2018/01/02/windows-e4-b8-8agit-e5-ae-89-e8-a3-85/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="git与github的区别 git是一个版本控制工具，是Linux的上帝Linus写的：Git教程。其他版本管理工具还有hg github是基于git的项目托管平台，是世界程序员的圣地，兲朝曾经屏蔽过。">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.895Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git_在Windows 10上配置GitHub个人博客">
+<meta name="twitter:description" content="git与github的区别 git是一个版本控制工具，是Linux的上帝Linus写的：Git教程。其他版本管理工具还有hg github是基于git的项目托管平台，是世界程序员的圣地，兲朝曾经屏蔽过。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/02/windows-e4-b8-8agit-e5-ae-89-e8-a3-85/"/>
+
+
+
+
+
+  <title>Git_在Windows 10上配置GitHub个人博客 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/02/windows-e4-b8-8agit-e5-ae-89-e8-a3-85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Git_在Windows 10上配置GitHub个人博客</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-02T21:22:31+08:00">
+                2018-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/VPS/" itemprop="url" rel="index">
+                    <span itemprop="name">VPS</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/VPS/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="git与github的区别"><a href="#git与github的区别" class="headerlink" title="git与github的区别"></a>git与github的区别</h4><blockquote>
+<p>git是一个版本控制工具，是Linux的上帝Linus写的：<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">Git教程</a>。其他版本管理工具还有hg</p>
+<p>github是基于git的项目托管平台，是世界程序员的圣地，兲朝曾经屏蔽过。</p>
+</blockquote>
+<h3 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h3><p>准备工作</p>
+<p>1、首先要保证网络畅通，防止GFW捣乱：<strong>在路由器中开启ss client</strong>，可以解决树莓派以及Windows 10 git bash等网络问题，经测试ok。<br>当然，在git 中配置代理也是可行的，但没有成功，留待以后补充。</p>
+<h3 id="一、GitHub"><a href="#一、GitHub" class="headerlink" title="一、GitHub"></a>一、GitHub</h3><p>1、注册<a href="https://github.com/" target="_blank" rel="noopener">github</a>：我的用户名当然是<code>greydesign</code>啦（可以多注册几个吗？）。<br>2、建立自己的仓库（repositories）。如果想实现静态博客，<strong>仓库必须与注册名一致</strong>。<br>比如我的博客仓库名就必须是<code>greydesign</code>，而且github pages必须是<code>master</code>目录（<code>gh-pages</code>和<code>/docs</code>目录不行吗？）。<br>3、通过二级域名访问自己的github pages：</p>
+<blockquote>
+<p>仓库：<a href="https://github.com/greydesign/greydesign.github.io" target="_blank" rel="noopener">https://github.com/greydesign/greydesign.github.io</a></p>
+<p>个人博客：<a href="https://greydesign.github.io" target="_blank" rel="noopener">https://greydesign.github.io</a>#无法访问博客页面，这是因为github pages还没有运行起来（没有主页等文件，是空的）<br>关于github提供pages功能的知识点：<br>1、repo下有两种pages：user pages和project pages，一个账号只有一个user pages，但可以有多个project pages。</p>
+<p>2、user pages必须在<code>master</code>分支上，其<code>gh-pages</code>分支是空的，可以用来做个人主页，project pages必须在<code>gh-pages</code>分支上，其<code>master</code>分支是空的。</p>
+<p>3、个人主页URL必须是<code>https://&amp;lt;username&amp;gt;.github.io</code> #博客用github.io域名，github.com域名</p>
+<p>项目URL是<code>https://&amp;lt;username&amp;gt;.github.io/&amp;lt;projectname&amp;gt;</code><br>查看自家的仓库<code>settings</code>，看到在<code>GitHub Pages</code>有提示：<br>GitHub Pages is currently disabled. You must first add content to your repository before you can publish a GitHub Pages site.<br>解决的办法参考：<a href="http://www.jianshu.com/p/e7c58f57f60e" target="_blank" rel="noopener">hexo初探—让写作飞起来</a>，通过设置选择一个theme即可，现在就可以通过访问个人博客了。</p>
+</blockquote>
+<h3 id="二、Windows版本Git"><a href="#二、Windows版本Git" class="headerlink" title="二、Windows版本Git"></a>二、Windows版本Git</h3><p>参考：<a href="https://www.toutiao.com/a6505592334032306701/" target="_blank" rel="noopener">Windows上Git安装（图解教程）</a></p>
+<p>1、安装Windows版本的git</p>
+<p>从<a href="https://git-scm.com/" target="_blank" rel="noopener">官方</a>下载的是<code>Git-2.15.1.2-64-bit.exe</code>，缺省安装，打开<code>git bash</code>窗口:</p>
+<blockquote>
+<p>git –version #验证安装是否ok</p>
+<p>git config –global user.name “xxx” #我的github注册用户名，必须设置，否则<code>hexo d</code>会失败</p>
+<p>git config –global user.email “<a href="mailto:xxx@yyy.com" target="_blank" rel="noopener">xxx@yyy.com</a>“ #我的github注册信箱，必须设置，否则<code>hexo d</code>会失败</p>
+<p>git config –global push.default simple #有啥用？需要研究一下！不清楚就要执行</p>
+<p>git config –global –list #验证刚才的三条配置信息，配置文件是<code>c:\msys64\home\.gitconfig</code><br>有了git for Windows，试试用<code>git clone</code>下载电子书，比如：<a href="https://github.com/fengluo/Transparent-Ming?files=1&amp;from=timeline" target="_blank" rel="noopener">怎么样让大明变得透明</a><br>git clone <a href="https://github.com/fengluo/Transparent-Ming?files=1&amp;from=timeline" target="_blank" rel="noopener">https://github.com/fengluo/Transparent-Ming?files=1&amp;from=timeline</a> #在git bash中操作成功，速度很慢，被ss影响了吗？还有，git协议的地址是啥？如何在手机上阅读md电子书？为何目录被git bash自动识别为master？<br>2、配置密钥登录github（<strong>很重要</strong>）</p>
+</blockquote>
+<p>通过git bash：</p>
+<blockquote>
+<p>ssh-keygen -t rsa -C “<a href="mailto:xxx@yyy.com" target="_blank" rel="noopener">xxx@yyy.com</a>“ #生成ssh密钥，所有提问直接回车。问题：邮箱是必须的吗？不一致会出错吗？<code>key fingerprint</code> 以及 <code>key&#39;s randomart image</code>是干啥的？<br>根据提示，打开密钥文件目录，比如我的是<code>/c/Users/qdmca/.ssh/</code>，后来因为安装了msys，目录更改为<code>c/msys64/home/.ssh</code>。<br>id_rsa #私钥</p>
+<p>id_rsa.pub #公钥<br>复制<code>id_rsa.pub</code>所有内容到自己github账户设置中“SSH and GPG keys”的“New SSH key”中，网站提示输入用户密码确认。<br>在git bash中输入：<br>ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a> #输入yes，会看到提示授权成功的信息。</p>
+<p>git init #在自己的<code>git本地目录</code>中初始化，比如我的是 /d/git 目录，会生成一个.git的隐藏目录<br>授权信息：<br>Hi XXX! You’ve successfully authenticated, <strong>but GitHub does not provide shell access</strong>.</p>
+</blockquote>
+<h3 id="三、Windows版本Hexo"><a href="#三、Windows版本Hexo" class="headerlink" title="三、Windows版本Hexo"></a>三、Windows版本Hexo</h3><p>Hexo与Jekyll的区别</p>
+<blockquote>
+<p>1、Hexo用 NodeJS，Jekyll用Ruby，Hexo快一个数量级（高并发场景）</p>
+<p>2、Hexo 是本地生成 html 再上傳，Jekyll 是把原文上傳 github，直接生成博客，可在線編輯</p>
+<p>3、很多人从Jekyll转向了Hexo<br>参考<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">官方教程</a>安装Hexo：<br>安装Windows版本的Node.js，参考<a href="http://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="noopener">Node.js 安装配置</a>，从<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">官方下载</a>的是<code>node-v8.9.4-x64.msi</code>，采用缺省设置安装。打开Git Bash<br>npm install -g hexo-cli #配置文件在c:/Users/xxx/.npmrc，卸载<code>npm uninstall -g hexo-cli</code></p>
+<p>hexo –v #验证安装<br>在windows下开启命令行界面，新建<code>d:\Hexo</code>目录，在git bash中：<br>hexo init greydesign #在c:\Hexo\目录下生成一个子目录greydesign</p>
+<p>cd greydesign</p>
+<p>npm install<br>init时hexo奇怪的提示（npm install出现后两行警告）：<br>npm notice created a lockfile as package-lock.json. You should commit this file.</p>
+<p>npm WARN optional SKIPPING OPTIONAL DEPENDENCY: <a href="mailto:fsevents@1.1.3" target="_blank" rel="noopener">fsevents@1.1.3</a> (node_modules\fsevents):</p>
+<p>npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for <a href="mailto:fsevents@1.1.3" target="_blank" rel="noopener">fsevents@1.1.3</a>: wanted {“os”:”darwin”,”arch”:”any”} (current: {“os”:”win32”,”arch”:”x64”})<br>修改<code>_config.yml</code>文件，填入自己的ssh地址（从github中，找clone and download查找），<strong>注意：冒号后面必须有空格，否则<code>hexo d</code>失败，而且没有任何提示</strong>，例如</p>
+</blockquote>
+<p><pre>deploy:<br>    type: git<br>    repo: <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:greydesign/greydesign.github.io.git #用https如何？：<a href="https://github.com/greydesign/greydesign.github.io.git" target="_blank" rel="noopener">https://github.com/greydesign/greydesign.github.io.git</a><br>    branch: master</pre><br>在git bash中继续运行：</p>
+<blockquote>
+<p>hexo s #<a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">hexo server</a>，查看测试网页 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000</a></p>
+</blockquote>
+<h3 id="四、写博客发布到GitHub上"><a href="#四、写博客发布到GitHub上" class="headerlink" title="四、写博客发布到GitHub上"></a>四、写博客发布到GitHub上</h3><p>更换Next主题</p>
+<blockquote>
+<p>git clone <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">https://github.com/iissnan/hexo-theme-next</a> themes/next #官网：<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">hexo-theme-next</a><br>修改配置文件_config.yml，将其中的<code>theme landscape</code>更改为<code>theme next</code>。</p>
+</blockquote>
+<p>安装 hexo-deployer-git：</p>
+<blockquote>
+<p>npm install hexo-deployer-git –save #提示<code>npm WARN deprecated swig@1.4.2: This package is no longer maintained</code><br>发布到github上：<br>hexo clean #清除缓存</p>
+<p>hexo new “新博文” #<a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Create a new post</a></p>
+<p>hexo g #<a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">hexo generate</a>，生成本地发布文件</p>
+<p>hexo d #<a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">hexo deploy</a>，发布到github上，因为根目录配置文件<code>_config.yml</code>忘了在冒号后加空格，执行完后没有任何反应。增加冒号后，又提示不知道用户名与信箱，需要通过命令<code>git config --global user.name</code>和<code>git config --global user.email</code>配置。还有，git pages上的原有文件会被冲掉丢失。<br>wordpress转换到hexo<br>npm install hexo-migrator-wordpress –save</p>
+<p>hexo migrate wordpress <span class="token markup"><span class="token tag"><span class="token punctuation">&lt;</span>source<span class="token punctuation">&gt; #source是wordpress导出xml文件所在的目录</span></span></span><br><a href="http://www.cnblogs.com/liulangmao/p/4323064.html" target="_blank" rel="noopener">使用hexo搭建github.io博客(一)</a><br><a href="https://www.jianshu.com/p/6dfc7cfdc7e0" target="_blank" rel="noopener">【Hexo搭建独立博客全纪录】（三）使用Hexo搭建博客</a><br><a href="https://www.jianshu.com/p/4487d767e651" target="_blank" rel="noopener">hexo new 后同步打开文章编辑器</a><br><a href="http://moxfive.xyz/2016/03/27/hexo-browsersync/" target="_blank" rel="noopener">Hexo 页面自动刷新与移动端调试</a><br><a href="https://linghucong.js.org/2016/04/15/2016-04-15-hexo-github-pages-blog/" target="_blank" rel="noopener">手把手教你使用Hexo + Github Pages搭建个人独立博客</a><br><a href="http://opiece.me/2015/04/09/hexo-guide/" target="_blank" rel="noopener">使用Hexo搭建个人博客(基于hexo3.0)</a><br><a href="https://xuanwo.org/2015/03/26/hexo-intor/" target="_blank" rel="noopener">史上最详细的Hexo博客搭建图文教程</a><br>视频教程：<a href="https://www.youtube.com/watch?v=Ud1xAhu7t2Y" target="_blank" rel="noopener">快速使用Hexo 搭建个人博客#001 - Hexo 框架介绍- YouTube</a><br>python : send mobi to my email</p>
+</blockquote>
+<h3 id="以下为作废信息，仅供学习git以及github的历史记录："><a href="#以下为作废信息，仅供学习git以及github的历史记录：" class="headerlink" title="以下为作废信息，仅供学习git以及github的历史记录："></a><strong>以下为作废信息，仅供学习git以及github的历史记录：</strong></h3><h4 id="六、在Coding-Pages上托管Hexo博客（国内的服务，自定义域名收费，还有备案等麻烦，没有尝试就放弃了，放点静态页面，做做测试罢了）"><a href="#六、在Coding-Pages上托管Hexo博客（国内的服务，自定义域名收费，还有备案等麻烦，没有尝试就放弃了，放点静态页面，做做测试罢了）" class="headerlink" title="六、在Coding Pages上托管Hexo博客（国内的服务，自定义域名收费，还有备案等麻烦，没有尝试就放弃了，放点静态页面，做做测试罢了）"></a>六、在Coding Pages上托管Hexo博客（国内的服务，自定义域名收费，还有备案等麻烦，没有尝试就放弃了，放点静态页面，做做测试罢了）</h4><p>参考： <a href="https://huangjiaming.com/2017/07/28/CodingPages/" target="_blank" rel="noopener">将hexo博客托管于Coding Pages</a></p>
+<blockquote>
+<p>1、在<a href="https://coding.net" target="_blank" rel="noopener">官网</a>注册greydesign用户；</p>
+<p><span style="font-family: 'Roboto Slab'; font-size: 18px; color: #555555;">附：非程序员的Git生活</span><br>git用来做版本控制，比svn多了一个缓存区。</p>
+</blockquote>
+<p>我有一个大胆的想法：用来进行结构设计的协同设计与版本控制，当然也可以在工业设计师中推广。</p>
+<p>七、Gitlab</p>
+<blockquote>
+<p>公开 repo 放 github，私有 repo 放码云，公司 repo 放公司内网 gitlab<br><a href="https://lax.v2ex.com/t/388782" target="_blank" rel="noopener">大家除了 Github 还用啥国内的 Git 服务？</a></p>
+</blockquote>
+<h4 id="绑定顶级域名（因为无法在github上配置自己的https-CA证书，最终放弃）"><a href="#绑定顶级域名（因为无法在github上配置自己的https-CA证书，最终放弃）" class="headerlink" title="绑定顶级域名（因为无法在github上配置自己的https CA证书，最终放弃）"></a>绑定顶级域名（因为无法在github上配置自己的https CA证书，最终放弃）</h4><p>参考：<a href="http://www.jianshu.com/p/cea41e5c9b2a" target="_blank" rel="noopener">hexo搭建的Github博客绑定域名</a>，我在万网注册了<code>zhangqihui.me</code>，设置CNAME域名解析：</p>
+<blockquote>
+<p>记录类型：CNAME</p>
+<p>主机记录：@</p>
+<p>解析线路：默认</p>
+<p>记录值：greydesign.github.io</p>
+<p>TTL：10分钟<br>用<code>zhangqihui.me</code>访问，依然会提示404错误：<br>There isn’t a GitHub Pages site here.</p>
+<p>If you’re trying to publish one, <a href="https://help.github.com/pages/" target="_blank" rel="noopener">read the full documentation</a> to learn how to set up GitHub Pages for your repository, organization, or user account.<br>通过ping这两个网址，只想的ip是相同的，为什么还会出错呢？这是因为虽然在域名服务上那里设置了CNAME，但github端还没有设置好。<br>参考<a href="http://wiki.jikexueyuan.com/project/github-pages-basics/cname-file.html" target="_blank" rel="noopener">添加 CNAME 文件到你的存储库中</a>，添加CNAME的master目录中，<code>create new file</code>，会开启一个编辑页面，文件名添<code>CNAME</code>，内容添<code>zhangqihui.me</code>，在页面底部提交。刷新<code>zhangqihui.me</code>页面，终于和<code>greydesign.github.io</code>一致了。</p>
+</blockquote>
+<h4 id="实现https访问（不要试图用自己的域名，还是无法配置自定义证书的原因）"><a href="#实现https访问（不要试图用自己的域名，还是无法配置自定义证书的原因）" class="headerlink" title="实现https访问（不要试图用自己的域名，还是无法配置自定义证书的原因）"></a>实现https访问（不要试图用自己的域名，还是无法配置自定义证书的原因）</h4><p>github全站缺省支持https访问，但如果设置了CNAME，就不再支持了。<br>为了安全起见，也为了自己的博客在搜索引擎中排名靠前，还是需要实现https的。但新的问题出现了，提交<code>CNAME</code>前，原来的<code>greydesign.github.io</code>会自动转换为https访问，<code>zhangqihui.me</code>不会转且显示404错误信息。提交<code>CNAME</code>后，<code>greydesign.github.io</code>会转向<code>http://zhangqihui.me</code>访问，而<code>zhangqihui.me</code>会转向不安全的https访问。</p>
+<p>github提供二级域名的https访问，但还不支持自定义域名的https配置，放弃自定义域名吧，把github的CNAME文件删除，阿里云的CNAME域名解析也删除掉，老老实实用二级域名也不错。原则：自定义顶级域名实现https访问，只有在VPS上合适，在github或者wordpress上实施并不合适。</p>
+<p>需要注意的是，为了实现https，不要用301跳转，因为会被劫持。至于为啥，我不懂！<br><a href="https://hexo.crboy.net/2016/09/cloudflare-flexible-ssl/" target="_blank" rel="noopener">CloudFlare 的 Flexible SSL</a><br><a href="http://www.freebuf.com/articles/neopoints/45822.html" target="_blank" rel="noopener">慎用免费HTTPS：看似美好的免费“通用SSL证书”</a><br><a href="https://imququ.com/post/letsencrypt-certificate.html" target="_blank" rel="noopener">Let’s Encrypt，免费好用的 HTTPS 证书</a><br><a href="http://blog.csdn.net/sdujava2011/article/details/53885268" target="_blank" rel="noopener">Jekyll + Coding Pages 搭建静态博客</a><br><a href="https://jingyan.baidu.com/article/f71d603796d91a1ab641d1e8.html" target="_blank" rel="noopener">教你在 Coding 上搭建 Hexo 个人博客</a><br><a href="http://www.jianshu.com/p/834d7cc0668d" target="_blank" rel="noopener">我的博客是如何搭建的（github pages + HEXO + 域名绑定）</a><br><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰的Git教程</a><br><a href="http://joehill.me/2016/02/18/2016-02-18-Git-Tutorial/" target="_blank" rel="noopener">史上最浅显易懂的Git教程</a><br><a href="https://rogerdudler.github.io/git-guide/index.zh.html" target="_blank" rel="noopener">git简明指南</a><br><a href="https://backlog.com/git-tutorial/cn/" target="_blank" rel="noopener">猴子都能懂的git入门</a><br><a href="https://github.com/rainzhaojy/blogs/issues/1" target="_blank" rel="noopener">利用GitHub写博客的几种方式</a>#讲述了博客分支的概<br><a href="http://warjiang.github.io/devcat/2016/02/24/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8githubpages%E6%9D%A5%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84blog/" target="_blank" rel="noopener">如何利用github pages来搭建自己的blog</a> #讲述了博客分支的概念</p>
+<h3 id="Android手机Termux安装git"><a href="#Android手机Termux安装git" class="headerlink" title="Android手机Termux安装git"></a>Android手机Termux安装git</h3><blockquote>
+<p>pkg upgrade</p>
+<p>pkg install git</p>
+</blockquote>
+<h3 id="git代理设置的方法（避免因为FGW的屏蔽，造成不必要的问题）测试失败，待补充"><a href="#git代理设置的方法（避免因为FGW的屏蔽，造成不必要的问题）测试失败，待补充" class="headerlink" title="git代理设置的方法（避免因为FGW的屏蔽，造成不必要的问题）测试失败，待补充"></a>git代理设置的方法（避免因为FGW的屏蔽，造成不必要的问题）测试失败，待补充</h3><blockquote>
+<p>git有四种代理协议：本地传输，http、git、 ssh。</p>
+<blockquote>
+<p>git config –global -l #提示没有配置文件<code>C:/msys64/home/.gitconfig</code></p>
+<p>git config –global http.proxy ‘socks5://127.0.0.1:1080’ #配置http代理</p>
+<p>git config –global https.proxy ‘socks5://127.0.0.1:1080’ #配置https代理</p>
+<p>curl <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a> #验证无效，为什么？</p>
+<p>git config –global –unset http.proxy #删除http代理设置</p>
+<p>git config –global –unset https.proxy</p>
+</blockquote>
+<p><a href="https://github.com/shadowsocks/shadowsocks-windows/issues/582" target="_blank" rel="noopener">Windows 命令行提示符或者 Git Bash 怎么使用 PAC 模式？</a></p>
+<p><a href="http://blog.csdn.net/ysmintor_/article/details/64915007" target="_blank" rel="noopener">Windows git 设置和取消代理</a></p>
+<p><a href="http://blog.useasp.net/archive/2015/08/26/config-git-proxy-settings-on-windows.aspx" target="_blank" rel="noopener">Windows下git使用代理服务器的设置方法</a></p>
+<p><a href="http://www.afox.cc/archives/404" target="_blank" rel="noopener">Git搭配shadowsocks使用代理访问github</a></p>
+</blockquote>
+<h3 id="以下为git的一些基本命令练习，与建立博客无关："><a href="#以下为git的一些基本命令练习，与建立博客无关：" class="headerlink" title="以下为git的一些基本命令练习，与建立博客无关："></a>以下为git的一些基本命令练习，与建立博客无关：</h3><p>登录github，右上角菜单new repository，新建一个asus仓库，在code下的SSH会看到“<a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:greydesign/asus.git”</p>
+<blockquote>
+<p>tips: 在仓库右侧的‘clone or downloand’，能查看ssh或者https的仓库地址<br>在d/git目录新建一个hello.c文件，回到git bash：<br>git add .</p>
+<p>git commit -m ‘第一次提交’ #提示有一个文件changed，应该是新建的hello.c</p>
+<p>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:greydesign/asus.git #greydesign是我的github注册用户名</p>
+<p>git push -u origin master #提示成功上传了3个文件<br>git push origin master #如果github增减了文件，上步命令会提示错误，用本命令可以上传成功？我在本地新建了hello.o，还提示错误！需要补充本地与github同步出现问题如何解决</p>
+<p>git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:greydesign/asus.git #如果在github增减了文件，clone到本地</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/01/latex-e5-85-a5-e9-97-a8/" rel="next" title="LaTeX入门">
+                <i class="fa fa-chevron-left"></i> LaTeX入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/06/windows-e4-b8-8b-e5-bc-ba-e5-a4-a7-e7-9a-84netsh-e5-91-bd-e4-bb-a4/" rel="prev" title="Windows 10 下强大的netsh命令">
+                Windows 10 下强大的netsh命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#git与github的区别"><span class="nav-number">1.</span> <span class="nav-text">git与github的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、GitHub"><span class="nav-number"></span> <span class="nav-text">一、GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、Windows版本Git"><span class="nav-number"></span> <span class="nav-text">二、Windows版本Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Windows版本Hexo"><span class="nav-number"></span> <span class="nav-text">三、Windows版本Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、写博客发布到GitHub上"><span class="nav-number"></span> <span class="nav-text">四、写博客发布到GitHub上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以下为作废信息，仅供学习git以及github的历史记录："><span class="nav-number"></span> <span class="nav-text">以下为作废信息，仅供学习git以及github的历史记录：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#六、在Coding-Pages上托管Hexo博客（国内的服务，自定义域名收费，还有备案等麻烦，没有尝试就放弃了，放点静态页面，做做测试罢了）"><span class="nav-number">1.</span> <span class="nav-text">六、在Coding Pages上托管Hexo博客（国内的服务，自定义域名收费，还有备案等麻烦，没有尝试就放弃了，放点静态页面，做做测试罢了）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绑定顶级域名（因为无法在github上配置自己的https-CA证书，最终放弃）"><span class="nav-number">2.</span> <span class="nav-text">绑定顶级域名（因为无法在github上配置自己的https CA证书，最终放弃）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现https访问（不要试图用自己的域名，还是无法配置自定义证书的原因）"><span class="nav-number">3.</span> <span class="nav-text">实现https访问（不要试图用自己的域名，还是无法配置自定义证书的原因）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android手机Termux安装git"><span class="nav-number"></span> <span class="nav-text">Android手机Termux安装git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git代理设置的方法（避免因为FGW的屏蔽，造成不必要的问题）测试失败，待补充"><span class="nav-number"></span> <span class="nav-text">git代理设置的方法（避免因为FGW的屏蔽，造成不必要的问题）测试失败，待补充</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以下为git的一些基本命令练习，与建立博客无关："><span class="nav-number"></span> <span class="nav-text">以下为git的一些基本命令练习，与建立博客无关：</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

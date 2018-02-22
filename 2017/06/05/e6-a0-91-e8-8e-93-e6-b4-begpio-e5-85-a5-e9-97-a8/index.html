@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="GPIO（General Purpose I/O Ports）：通用输入/输出端口，可通过python代码控制GPIO电压，用来完成对LED灯，或者智能小车的控制。想先操练代码，不想外接设备（主要是怕乱花钱），暂时用万用表测量电压变化，可行吗？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派GPIO入门">
+<meta property="og:url" content="http://yoursite.com/2017/06/05/e6-a0-91-e8-8e-93-e6-b4-begpio-e5-85-a5-e9-97-a8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="GPIO（General Purpose I/O Ports）：通用输入/输出端口，可通过python代码控制GPIO电压，用来完成对LED灯，或者智能小车的控制。想先操练代码，不想外接设备（主要是怕乱花钱），暂时用万用表测量电压变化，可行吗？">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.885Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="树莓派GPIO入门">
+<meta name="twitter:description" content="GPIO（General Purpose I/O Ports）：通用输入/输出端口，可通过python代码控制GPIO电压，用来完成对LED灯，或者智能小车的控制。想先操练代码，不想外接设备（主要是怕乱花钱），暂时用万用表测量电压变化，可行吗？">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/05/e6-a0-91-e8-8e-93-e6-b4-begpio-e5-85-a5-e9-97-a8/"/>
+
+
+
+
+
+  <title>树莓派GPIO入门 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/05/e6-a0-91-e8-8e-93-e6-b4-begpio-e5-85-a5-e9-97-a8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">树莓派GPIO入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-05T22:30:11+08:00">
+                2017-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/" itemprop="url" rel="index">
+                    <span itemprop="name">IoT</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/Network/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>GPIO（General Purpose I/O Ports）：通用输入/输出端口，可通过python代码控制GPIO电压，用来完成对LED灯，或者智能小车的控制。<br>想先操练代码，不想外接设备（主要是怕乱花钱），暂时用万用表测量电压变化，可行吗？<a id="more"></a></p>
+<h1 id="一、GPIO安装与基本操作"><a href="#一、GPIO安装与基本操作" class="headerlink" title="一、GPIO安装与基本操作"></a>一、GPIO安装与基本操作</h1><p>我的树莓派是第一代B+型，有26针GPIO引脚而不是40针，具体针脚定义可以参考维基百科<a href="https://zh.wikipedia.org/wiki/%E6%A0%91%E8%8E%93%E6%B4%BE" target="_blank" rel="noopener">树莓派</a>。<br>编程语言可以是Python，也可以是C语言，首先介绍用Raspbian内置的Python方法：</p>
+<p>1、安装python与GPIO库</p>
+<pre>$ python #试试有没有安装python，应该是Raspbian系统自带了
+$ which python #查找系统中python路径，原来我的树莓派已经有了python 2.7与3.4版本
+$ sudo apt-get install python-rpi.gpio #Python2安装GPIO库，不知哪时候已经安装好了
+$ sudo apt-get install python3-rpi.gpio #Python3安装GPIO库
+</pre>
+2、进行GPIO引脚操作，参考[树莓派---GPIO应用详解](http://www.jianshu.com/p/f31b90cc756f)
+注意:
+a、这个参考网页中点亮LED的代码中，RPi前缀是多余的，应该删除；
+b、`channel`也是错误的，应该是具体的针脚`11`；
+c、还有，GPIO.setup（11，1）后，为啥GPIO.input（11）还是返回`0`低电平？
+d、针脚设置为输出模式是啥意思，不就是电平高低吗？
+<pre>$ python
+&gt;&gt;&gt; import RPi.GPIO as GPIO #导入RPi.GPIO模块，注意是RPi，不是RPI
+&gt;&gt;&gt; GPIO.setmode(GPIO.BOARD) #采用BOARD模式访问(26个针脚，取值范围是从**1~26**，还是**0~25**？)，另一种方式是BCM &gt;&gt;&gt; GPIO.cleanup() #释放脚本中的使用的引脚，因为没有进行引脚操作，会有一个关于没有任何引脚的警告：__main__:1: RuntimeWarning: No channels have been set up yet - nothing to clean up! Try cleaning up at the end of your program instead!</pre>
+
+<h1 id="二、用实际的小项目来体验一下吧"><a href="#二、用实际的小项目来体验一下吧" class="headerlink" title="二、用实际的小项目来体验一下吧"></a>二、用实际的小项目来体验一下吧</h1><p>1、首先试试用树莓派的GPIO控制步进电机：</p>
+<pre>为啥不用GPIO针脚直接连接步进电机的针脚呢？这是因为树莓派的GPIO针脚输出的电流、电压为控制信号，不可能适用各种设备，还是要注意，别把树莓派给烧了！
+所以用树莓派接外部电路时，外接设备尽量用自供电，否则会导致针脚特别烫，甚至有烧焦味！
+[步进电机+驱动板](http://blog.csdn.net/lee18254290736/article/details/70187494)
+需要驱动板支持，为啥咧？需要了解一些比如**四相五线步进电机**的概念</pre>
+步进电机的相关知识：待补充
+一个用java控制电机的文章，也是一名机械专业学生对代码世界的向往，非常难得：[树莓派遇上Java](http://apqx.me/content/essay/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%81%87%E4%B8%8AJava%EF%BC%88%E4%B8%89%EF%BC%89-%E9%A9%AC%E8%BE%BE%E7%AF%87.html)
+2、用wiringPi控制的两个例子，使用的是C语言：
+<pre>1、树莓派GPIO学习 – 控制家用电灯
+2、逗比学树莓派之GPIO
+</pre>
+
+<h1 id="三、物联网IoT："><a href="#三、物联网IoT：" class="headerlink" title="三、物联网IoT："></a>三、物联网IoT：</h1><p>1、<a href="http://www.inmediahk.net/node/1035715" target="_blank" rel="noopener">物聯網IoT入門 – Arduino vs Raspberry Pi</a>：Raspberry Pi和Arduino代表著IoT的兩種不同哲學<br>2、<a href="https://my.oschina.net/betayuan/blog/775674" target="_blank" rel="noopener">用树莓派搭建简单的传感器物联网应用</a>：传感器通过树莓派将数据传到物联网平台，比如乐联网或者青岛的Yeelink，为什么不搭建自己的物联网平台呢？用VPS就能实现吧？</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/03/e6-a6-82-e7-8e-87-ef-bc-9a-e5-b7-b2-e7-9f-a5-e7-bb-93-e6-9e-9c-ef-bc-8c-e6-b1-82-e6-a6-82-e7-8e-87-e7-9a-84-e9-a2-98-e7-9b-ae/" rel="next" title="概率：已知结果，求概率的题目">
+                <i class="fa fa-chevron-left"></i> 概率：已知结果，求概率的题目
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/06/e4-ba-94-e7-ac-94-e8-be-93-e5-85-a5-e6-b3-95/" rel="prev" title="五笔输入法">
+                五笔输入法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、GPIO安装与基本操作"><span class="nav-number">1.</span> <span class="nav-text">一、GPIO安装与基本操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、用实际的小项目来体验一下吧"><span class="nav-number">2.</span> <span class="nav-text">二、用实际的小项目来体验一下吧</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、物联网IoT："><span class="nav-number">3.</span> <span class="nav-text">三、物联网IoT：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

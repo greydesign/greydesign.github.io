@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="ipv6为啥也有私有地址？ipv4的NAT为啥被广泛诟病？ 免费！我国首个IPv6公共DNS正式发布：亦能解析IPv4 一、IPv6测试1、如何查询某个网站在国内还是国外可以通过CNNIC（就是那个流氓网站！）的whois页面查询，看国家代码项，CN是中国，US是美国。其实他是通过APNIC查询的，具体哪个页面待补充。 问题：为啥huangjiaming同学的国家码是CN，我的zhangqihui">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络基础之IPv6">
+<meta property="og:url" content="http://yoursite.com/2017/03/05/ipv6-e6-b5-8b-e8-af-95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ipv6为啥也有私有地址？ipv4的NAT为啥被广泛诟病？ 免费！我国首个IPv6公共DNS正式发布：亦能解析IPv4 一、IPv6测试1、如何查询某个网站在国内还是国外可以通过CNNIC（就是那个流氓网站！）的whois页面查询，看国家代码项，CN是中国，US是美国。其实他是通过APNIC查询的，具体哪个页面待补充。 问题：为啥huangjiaming同学的国家码是CN，我的zhangqihui">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.884Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络基础之IPv6">
+<meta name="twitter:description" content="ipv6为啥也有私有地址？ipv4的NAT为啥被广泛诟病？ 免费！我国首个IPv6公共DNS正式发布：亦能解析IPv4 一、IPv6测试1、如何查询某个网站在国内还是国外可以通过CNNIC（就是那个流氓网站！）的whois页面查询，看国家代码项，CN是中国，US是美国。其实他是通过APNIC查询的，具体哪个页面待补充。 问题：为啥huangjiaming同学的国家码是CN，我的zhangqihui">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/05/ipv6-e6-b5-8b-e8-af-95/"/>
+
+
+
+
+
+  <title>网络基础之IPv6 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/05/ipv6-e6-b5-8b-e8-af-95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">网络基础之IPv6</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-05T08:50:14+08:00">
+                2017-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/VPS/" itemprop="url" rel="index">
+                    <span itemprop="name">VPS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>ipv6为啥也有私有地址？ipv4的NAT为啥被广泛诟病？</p>
+<p><a href="https://www.chiphell.com/thread-1819841-1-1.html" target="_blank" rel="noopener">免费！我国首个IPv6公共DNS正式发布：亦能解析IPv4</a></p>
+<h4 id="一、IPv6测试"><a href="#一、IPv6测试" class="headerlink" title="一、IPv6测试"></a>一、IPv6测试</h4><h5 id="1、如何查询某个网站在国内还是国外"><a href="#1、如何查询某个网站在国内还是国外" class="headerlink" title="1、如何查询某个网站在国内还是国外"></a>1、如何查询某个网站在国内还是国外</h5><p>可以通过CNNIC（就是那个流氓网站！）的<a href="http://ipwhois.cnnic.net.cn/" target="_blank" rel="noopener">whois</a>页面查询，看国家代码项，CN是中国，US是美国。其实他是通过APNIC查询的，具体哪个页面待补充。</p>
+<p>问题：为啥huangjiaming同学的国家码是CN，我的zhangqihui.me是US，难道他用的是假的github？</p>
+<h5 id="2、如何测试上网是否支持ipv6呢"><a href="#2、如何测试上网是否支持ipv6呢" class="headerlink" title="2、如何测试上网是否支持ipv6呢"></a>2、如何测试上网是否支持ipv6呢</h5><a id="more"></a>
+<p>参考这篇文章：<a href="https://www.citydog.me/3300.html" target="_blank" rel="noopener">联通ipv6 to ipv4</a>。用<a href="http://test-ipv6.com/" target="_blank" rel="noopener">http://test-ipv6.com/</a>测试我的联通宽带是否支持ipv6，结果很有意思：</p>
+<pre>得分0/10:联通宽带，台式机Windows10，chrome浏览器
+得分0/10:联通宽带，台式机Windows10，firefox浏览器
+得分0/10:联通宽带，台式机Windows10，EDGE浏览器
+得分0/10:联通宽带，android手机，内置魅族浏览器
+得分0/10:联通宽带，android手机，firefox浏览器
+得分0/10:联通蜂窝，android手机，chrome浏览器
+得分10/10:联通宽带，android手机，chrome浏览器 #yeah!路由器立功了
+</pre>
+其中，得分0的，测试信息完全一致：
+<pre>公网地址是108.61.201.19 #没有通过代理的提示，与路由器中显示的公网地址不一致，刷新后ipv4保持不变
+您的互联网服务提供商（ISP）看起来是 AS-CHOOPA - Choopa, LLC, US #联通蜂窝ISP是 CHINA169-BACKBONE CNCGROUP China169 Backbone,CN 移动蜂窝ISP是 CMNET-V4SHADONG-AS-AP Shangdong Mobile Communicaton
+您的DNS服务器(通常由您的网络服务商提供)已经可以接入IPv6互联网了 #DNS是支持的！
+</pre>
+唯一满分得分10的测试信息：
+<pre>您在公网上的IPv4地址是66.249.82.132，通过代理，Via：1.1 Chrome-Compression-Proxy #与路由器中显示的公网地址不一致，刷新后ipv4地址最后一位变化
+您在公网上的IPv6地址是2001.4860.4801.4009::2e，通过代理，Via：1.1 Chrome-Compression-Proxy #刷新后ipv6地址不变
+您的互联网服务提供商（ISP）看起来是 GOOGLE-Google Inc. US
+您的DNS服务器(通常由您的网络服务商提供)已经可以接入IPv6互联网了
+</pre>
+以上测试，路由器中的IPv6其实是关闭的，路由器开启IPv6有5种选项：
+<pre>Native
+静态 IPv6 #
+Tunnel 6to4 #
+Tunnel 6in4 #
+Tunnel 6rd #
+</pre>
+
+<h4 id="二、实施"><a href="#二、实施" class="headerlink" title="二、实施"></a>二、实施</h4><p><a href="https://www.polarxiong.com/archives/搭建ipv6-VPN-让ipv4上ipv6-下载速度提升到100M.html" target="_blank" rel="noopener">使用shadowsocks，搭建ipv6 VPN，让ipv4上ipv6，下载速度提升到100M</a><br><a href="https://watsonyanghx.github.io/2016/10/05/Shadowsocks-Vultr-IPV6%E6%90%AD%E5%BB%BA%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%85%8D%E6%B5%81%E9%87%8F%E7%8E%AF%E5%A2%83/" target="_blank" rel="noopener">Shadowsocks,Vultr,IPV6搭建校园网免流量环境</a><br><a href="https://since1989.org/vultr/vps-ipv6-dnspod.html" target="_blank" rel="noopener">vultr vps开通IPv6图文教程</a></p>
+<h4 id="三、HTTP、IP知识"><a href="#三、HTTP、IP知识" class="headerlink" title="三、HTTP、IP知识"></a>三、HTTP、IP知识</h4><p><a href="http://blog.csdn.net/songqingxi/article/details/5933758" target="_blank" rel="noopener">判断本机IP地址是公网地址还是私网地址</a> #有公网、局域网IP范围的图示，非常直观，值得学习</p>
+<p>推荐图书：《图解HTTP》，作者：上野宣</p>
+<p>问题：</p>
+<blockquote>
+<p>1、家里有多个电脑、手机等终端上网，到底占用了一个还是多个公网IP，假设是多个，比如我正在用的笔记本，它的公网IP是多少？如何查询？</p>
+<p>2、发现家里的路由器连续开机23天没有重启，但ip地址却变了两次，比如“112.254.97.0”，注意末尾是“0”！印象中末尾是1代表网关，0、255一般不用，难道0也合法了？</p>
+</blockquote>
+<h5 id="实践1、查询树莓派、路由器的网址信息"><a href="#实践1、查询树莓派、路由器的网址信息" class="headerlink" title="实践1、查询树莓派、路由器的网址信息"></a>实践1、查询树莓派、路由器的网址信息</h5><p>首先通过ssh登录树莓派或者路由器（树莓派、路由器缺省的ssh都是关闭的，都需要通过设置打开ssh）</p>
+<blockquote>
+<p>ip addr show<br>linux下的ip命令非常强大，总结如下：待补充</p>
+</blockquote>
+<h5 id="实践2、查询局域网windows电脑的公网ip"><a href="#实践2、查询局域网windows电脑的公网ip" class="headerlink" title="实践2、查询局域网windows电脑的公网ip"></a>实践2、查询局域网windows电脑的公网ip</h5><p>方法1、浏览器输入网址 <a href="http://beta.speedtest.net/" target="_blank" rel="noopener">http://beta.speedtest.net/</a> ，左下角的客户端图标附近会显示本机公网ip</p>
+<blockquote>
+<p>China Unicom</p>
+<p>27.223.99.130<br>方法2、浏览器输入网址 <a href="http://www.ip138.com/" target="_blank" rel="noopener">http://www.ip138.com/</a> ，会显示<br>您的IP是：[27.223.99.130] 来自：山东省青岛市 联通<br>方法3、打开windows命令行窗口，输入命令“tracert ip138.com”，第一个非局域网ip就是本机的公网ip（此方法失败）</p>
+</blockquote>
+<h5 id="实践3、公网ip的验证方法："><a href="#实践3、公网ip的验证方法：" class="headerlink" title="实践3、公网ip的验证方法："></a>实践3、公网ip的验证方法：</h5><p>方法1、通过外网ping</p>
+<p>方法2、在内网windows电脑上打开telnet服务</p>
+<p>windows电脑打开命令窗口</p>
+<blockquote>
+<p>telnet localhost #返回“在端口 23 ，连接失败”，和本机防火墙中telnet服务器设置有关系吗？<br><a href="http://winsystem.ctocio.com.cn/Longhorn/472/8756972_2.shtml" target="_blank" rel="noopener">Windows 7中Telnet功能安装与测试</a></p>
+</blockquote>
+<p>实践4、手机获得IP地址是IPv6吗？</p>
+<blockquote>
+<p>手机设置到4G联网状态，IP地址为10.186.167.42，显然是IP v4类型的局域网地址</p>
+<p>手机连上家庭wifi后，IP地址为192.168.1.108，以及fe80:6a3e:34ff:fe2a:9cb2，也就是IPv4和IPv6地址都有，如果访问IPv6网站，是不是FGW就拦不住了？</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/04/e5-ad-a6-e8-80-8c-e6-97-b6-e5-98-bb-e4-b9-8b-ef-bc-8c-e7-94-a8-e7-90-86-e5-b7-a5-e7-a7-91-e6-80-9d-e7-bb-b4-e7-90-86-e8-a7-a3-e4-b8-96-e7-95-8c/" rel="next" title="学而时嘻之，用理工科思维理解世界">
+                <i class="fa fa-chevron-left"></i> 学而时嘻之，用理工科思维理解世界
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/05/e4-b8-a4-e6-ac-becasio-e7-94-b5-e6-b3-a2-e6-89-8b-e8-a1-a8-e7-ae-80-e6-98-93-e6-93-8d-e4-bd-9c-e6-8c-87-e5-af-bc/" rel="prev" title="使用说明汇总">
+                使用说明汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、IPv6测试"><span class="nav-number">1.</span> <span class="nav-text">一、IPv6测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、如何查询某个网站在国内还是国外"><span class="nav-number">1.1.</span> <span class="nav-text">1、如何查询某个网站在国内还是国外</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、如何测试上网是否支持ipv6呢"><span class="nav-number">1.2.</span> <span class="nav-text">2、如何测试上网是否支持ipv6呢</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、实施"><span class="nav-number">2.</span> <span class="nav-text">二、实施</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、HTTP、IP知识"><span class="nav-number">3.</span> <span class="nav-text">三、HTTP、IP知识</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#实践1、查询树莓派、路由器的网址信息"><span class="nav-number">3.1.</span> <span class="nav-text">实践1、查询树莓派、路由器的网址信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实践2、查询局域网windows电脑的公网ip"><span class="nav-number">3.2.</span> <span class="nav-text">实践2、查询局域网windows电脑的公网ip</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实践3、公网ip的验证方法："><span class="nav-number">3.3.</span> <span class="nav-text">实践3、公网ip的验证方法：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

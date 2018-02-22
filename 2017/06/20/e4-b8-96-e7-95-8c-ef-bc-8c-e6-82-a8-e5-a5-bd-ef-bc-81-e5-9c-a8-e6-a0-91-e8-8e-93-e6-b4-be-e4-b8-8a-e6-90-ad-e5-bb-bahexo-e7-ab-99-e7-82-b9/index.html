@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文分别从树莓派、Termux以及VPS CentOS介绍如何搭建Hexo博客系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络基础之搭建Hexo博客">
+<meta property="og:url" content="http://yoursite.com/2017/06/20/e4-b8-96-e7-95-8c-ef-bc-8c-e6-82-a8-e5-a5-bd-ef-bc-81-e5-9c-a8-e6-a0-91-e8-8e-93-e6-b4-be-e4-b8-8a-e6-90-ad-e5-bb-bahexo-e7-ab-99-e7-82-b9/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文分别从树莓派、Termux以及VPS CentOS介绍如何搭建Hexo博客系统">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.886Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络基础之搭建Hexo博客">
+<meta name="twitter:description" content="本文分别从树莓派、Termux以及VPS CentOS介绍如何搭建Hexo博客系统">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/20/e4-b8-96-e7-95-8c-ef-bc-8c-e6-82-a8-e5-a5-bd-ef-bc-81-e5-9c-a8-e6-a0-91-e8-8e-93-e6-b4-be-e4-b8-8a-e6-90-ad-e5-bb-bahexo-e7-ab-99-e7-82-b9/"/>
+
+
+
+
+
+  <title>网络基础之搭建Hexo博客 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/20/e4-b8-96-e7-95-8c-ef-bc-8c-e6-82-a8-e5-a5-bd-ef-bc-81-e5-9c-a8-e6-a0-91-e8-8e-93-e6-b4-be-e4-b8-8a-e6-90-ad-e5-bb-bahexo-e7-ab-99-e7-82-b9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">网络基础之搭建Hexo博客</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-20T16:08:09+08:00">
+                2017-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/" itemprop="url" rel="index">
+                    <span itemprop="name">IoT</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/Markdown/" itemprop="url" rel="index">
+                    <span itemprop="name">Markdown</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/Markdown/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/Markdown/Network/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文分别从树莓派、Termux以及VPS CentOS介绍如何搭建Hexo博客系统<a id="more"></a></p>
+<h3 id="一、树莓派上搭建Hexo博客"><a href="#一、树莓派上搭建Hexo博客" class="headerlink" title="一、树莓派上搭建Hexo博客"></a>一、树莓派上搭建Hexo博客</h3><p>问题：hexo是静态博客，支持markdown，wordpress需要数据库支持，两者可以共存于一张树莓派上吗？</p>
+<h4 id="1、我在树莓派上搭建本地博客的历程"><a href="#1、我在树莓派上搭建本地博客的历程" class="headerlink" title="1、我在树莓派上搭建本地博客的历程"></a>1、我在树莓派上搭建本地博客的历程</h4><p>在树莓派上搭建博客，我开始用apache+wordpress，后了改用ngix+wordpress，下一步打算换成git+hexo。先在github上体验，熟悉了之后在本地实现，当然为数据安全起见，旧的wordpress保留，换一块tf卡实现hexo。</p>
+<!--more-->
+<p>Wordpress对Markdown支持太差了，计划新建Hexo博客，我的一块老树莓派支持两个博客系统同时运行吗？<br>需要安装git吗？需要ngix支持吗？Hexo和Wordpress比较，不需要数据库，是静态博客，使用Markdown格式，对写手非常友好，还支持流程图、目录等让我心动的扩展特性。</p>
+<p>当然hexo也有其缺点，wordpress可以在线编辑博客内容，只要有浏览器就可以了，也就是说在手机上都可以发博客。hexo则需要一台电脑，在手机上无法发博客了，很大很大的缺点啊。只好登录github，在线编辑博客了。</p>
+<p><strong>我有一个大胆的想法</strong>：一直想买一块树莓派3，但是树莓派3与我的Pro5手机都是用的A57芯片，感觉有重复投资的尴尬。用手机做服务器功耗还是很小的，而且有触摸屏。想象到以后家里用手机做服务器的远景，还是很诱人哒！<br><a href="http://www.jianshu.com/p/9dfadec9779c" target="_blank" rel="noopener">树莓派快速搭建hexo博客系统</a><br><a href="https://jpokerpoke.blogspot.com/2017/03/hexo.html" target="_blank" rel="noopener">树莓派Hexo博客配置</a><br><a href="https://www.heartnn.com/2016/12/24/hexo-blog-on-android/" target="_blank" rel="noopener">在Android手机搭建Hexo博客环境</a><br><a href="http://playgood111.com/2016/10/08/untitled-1475909971647/" target="_blank" rel="noopener">hexo+github pages博客建立以及同步到手机</a></p>
+<h4 id="2、为什么要学习Markdown与LaTex"><a href="#2、为什么要学习Markdown与LaTex" class="headerlink" title="2、为什么要学习Markdown与LaTex"></a>2、为什么要学习Markdown与LaTex</h4><h5 id="1）、Markdown是什么？"><a href="#1）、Markdown是什么？" class="headerlink" title="1）、Markdown是什么？"></a>1）、Markdown是什么？</h5><p>如下是维基百科的介绍摘选：<br>Markdown 是一种轻量级标记语言，创始人为约翰·格鲁伯（John Gruber）。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的XHTML(或者HTML)文档”。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。</p>
+<p>Markdown可以用十个左右的关键字，实现文章格式化，而且被wordpress等兼容。</p>
+<h5 id="2）、相关的编辑器"><a href="#2）、相关的编辑器" class="headerlink" title="2）、相关的编辑器"></a>2）、相关的编辑器</h5><p>很多，比较有名的：sublime、atom、haroopad。目前我使用typora与stackedit：<br>typora（Win+Mac）：所见即所得，支持流程图，支持Latex公式。<a href="http://www.jianshu.com/p/5256ecc06eec" target="_blank" rel="noopener">安利一下Typora：极致简洁的markdown编辑器</a><br>google chrome扩展：stackedit，支持离线编辑，支持流程图。</p>
+<p>编辑器的兼容性：我用typora写日志，用了列表与check项（表达不规范啊，以后修改），复制到haroopad与stackedit，后两个都与typora显示不一致！<br>官方的编辑器是谁？如何判断三者的对与错？<br><strong>练习mermaid扩展graph，在haroopad与stackedit中无效啊？咋回事？grahp与flowchart有啥区别？</strong></p>
+<h5 id="3）、Markdown如何实现目录"><a href="#3）、Markdown如何实现目录" class="headerlink" title="3）、Markdown如何实现目录"></a>3）、Markdown如何实现目录</h5><p>TOC吗？</p>
+<h5 id="4）、Markdown-extension之流程图flow、甘特图gantt、流程图graph"><a href="#4）、Markdown-extension之流程图flow、甘特图gantt、流程图graph" class="headerlink" title="4）、Markdown extension之流程图flow、甘特图gantt、流程图graph"></a>4）、Markdown extension之流程图flow、甘特图gantt、流程图graph</h5><p>相比MS Office常用流程图符号，Markdown能实现哪些流程图样式，有哪些限制？<br>先学哪些基本的流程图（比较Word，常用的排版也就是设置行间距，字体样式，排序、表格等），进阶再学哪些（目录）？</p>
+<h5 id="1）flow"><a href="#1）flow" class="headerlink" title="1）flow"></a>1）flow</h5><p>Markdown流程图（flow）测试代码：</p>
+<pre><code>``flow
+
+st=&amp;gt;start: Start
+op=&amp;gt;operation: Your Operation
+cond=&amp;gt;condition: Yes or No?
+e=&amp;gt;end
+
+st-&amp;gt;op-&amp;gt;cond
+cond(yes)-&amp;gt;e
+cond(no)-&amp;gt;op
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;/pre&gt;</span><br><span class="line"></span><br><span class="line">##### 2）gantt</span><br><span class="line"></span><br><span class="line">甘特图（mermaid gantt）测试代码（来自[Draw Diagrams With Markdown](http://support.typora.io/Draw-Diagrams-With-Markdown/)）：</span><br><span class="line">&lt;pre&gt;```mermaid</span><br><span class="line">%% Example with slection of syntaxes</span><br><span class="line">        gantt</span><br><span class="line">        dateFormat  YYYY-MM-DD</span><br><span class="line">        title Adding GANTT diagram functionality to mermaid</span><br><span class="line"></span><br><span class="line">        section A section</span><br><span class="line">        Completed task            :done,    des1, 2014-01-06,2014-01-08</span><br><span class="line">        Active task               :active,  des2, 2014-01-09, 3d</span><br><span class="line">        Future task               :         des3, after des2, 5d</span><br><span class="line">        Future task2               :         des4, after des3, 5d</span><br><span class="line"></span><br><span class="line">        section Critical tasks</span><br><span class="line">        Completed task in the critical line :crit, done, 2014-01-06,24h</span><br><span class="line">        Implement parser and jison          :crit, done, after des1, 2d</span><br><span class="line">        Create tests for parser             :crit, active, 3d</span><br><span class="line">        Future task in critical line        :crit, 5d</span><br><span class="line">        Create tests for renderer           :2d</span><br><span class="line">        Add to mermaid                      :1d</span><br><span class="line"></span><br><span class="line">        section Documentation</span><br><span class="line">        Describe gantt syntax               :active, a1, after des1, 3d</span><br><span class="line">        Add gantt diagram to demo page      :after a1  , 20h</span><br><span class="line">        Add another diagram to demo page    :doc1, after a1  , 48h</span><br><span class="line"></span><br><span class="line">        section Last section</span><br><span class="line">        Describe gantt syntax               :after doc1, 3d</span><br><span class="line">        Add gantt diagram to demo page      : 20h</span><br><span class="line">        Add another diagram to demo page    : 48h</span><br></pre></td></tr></table></figure>
+
+&lt;/pre&gt;
+
+##### 3）graph
+
+流程图graph（mermaid flowchart）测试代码：
+&lt;pre&gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">    graph TD</span><br><span class="line">        B[&quot;fa:fa-twitter for peace&quot;]</span><br><span class="line">        B--&amp;gt;C[fa:fa-ban forbidden]</span><br><span class="line">        B--&amp;gt;D(fa:fa-spinner);</span><br><span class="line">        B--&amp;gt;E(A fa:fa-camera-retro perhaps?);</span><br><span class="line">    ``</span><br><span class="line"></span><br><span class="line">###### a、graph的节点（Node）形状</span><br><span class="line"></span><br><span class="line">&lt;pre&gt;矩形（node default）：例如 A</span><br><span class="line">矩形带内容（node with text）：例如 A[你好] 注意，字符串中带括号等特殊字符，需要用双引号将字符串包围起来。</span><br><span class="line">圆角矩形：例如 A(你好)</span><br><span class="line">圆形：例如 A((你好))</span><br><span class="line">非对称形（a node in a asymetric shape ）：例如 A&amp;gt;你好]</span><br><span class="line">菱形（rhombus）：例如 A&#123;你好&#125;</span><br><span class="line">&lt;/pre&gt;</span><br><span class="line"></span><br><span class="line">###### b、graph连线形状</span><br><span class="line"></span><br><span class="line">&lt;pre&gt;直线（缺省）： A---B</span><br><span class="line">带字符： A--text---B 或者 A---|text|B</span><br><span class="line">带字符有箭头：A--&amp;gt;|text|B 或 A--text--&amp;gt;B</span><br><span class="line">虚线箭头：A-.-&amp;gt;B 问题：A--&amp;gt;B是啥？</span><br><span class="line">虚线箭头带文字： A-.text.-&amp;gt;B</span><br><span class="line">粗线箭头：A==&amp;gt;B</span><br><span class="line">粗线箭头带文字：A==text==&amp;gt;B</span><br><span class="line">&lt;/pre&gt;</span><br><span class="line">为啥以下graph在typora中显示方向错误，而且会提示语法错误？</span><br><span class="line">&lt;pre&gt;```mermaid</span><br><span class="line">graph TD</span><br><span class="line">    A[产品规划]</span><br><span class="line">    B&#123;会议纪要&#125;</span><br><span class="line">    C(规格书)</span><br><span class="line">    A--&amp;gt;B--&amp;gt;C</span><br></pre></td></tr></table></figure>
+</code></pre><p><br>一个新品开发流程实例（需要解决如何添加特殊字符，比如换行符、顿号等）：</p>
+<pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">a1[样机需求单输入] --&amp;gt; b1[产品经理]</span><br><span class="line">b1 --&amp;gt; c1(电路设计)</span><br><span class="line">b1 --&amp;gt; c2(结构设计)</span><br><span class="line">b1 --&amp;gt; c3(模组设计)</span><br><span class="line">b1 --&amp;gt; c4(电源设计)</span><br><span class="line">b1 --&amp;gt; c5(软件设计)</span><br><span class="line">b1 --&amp;gt; c6(样机接口人)</span><br><span class="line">c1 --&amp;gt; d1[1样机需求人安排提机黄岛或提供借机单据给样机接口人借机青岛2样机到位后样机接口人添加整改样机流程]</span><br><span class="line">c2 --&amp;gt; d1</span><br><span class="line">c3 --&amp;gt; d1</span><br><span class="line">c4 --&amp;gt; d1</span><br><span class="line">c5 --&amp;gt; d1</span><br><span class="line">c6 --&amp;gt; d1</span><br><span class="line">d1 --&amp;gt;|整改样机流程|e1(模组设计结构设计第一级)</span><br><span class="line">e1 --&amp;gt; f1(电路设计工艺设计软件设计第二级)</span><br><span class="line">f1 --&amp;gt; g1(请硬件测试工程师韩春海现场检验样机并在PLM中审批整改记录第三级)</span><br><span class="line">g1 --&amp;gt; h1(国际营销提供提交发货申请单并安排快递提货通知样机接口人备货)</span><br><span class="line">h1 --&amp;gt; i1(样机接口人发货)</span><br></pre></td></tr></table></figure>
+
+</pre>
+
+<h5 id="4）单独使用mermaid"><a href="#4）单独使用mermaid" class="headerlink" title="4）单独使用mermaid"></a>4）单独使用mermaid</h5><p>可以通过npm安装mermad（mermaid依赖于phantomjs）：</p>
+<blockquote>
+<p>npm install -g mermaid</p>
+<p>npm install -g phantomjs<br>语法学习：</p>
+</blockquote>
+<p><a href="https://markdown-zh.readthedocs.io/en/latest/" target="_blank" rel="noopener">Markdown: 语法</a><br><a href="http://blog.csdn.net/phunxm/article/details/49565427" target="_blank" rel="noopener">Markdown基础教程 - 曾梦想仗剑走天涯</a><br><a href="http://www.jianshu.com/p/2d768c83cc4a" target="_blank" rel="noopener">Markdown流程图语法</a><br><a href="https://segmentfault.com/a/1190000006247465" target="_blank" rel="noopener">Markdown笔记：如何画流程图</a><br><a href="https://mp.weixin.qq.com/s?__biz=MjM5NjAyNjkwMA==&amp;mid=2723941495&amp;idx=2&amp;sn=eb542a9e934e3c4bbb9be4051037b73b&amp;scene=4" target="_blank" rel="noopener">进击的Markdown教程</a><br><a href="http://zkread.com/article/1083713.html" target="_blank" rel="noopener">markdown绘图插件—-mermaid简介</a><br><a href="https://knsv.github.io/mermaid/" target="_blank" rel="noopener">mermaid docs</a></p>
+<p>问题：在本地wordpress服务上实现对Markdown的支持（失败，放弃吧）</p>
+<p>Wordpress.com网站支持Markdown，可以在<a href="https://en.support.wordpress.com/markdown/" target="_blank" rel="noopener">设置</a>中打开。<br>但是我在树莓派上安装的本地Wordpress程序目前还不支持，需要通过安装插件实现，推荐使用两个插件：WP Editor.MD和Jetpack（wordpress.com官方实现Markdown的方式）。经过简单测试，这两个插件其实是把用户用Markdown格式书写的博客，转换成了wordpress的标记语言。比如我用两个井号写了一个二级标题，发布之后显示正常，再看源代码，编程了尖括号的h2了！原生支持该多好啊。估计因为这个原因，流程图和甘特图的支持就没有希望了？</p>
+<p>参考的是文章：<a href="https://www.zhihu.com/question/28276750" title="在Wordpress中如何使用MarkDown编辑博文" target="_blank" rel="noopener">在Wordpress中如何使用MarkDown编辑博文</a></p>
+<p>这篇博文讲述了wordpress部分支持markdown的格式化快捷键方式，比如用两个＃号输入二级标题，换行后，wordpress会自动转换为&lt;h2&gt;语法：</p>
+<p><a href="http://blog.csdn.net/xhhjin/article/details/51110677" target="_blank" rel="noopener">WordPress 迈向 Markdown 的脚步</a></p>
+<p>Editor.MD插件：</p>
+<p>问题1：编辑界面显示错误<br>启动插件后，编辑本文出现界面混乱，把源代码显示到预览区了。应该是目前wordpress的软件BUG，点击更新按钮就好了。新开一篇文章也没有问题。但左右窗口不能很好的对齐，是不是离线编辑器也是如此，无法避免？<br>问题2：查看文章错误<br>把标题改成Markdown格式，明明编辑器中预览很好的，查看文章时并不支持Markdown啊？后来才知道不支持一级标题。问题来了，本地Wordpress程序原生支持Markdown，不装插件其实也可以直接写，只是在写博客时不能及时预览，不方便罢了。<br>问题3：旧文章的转换<br>我目前的博客中，用到的特殊格式很少，主要有4种需要转换为Markdown格式：一级标题，pre代码，code代码，超链接。<br>一级标题：不支持吗，因为Wordpress开发团队认为文章题目是一级标题，所以文章内容最高二级标题。注意井号后加空格，Editor.MD插件处理的不严谨。<br>pre代码：<br>code代码：<br>超链接：</p>
+<p>Jetpack 插件：</p>
+<p>由于不能忍受编辑界面显示错误，关闭Editor.MD插件，开启Jetpack插件。本地Wordpress服务中的编辑界面又回到熟悉的原生界面了。而且我发觉手工将H1改为Markdown语法的两个井号的二级标题，也自动改回H2了，好奇怪！</p>
+<p>问题4：流程图、序列图、甘特图等<br>目前我的博文都是纯文字的，希望早早转到采用Markdown编写上。尤其是要实现第一个流程图！<br><a href="http://blog.csdn.net/axi295309066/article/details/49176243" target="_blank" rel="noopener">博客编辑神器：Markdown编辑器</a><br>LaTex能实现数学公式，暂时用不上。</p>
+<h3 id="二、Android之搭建Hexo博客"><a href="#二、Android之搭建Hexo博客" class="headerlink" title="二、Android之搭建Hexo博客"></a>二、Android之搭建Hexo博客</h3><p>目的：基于hexo的github pages，实现markdown写作<!--more--></p>
+<p>遇到的难以解决的问题：</p>
+<blockquote>
+<p>1、安装debian会走ss流量，如果 ss延迟较大，会提示失败，关闭ss直接连接 ftp.debian 没有网络问题，但比优质ss网速慢很多，说明防火墙的影响还是很明显的。</p>
+<p>2、不小心退出xfce，再进入就没有桌面了，不知道如何恢复。还有xfce桌面分辨率为1920*1080，太高了，如何降低？</p>
+<p>3、如何在xfce中安装firefox？<br>新手需要注意的问题：<br>1、开启ssh与vnc</p>
+<p>2、如何完全卸载linux实例</p>
+<p>3、busybox用来扩充linux命令？<br><!--more--></p>
+</blockquote>
+<p>手机搭建服务器的优缺点</p>
+<blockquote>
+<p>Pro：</p>
+<p>1、功耗低，不需要另外购置硬件，减少开销</p>
+<p>2、随着无限流量时代的到来，可以做到服务器在手</p>
+<p>3、Android手机通过LTE上网，获得的是IP v6？是不是可以轻松看YouTube？<br><a href="https://mlapp.cn/134.html" target="_blank" rel="noopener">Linux Deploy:在Android上部署Linux</a><br><a href="http://www.jianshu.com/p/f5e107180b45" target="_blank" rel="noopener">旧手机小用途：在Android手机上建网站，较完全指南</a><br><a href="http://www.voidcn.com/article/p-rfzroork-od.html" target="_blank" rel="noopener">用Linux Deploy在Android上安装Linux</a></p>
+</blockquote>
+<p>实践1：安装首个debian实例</p>
+<blockquote>
+<p>路由器中给手机固定局域网IP地址，例如192.168.1.191</p>
+<p>手机root</p>
+<p>通过官网下载<a href="https://github.com/meefik/linuxdeploy/releases" target="_blank" rel="noopener">Linux Deploy</a>并安装运行</p>
+<p>右上角菜单“配置”中选中ssh与vnc</p>
+<p>右上角菜单“安装”，直到提示“deploy”</p>
+<p>左下角“启动”，直到提示“start”</p>
+<p>右下角图标查看账号密码信息，通过putty ssh连接ok</p>
+<p>通过vnc viewer连接ok，但是图形界面分辨率过高，改LXDE为xfce可以吗？<br>实践2：测试性能（连接debian服务器需要翻墙？反正自己的ss开启有问题时无法更新，换购买的ss就好了）<br>sudo apt-get update #问题：su的密码是啥?我是通过“sudo passwd root”修改了root密码来解决的。</p>
+<p>sudo apt-get install sysbench</p>
+<p>sysbench –test=cpu –cpu-max-prime=20000 run<br>魅蓝一代note成绩是344秒，比我的树莓派一代1460秒快很多，也比树莓派3代快一些。相信魅族Pro5的性能会更好。详细内容如下：<br>Doing CPU performance benchmark</p>
+<p>Threads started!</p>
+<p>Done.</p>
+<p>Maximum prime number checked in CPU test: 20000</p>
+<p>Test execution summary:</p>
+<p>total time: 344.6957s</p>
+<p>total number of events: 10000</p>
+<p>total time taken by event execution: 344.6883</p>
+<p>per-request statistics:</p>
+<p>min: 34.20ms</p>
+<p>avg: 34.47ms</p>
+<p>max: 51.72ms</p>
+<p>approx. 95 percentile: 34.66ms</p>
+<p>Threads fairness:</p>
+<p>events (avg/stddev): 10000.0000/0.00</p>
+<p>execution time (avg/stddev): 344.6883/0.00<br>问题:我想在魅族Pro5上测试sysbench，但是手机没有安装linux deploy，只有termux，无法安装sysbench。如何解决？</p>
+</blockquote>
+<p>实践3：搭建hexo环境<br>参考</p>
+<blockquote>
+<p><a href="http://www.heartnn.com/2016/12/24/hexo-blog-on-android/" target="_blank" rel="noopener">在Android手机搭建Hexo博客环境</a></p>
+<p><a href="http://www.jianshu.com/p/5fc4672b7d2e" target="_blank" rel="noopener">Hexo博客搭建全攻略(一):基于Hexo+Github环境搭建</a><br>sudo apt-get install git-core</p>
+<p>wget -qO- <a href="https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh" target="_blank" rel="noopener">https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh</a> | bash<br>实践4：安装codeblock开发环境<br>sudo apt-get install build-essential #安装编译器</p>
+<p>sudo apt-get install gdb #安装debug工具</p>
+<p>g++ -c hello.cpp #编译一个简单的c++程序</p>
+<p>g++ -o hello hello.o #链接，如果不用 -o，g++ hello.cpp会不生成 hello.o 文件，直接输出可执行文件 a.out</p>
+<p>./hello #执行</p>
+</blockquote>
+<h3 id="三、在VPS上搭建Hexo博客"><a href="#三、在VPS上搭建Hexo博客" class="headerlink" title="三、在VPS上搭建Hexo博客"></a>三、在VPS上搭建Hexo博客</h3><blockquote>
+<p>服务器平台：vultr（VPS提供商），而不是github</p>
+<p>软件平台：CentOS，Nginx<br><!--more--></p>
+</blockquote>
+<h4 id="1、配置服务器端环境："><a href="#1、配置服务器端环境：" class="headerlink" title="1、配置服务器端环境："></a>1、配置服务器端环境：</h4><p>1）、VPS新建CentOS Server上搭建Nginx</p>
+<blockquote>
+<h1 id="passwd-Windows-10环境下，通过putty登录（复制初始密码，通过鼠标右键粘贴），修改root密码"><a href="#passwd-Windows-10环境下，通过putty登录（复制初始密码，通过鼠标右键粘贴），修改root密码" class="headerlink" title="passwd # Windows 10环境下，通过putty登录（复制初始密码，通过鼠标右键粘贴），修改root密码"></a>passwd # Windows 10环境下，通过putty登录（复制初始密码，通过鼠标右键粘贴），修改root密码</h1><h1 id="rpm-q-centos-release-centos-release-7-3-1611-el7-centos-x86-64"><a href="#rpm-q-centos-release-centos-release-7-3-1611-el7-centos-x86-64" class="headerlink" title="rpm -q centos-release # centos-release-7-3.1611.el7.centos.x86_64"></a>rpm -q centos-release # centos-release-7-3.1611.el7.centos.x86_64</h1><h1 id="yum-install-epel-release-安装-CentOS-7-EPEL-源，似乎没有必要，所以没有执行"><a href="#yum-install-epel-release-安装-CentOS-7-EPEL-源，似乎没有必要，所以没有执行" class="headerlink" title="yum install epel-release # 安装 CentOS 7 EPEL 源，似乎没有必要，所以没有执行"></a>yum install epel-release # 安装 CentOS 7 EPEL 源，似乎没有必要，所以没有执行</h1><h1 id="yum-install-nginx-安装-Nginx"><a href="#yum-install-nginx-安装-Nginx" class="headerlink" title="yum install nginx # 安装 Nginx"></a>yum install nginx # 安装 Nginx</h1><h1 id="systemctl-start-nginx-启动Nginx"><a href="#systemctl-start-nginx-启动Nginx" class="headerlink" title="systemctl start nginx #启动Nginx"></a>systemctl start nginx #启动Nginx</h1><h1 id="firewall-cmd-–permanent-–zone-public-–add-service-http-添加-HTTP-和-HTTPS-端口到防火墙允许列表"><a href="#firewall-cmd-–permanent-–zone-public-–add-service-http-添加-HTTP-和-HTTPS-端口到防火墙允许列表" class="headerlink" title="firewall-cmd –permanent –zone=public –add-service=http #添加 HTTP 和 HTTPS 端口到防火墙允许列表"></a>firewall-cmd –permanent –zone=public –add-service=http #添加 HTTP 和 HTTPS 端口到防火墙允许列表</h1><h1 id="sudo-firewall-cmd-–permanent-–zone-public-–add-service-https"><a href="#sudo-firewall-cmd-–permanent-–zone-public-–add-service-https" class="headerlink" title="sudo firewall-cmd –permanent –zone=public –add-service=https"></a>sudo firewall-cmd –permanent –zone=public –add-service=https</h1><h1 id="sudo-firewall-cmd-–reload"><a href="#sudo-firewall-cmd-–reload" class="headerlink" title="sudo firewall-cmd –reload"></a>sudo firewall-cmd –reload</h1><h1 id="sudo-systemctl-restart-firewalld-service"><a href="#sudo-systemctl-restart-firewalld-service" class="headerlink" title="sudo systemctl restart firewalld.service"></a>sudo systemctl restart firewalld.service</h1><p>打开浏览器，复制Server的ip地址，回车，就会看到欢迎页面：“Welcome to nginx on Fedora!”。注意提示：index.html在“/usr/share/nginx/html”目录中，nginx配置文件在“/etc/nginx/nginx.conf”</p>
+<h1 id="curl-127-0-0-1-会显示Nginx主页的html代码"><a href="#curl-127-0-0-1-会显示Nginx主页的html代码" class="headerlink" title="curl 127.0.0.1 # 会显示Nginx主页的html代码"></a>curl 127.0.0.1 # 会显示Nginx主页的html代码</h1><h1 id="yum-install-net-tools-安装网络工具"><a href="#yum-install-net-tools-安装网络工具" class="headerlink" title="yum install net-tools #安装网络工具"></a>yum install net-tools #安装网络工具</h1><h1 id="netstat-ntpl-确认Nginx打开了80端口，但是没有443端口，为啥？"><a href="#netstat-ntpl-确认Nginx打开了80端口，但是没有443端口，为啥？" class="headerlink" title="netstat -ntpl #确认Nginx打开了80端口，但是没有443端口，为啥？"></a>netstat -ntpl #确认Nginx打开了80端口，但是没有443端口，为啥？</h1><p>netstat测试内容如下：<br>Active Internet connections (only servers)</p>
+<p>Proto Recv-Q Send-Q Local Address Foreign Address State PID/Program name</p>
+<p>tcp 0 0 0.0.0.0:80 0.0.0.0:* LISTEN 2493/nginx: master</p>
+<p>tcp 0 0 0.0.0.0:22 0.0.0.0:* LISTEN 429/sshd</p>
+<p>tcp 0 0 127.0.0.1:25 0.0.0.0:* LISTEN 606/master</p>
+<p>tcp6 0 0 :::80 :::* LISTEN 2493/nginx: master</p>
+<p>tcp6 0 0 :::22 :::* LISTEN 429/sshd</p>
+<p>tcp6 0 0 ::1:25 :::* LISTEN 606/master<br>2）、配置Nginx虚拟主机</p>
+<h1 id="mkdir-p-usr-share-nginx-blog-html-新建blog目录用于放置Hexo，新建一个测试用index-html主页文件"><a href="#mkdir-p-usr-share-nginx-blog-html-新建blog目录用于放置Hexo，新建一个测试用index-html主页文件" class="headerlink" title="mkdir -p /usr/share/nginx/blog/html #新建blog目录用于放置Hexo，新建一个测试用index.html主页文件"></a>mkdir -p /usr/share/nginx/blog/html #新建blog目录用于放置Hexo，新建一个测试用index.html主页文件</h1><h1 id="vi-etc-nginx-conf-d-blog-conf-新建虚拟主机配置文件，因为nginx配置文件（-etc-nginx-nginx-conf）内包含一行内容”include-etc-nginx-conf-d-conf-“，所以是可行的。"><a href="#vi-etc-nginx-conf-d-blog-conf-新建虚拟主机配置文件，因为nginx配置文件（-etc-nginx-nginx-conf）内包含一行内容”include-etc-nginx-conf-d-conf-“，所以是可行的。" class="headerlink" title="vi /etc/nginx/conf.d/blog.conf #新建虚拟主机配置文件，因为nginx配置文件（/etc/nginx/nginx.conf）内包含一行内容”include /etc/nginx/conf.d/*.conf;“，所以是可行的。"></a>vi /etc/nginx/conf.d/blog.conf #新建虚拟主机配置文件，因为nginx配置文件（/etc/nginx/nginx.conf）内包含一行内容”include /etc/nginx/conf.d/*.conf;“，所以是可行的。</h1><h1 id="systemctl-restart-nginx-重启-Nginx-服务器，使nginx服务器虚拟主机设定生效"><a href="#systemctl-restart-nginx-重启-Nginx-服务器，使nginx服务器虚拟主机设定生效" class="headerlink" title="systemctl restart nginx #重启 Nginx 服务器，使nginx服务器虚拟主机设定生效"></a>systemctl restart nginx #重启 Nginx 服务器，使nginx服务器虚拟主机设定生效</h1><p>新配置文件”blog.conf”内容如下：<br>server {</p>
+<p>listen 80;</p>
+<p>listen [::]:80;</p>
+<p>root /usr/share/nginx/blog/html;</p>
+<p>index index.html index.htm index.nginx-debian.html;</p>
+<p>server_name zhangqihui.mobi <a href="http://www.zhangqihui.mobi" target="_blank" rel="noopener">www.zhangqihui.mobi</a>;</p>
+<p>location / {</p>
+<p>try_files $uri $uri/ =404;</p>
+<p>}</p>
+<p>}<br>本地Windows 10电脑，编辑“C:\Windows\System32\drivers\etc/hosts” #增加一行“xx.xx.xx.xx zhangqihui.tk“ 将服务器ip地址指向自己的域名，打开浏览器，通过域名就可以看到虚拟机测试主页了。（我先设置了DNS CNAME，没有测试）</p>
+</blockquote>
+<p>3）、到DNS将域名解析到服务器地址</p>
+<blockquote>
+<p>到godaddy，配置zhangqihui.mobi DNS指向VPS ip地址</p>
+<p>到tk网站，通过我的Facebook账户登录，将zhangqihui.tk指向服务器ip地址 #因tk网站不稳定，改用godaddy<br>4）、部署Hexo</p>
+<h1 id="yum-install-git-在-VPS-上安装-git"><a href="#yum-install-git-在-VPS-上安装-git" class="headerlink" title="yum install git #在 VPS 上安装 git"></a>yum install git #在 VPS 上安装 git</h1><h1 id="cd"><a href="#cd" class="headerlink" title="cd ~"></a>cd ~</h1><h1 id="mkdir-blog-git-amp-amp-cd-blog-git-创建空白-git-仓库，并且设置-git-hook"><a href="#mkdir-blog-git-amp-amp-cd-blog-git-创建空白-git-仓库，并且设置-git-hook" class="headerlink" title="mkdir blog.git &amp;&amp; cd blog.git #创建空白 git 仓库，并且设置 git hook"></a>mkdir blog.git &amp;&amp; cd blog.git #创建空白 git 仓库，并且设置 git hook</h1><h1 id="git-init-–bare-返回提示“Initialized-empty-Git-repository-in-root-blog-git-”"><a href="#git-init-–bare-返回提示“Initialized-empty-Git-repository-in-root-blog-git-”" class="headerlink" title="git init –bare #返回提示“Initialized empty Git repository in /root/blog.git/”"></a>git init –bare #返回提示“Initialized empty Git repository in /root/blog.git/”</h1><h1 id="cd-hooks"><a href="#cd-hooks" class="headerlink" title="cd hooks"></a>cd hooks</h1><h1 id="vi-post-receive-创建脚本，并写入内容"><a href="#vi-post-receive-创建脚本，并写入内容" class="headerlink" title="vi post-receive #创建脚本，并写入内容"></a>vi post-receive #创建脚本，并写入内容</h1><h1 id="chmod-x-post-receive-赋予脚本的执行权限"><a href="#chmod-x-post-receive-赋予脚本的执行权限" class="headerlink" title="chmod +x post-receive #赋予脚本的执行权限"></a>chmod +x post-receive #赋予脚本的执行权限</h1><p>在 /root/blog.git/hooks/post-receive 脚本内容如下：</p>
+<div class="line">#!/bin/bash</div>
+
+<div class="line">GIT_REPO=/root/blog.git #git仓库</div>
+
+<div class="line">TMP_GIT_CLONE=/tmp/blog</div>
+
+<div class="line">PUBLIC_WWW=/usr/share/nginx/blog/html #网站目录</div>
+
+<div class="line">rm -rf ${TMP_GIT_CLONE}</div>
+
+<div class="line">git clone $GIT_REPO $TMP_GIT_CLONE</div>
+
+<div class="line">rm -rf ${PUBLIC_WWW}/*</div>
+
+<div class="line">cp -rf ${TMP_GIT_CLONE}/* ${PUBLIC_WWW}</div>
+</blockquote>
+<h4 id="2、配置本机环境"><a href="#2、配置本机环境" class="headerlink" title="2、配置本机环境"></a>2、配置本机环境</h4><p>1）、Windows 10 安装Hexo环境</p>
+<blockquote>
+<p>缺省设置安装<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git</a>； # <a href="https://github.com/git-for-windows/git/releases/download/v2.15.1.windows.2/Git-2.15.1.2-64-bit.exe" target="_blank" rel="noopener">(2.15.1) 64-bit version of Git for Windows</a> ，需要FQ，TNND!</p>
+<p>缺省设置安装<a href="https://nodejs.org/download/" target="_blank" rel="noopener">Node.js</a>； # <a href="https://nodejs.org/download/release/v9.2.0/node-v9.2.0-x64.msi" target="_blank" rel="noopener">node-v9.2.0-x64.msi </a><br>在D盘新建hexo目录，通过鼠标右键命令“Git Bash Here”<br>$ npm install hexo-cli -g<br>提示如下：<br>C:\Users\qdmca\AppData\Roaming\npm\hexo -&gt; C:\Users\qdmca\AppData\Roaming\npm\node_modules\hexo-cli\bin\hexo</p>
+<p>npm WARN optional SKIPPING OPTIONAL DEPENDENCY: <a href="mailto:fsevents@1.1.3" target="_blank" rel="noopener">fsevents@1.1.3</a> (node_modules\hexo-cli\node_modules\fsevents):</p>
+<p>npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for <a href="mailto:fsevents@1.1.3" target="_blank" rel="noopener">fsevents@1.1.3</a>: wanted {“os”:”darwin”,”arch”:”any”} (current: {“os”:”win32”,”arch”:”x64”})</p>
+<ul>
+<li><a href="mailto:hexo-cli@1.0.4" target="_blank" rel="noopener">hexo-cli@1.0.4</a></li>
+</ul>
+<p>added 217 packages in 68.345s<br>$ hexo init blog #在 blog 目录下初始化 hexo 博客<br>提示如下：<br>INFO Cloning hexo-starter to D:\hexo\blog</p>
+<p>Cloning into ‘D:\hexo\blog’…</p>
+<p>remote: Counting objects: 62, done.</p>
+<p>remote: Compressing objects: 100% (2/2), done.</p>
+<p>remote: Total 62 (delta 0), reused 2 (delta 0), pack-reused 59</p>
+<p>Unpacking objects: 100% (62/62), done.</p>
+<p>Submodule ‘themes/landscape’ (<a href="https://github.com/hexojs/hexo-theme-landscape.git" target="_blank" rel="noopener">https://github.com/hexojs/hexo-theme-landscape.git</a>) registered for path ‘themes/landscape’</p>
+<p>Cloning into ‘D:/hexo/blog/themes/landscape’…</p>
+<p>remote: Counting objects: 785, done.</p>
+<p>remote: Total 785 (delta 0), reused 0 (delta 0), pack-reused 785</p>
+<p>Receiving objects: 100% (785/785), 2.53 MiB | 1.08 MiB/s, done.</p>
+<p>Resolving deltas: 100% (410/410), done.</p>
+<p>Submodule path ‘themes/landscape’: checked out ‘73a23c51f8487cfcd7c6deec96ccc7543960d350’</p>
+<p>INFO Install dependencies</p>
+<p>▒▒Ϣ: ▒▒▒ṩ▒▒ģʽ▒޷▒▒ҵ▒▒ļ▒▒▒</p>
+<p>npm WARN deprecated <a href="mailto:swig@1.4.2" target="_blank" rel="noopener">swig@1.4.2</a>: This package is no longer maintained</p>
+<p>npm notice created a lockfile as package-lock.json. You should commit this file.</p>
+<p>npm WARN optional SKIPPING OPTIONAL DEPENDENCY: <a href="mailto:fsevents@1.1.3" target="_blank" rel="noopener">fsevents@1.1.3</a> (node_modules\fsevents):</p>
+<p>npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for <a href="mailto:fsevents@1.1.3" target="_blank" rel="noopener">fsevents@1.1.3</a>: wanted {“os”:”darwin”,”arch”:”any”} (current: {“os”:”win32”,”arch”:”x64”})</p>
+<p>added 429 packages in 22.993s</p>
+<p>INFO Start blogging with Hexo!<br>$ cd blog #进入博客根目录，并且安装相关插件依赖等</p>
+<p>$ npm install<br>提示如下：<br>npm WARN optional SKIPPING OPTIONAL DEPENDENCY: <a href="mailto:fsevents@1.1.3" target="_blank" rel="noopener">fsevents@1.1.3</a> (node_modules\fsevents):</p>
+<p>npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for <a href="mailto:fsevents@1.1.3" target="_blank" rel="noopener">fsevents@1.1.3</a>: wanted {“os”:”darwin”,”arch”:”any”} (current: {“os”:”win32”,”arch”:”x64”})</p>
+<p>added 116 packages in 10.783s<br>$ hexo g # 渲染 Source 目录下文件问静态页面<br>提示如下：<br>INFO Start processing</p>
+<p>INFO Files loaded in 314 ms</p>
+<p>INFO Generated: index.html</p>
+<p>INFO Generated: archives/index.html</p>
+<p>INFO Generated: fancybox/jquery.fancybox.js</p>
+<p>INFO Generated: fancybox/fancybox_loading.gif</p>
+<p>INFO Generated: fancybox/blank.gif</p>
+<p>INFO Generated: fancybox/jquery.fancybox.css</p>
+<p>INFO Generated: <a href="mailto:fancybox/fancybox_loading@2x.gif" target="_blank" rel="noopener">fancybox/fancybox_loading@2x.gif</a></p>
+<p>INFO Generated: archives/2017/index.html</p>
+<p>INFO Generated: fancybox/jquery.fancybox.pack.js</p>
+<p>INFO Generated: fancybox/fancybox_overlay.png</p>
+<p>INFO Generated: <a href="mailto:fancybox/fancybox_sprite@2x.png" target="_blank" rel="noopener">fancybox/fancybox_sprite@2x.png</a></p>
+<p>INFO Generated: css/fonts/FontAwesome.otf</p>
+<p>INFO Generated: fancybox/fancybox_sprite.png</p>
+<p>INFO Generated: fancybox/helpers/jquery.fancybox-buttons.css</p>
+<p>INFO Generated: fancybox/helpers/jquery.fancybox-thumbs.css</p>
+<p>INFO Generated: fancybox/helpers/jquery.fancybox-buttons.js</p>
+<p>INFO Generated: archives/2017/12/index.html</p>
+<p>INFO Generated: fancybox/helpers/jquery.fancybox-thumbs.js</p>
+<p>INFO Generated: css/style.css</p>
+<p>INFO Generated: css/fonts/fontawesome-webfont.eot</p>
+<p>INFO Generated: css/fonts/fontawesome-webfont.woff</p>
+<p>INFO Generated: js/script.js</p>
+<p>INFO Generated: css/images/banner.jpg</p>
+<p>INFO Generated: fancybox/helpers/jquery.fancybox-media.js</p>
+<p>INFO Generated: css/fonts/fontawesome-webfont.ttf</p>
+<p>INFO Generated: 2017/12/03/hello-world/index.html</p>
+<p>INFO Generated: fancybox/helpers/fancybox_buttons.png</p>
+<p>INFO Generated: css/fonts/fontawesome-webfont.svg</p>
+<p>INFO 28 files generated in 844 ms<br>$ hexo s # 本地跑一个 server 来看博客效果<br>提示如下：<br>INFO Start processing</p>
+<p>INFO Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>. Press Ctrl+C to stop.<br>本地浏览器打开网址“<a href="http://localhost:4000/”，测试hexo安装成功" target="_blank" rel="noopener">http://localhost:4000/”，测试hexo安装成功</a> #如果通过路由器端口映射，应该在外网也能看到</p>
+</blockquote>
+<p>2）、配置本机环境</p>
+<blockquote>
+<p>$ npm install hexo-deployer-git –save #在博客目录下运行下面命令，安装 git 部署工具<br>提示如下：<br>npm WARN optional SKIPPING OPTIONAL DEPENDENCY: <a href="mailto:fsevents@1.1.3" target="_blank" rel="noopener">fsevents@1.1.3</a> (node_modules\fsevents):</p>
+<p>npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for <a href="mailto:fsevents@1.1.3" target="_blank" rel="noopener">fsevents@1.1.3</a>: wanted {“os”:”darwin”,”arch”:”any”} (current: {“os”:”win32”,”arch”:”x64”})</p>
+<ul>
+<li><a href="mailto:hexo-deployer-git@0.3.1" target="_blank" rel="noopener">hexo-deployer-git@0.3.1</a></li>
+</ul>
+<p>added 132 packages in 18.447s</p>
+<p>qdmca@ASUS13 MINGW64 /d/hexo/blog<br>编辑博客配置文件“_config.yml”为如下内容（修改deploy选项，注意，冒号后面有空格，否则会出错！）：<br>deploy:</p>
+<p>type: git</p>
+<p>message: update</p>
+<p>repo:</p>
+<p>s1: <a href="mailto:root@45.32.227.150" target="_blank" rel="noopener">root@45.32.227.150</a>:/root/blog.git/,master<br>$ git config –global user.email “<a href="mailto:3dlinux@gmail.com" target="_blank" rel="noopener">3dlinux@gmail.com</a>“ #配置本地git用户信息</p>
+<p>$ git config –global user.name “root”</p>
+<p>$hexo d #部署本地渲染网页到服务器上<br>本文参考：<a href="https://eliyar.biz/how_to_build_hexo_blog/" target="_blank" rel="noopener">从 0 开始搭建 hexo 博客</a><br><a href="https://tiktoking.github.io/2016/01/26/hexo/" target="_blank" rel="noopener">在VPS上搭建hexo博客，利用git更新</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/20/google-e5-9c-b0-e5-9b-be-e5-a6-82-e4-bd-95-e8-a7-a3-e5-86-b3-e5-81-8f-e7-a7-bb-e9-97-ae-e9-a2-98-ef-bc-9f/" rel="next" title="Google地图如何解决偏移问题？">
+                <i class="fa fa-chevron-left"></i> Google地图如何解决偏移问题？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/23/e4-b8-96-e7-95-8c-ef-bc-8c-e6-82-a8-e5-a5-bd-ef-bc-81-e6-8b-a5-e6-9c-89-e8-87-aa-e5-b7-b1-e7-9a-84-e9-a1-b6-e7-ba-a7-e5-9f-9f-e5-90-8d/" rel="prev" title="网络基础之域名解析">
+                网络基础之域名解析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、树莓派上搭建Hexo博客"><span class="nav-number">1.</span> <span class="nav-text">一、树莓派上搭建Hexo博客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、我在树莓派上搭建本地博客的历程"><span class="nav-number">1.1.</span> <span class="nav-text">1、我在树莓派上搭建本地博客的历程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、为什么要学习Markdown与LaTex"><span class="nav-number">1.2.</span> <span class="nav-text">2、为什么要学习Markdown与LaTex</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1）、Markdown是什么？"><span class="nav-number">1.2.1.</span> <span class="nav-text">1）、Markdown是什么？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2）、相关的编辑器"><span class="nav-number">1.2.2.</span> <span class="nav-text">2）、相关的编辑器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3）、Markdown如何实现目录"><span class="nav-number">1.2.3.</span> <span class="nav-text">3）、Markdown如何实现目录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4）、Markdown-extension之流程图flow、甘特图gantt、流程图graph"><span class="nav-number">1.2.4.</span> <span class="nav-text">4）、Markdown extension之流程图flow、甘特图gantt、流程图graph</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1）flow"><span class="nav-number">1.2.5.</span> <span class="nav-text">1）flow</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4）单独使用mermaid"><span class="nav-number">1.2.6.</span> <span class="nav-text">4）单独使用mermaid</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、Android之搭建Hexo博客"><span class="nav-number">2.</span> <span class="nav-text">二、Android之搭建Hexo博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、在VPS上搭建Hexo博客"><span class="nav-number">3.</span> <span class="nav-text">三、在VPS上搭建Hexo博客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、配置服务器端环境："><span class="nav-number">3.1.</span> <span class="nav-text">1、配置服务器端环境：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#passwd-Windows-10环境下，通过putty登录（复制初始密码，通过鼠标右键粘贴），修改root密码"><span class="nav-number"></span> <span class="nav-text">passwd # Windows 10环境下，通过putty登录（复制初始密码，通过鼠标右键粘贴），修改root密码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rpm-q-centos-release-centos-release-7-3-1611-el7-centos-x86-64"><span class="nav-number"></span> <span class="nav-text">rpm -q centos-release # centos-release-7-3.1611.el7.centos.x86_64</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yum-install-epel-release-安装-CentOS-7-EPEL-源，似乎没有必要，所以没有执行"><span class="nav-number"></span> <span class="nav-text">yum install epel-release # 安装 CentOS 7 EPEL 源，似乎没有必要，所以没有执行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yum-install-nginx-安装-Nginx"><span class="nav-number"></span> <span class="nav-text">yum install nginx # 安装 Nginx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#systemctl-start-nginx-启动Nginx"><span class="nav-number"></span> <span class="nav-text">systemctl start nginx #启动Nginx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#firewall-cmd-–permanent-–zone-public-–add-service-http-添加-HTTP-和-HTTPS-端口到防火墙允许列表"><span class="nav-number"></span> <span class="nav-text">firewall-cmd –permanent –zone=public –add-service=http #添加 HTTP 和 HTTPS 端口到防火墙允许列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sudo-firewall-cmd-–permanent-–zone-public-–add-service-https"><span class="nav-number"></span> <span class="nav-text">sudo firewall-cmd –permanent –zone=public –add-service=https</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sudo-firewall-cmd-–reload"><span class="nav-number"></span> <span class="nav-text">sudo firewall-cmd –reload</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sudo-systemctl-restart-firewalld-service"><span class="nav-number"></span> <span class="nav-text">sudo systemctl restart firewalld.service</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#curl-127-0-0-1-会显示Nginx主页的html代码"><span class="nav-number"></span> <span class="nav-text">curl 127.0.0.1 # 会显示Nginx主页的html代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yum-install-net-tools-安装网络工具"><span class="nav-number"></span> <span class="nav-text">yum install net-tools #安装网络工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#netstat-ntpl-确认Nginx打开了80端口，但是没有443端口，为啥？"><span class="nav-number"></span> <span class="nav-text">netstat -ntpl #确认Nginx打开了80端口，但是没有443端口，为啥？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mkdir-p-usr-share-nginx-blog-html-新建blog目录用于放置Hexo，新建一个测试用index-html主页文件"><span class="nav-number"></span> <span class="nav-text">mkdir -p /usr/share/nginx/blog/html #新建blog目录用于放置Hexo，新建一个测试用index.html主页文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vi-etc-nginx-conf-d-blog-conf-新建虚拟主机配置文件，因为nginx配置文件（-etc-nginx-nginx-conf）内包含一行内容”include-etc-nginx-conf-d-conf-“，所以是可行的。"><span class="nav-number"></span> <span class="nav-text">vi /etc/nginx/conf.d/blog.conf #新建虚拟主机配置文件，因为nginx配置文件（/etc/nginx/nginx.conf）内包含一行内容”include /etc/nginx/conf.d/*.conf;“，所以是可行的。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#systemctl-restart-nginx-重启-Nginx-服务器，使nginx服务器虚拟主机设定生效"><span class="nav-number"></span> <span class="nav-text">systemctl restart nginx #重启 Nginx 服务器，使nginx服务器虚拟主机设定生效</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yum-install-git-在-VPS-上安装-git"><span class="nav-number"></span> <span class="nav-text">yum install git #在 VPS 上安装 git</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cd"><span class="nav-number"></span> <span class="nav-text">cd ~</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mkdir-blog-git-amp-amp-cd-blog-git-创建空白-git-仓库，并且设置-git-hook"><span class="nav-number"></span> <span class="nav-text">mkdir blog.git &amp;&amp; cd blog.git #创建空白 git 仓库，并且设置 git hook</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-init-–bare-返回提示“Initialized-empty-Git-repository-in-root-blog-git-”"><span class="nav-number"></span> <span class="nav-text">git init –bare #返回提示“Initialized empty Git repository in /root/blog.git/”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cd-hooks"><span class="nav-number"></span> <span class="nav-text">cd hooks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vi-post-receive-创建脚本，并写入内容"><span class="nav-number"></span> <span class="nav-text">vi post-receive #创建脚本，并写入内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chmod-x-post-receive-赋予脚本的执行权限"><span class="nav-number"></span> <span class="nav-text">chmod +x post-receive #赋予脚本的执行权限</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2、配置本机环境"><span class="nav-number">0.1.</span> <span class="nav-text">2、配置本机环境</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

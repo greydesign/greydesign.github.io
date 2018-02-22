@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、Windows 10下，用python建立服务1、发布HTTP服务用python在本地计算机开启网页">
+<meta property="og:type" content="article">
+<meta property="og:title" content="改变端口号，发布内网网页">
+<meta property="og:url" content="http://yoursite.com/2017/02/15/mobile-safety/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、Windows 10下，用python建立服务1、发布HTTP服务用python在本地计算机开启网页">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.882Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="改变端口号，发布内网网页">
+<meta name="twitter:description" content="一、Windows 10下，用python建立服务1、发布HTTP服务用python在本地计算机开启网页">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/15/mobile-safety/"/>
+
+
+
+
+
+  <title>改变端口号，发布内网网页 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/15/mobile-safety/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">改变端口号，发布内网网页</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-15T21:36:08+08:00">
+                2017-02-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/VPS/" itemprop="url" rel="index">
+                    <span itemprop="name">VPS</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/VPS/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、Windows-10下，用python建立服务"><a href="#一、Windows-10下，用python建立服务" class="headerlink" title="一、Windows 10下，用python建立服务"></a>一、Windows 10下，用python建立服务</h3><h4 id="1、发布HTTP服务"><a href="#1、发布HTTP服务" class="headerlink" title="1、发布HTTP服务"></a>1、发布HTTP服务</h4><p>用python在本地计算机开启网页</p>
+<a id="more"></a>
+<blockquote>
+<p>python -m http.server 8072<br>在路由器中设置端口转发（外部网络(WAN) - 端口转发）<br>服务名称：HTTP Server</p>
+<p>Source IP：空，做啥用的?</p>
+<p>通信端口范围：8072 #不要用8000，除非通过DMZ发布本地计算机服务，否则会与路由器端口冲突</p>
+<p>本地 IP：开启web服务的内网计算机IP地址</p>
+<p>本地通信端口：8072</p>
+<p>通信协议：TCP<br>如果自己的公网IP绑定了域名<br><a href="http://zhangqihui.me:8072" target="_blank" rel="noopener">http://zhangqihui.me:8072</a></p>
+</blockquote>
+<h4 id="2、发布HTTPS服务"><a href="#2、发布HTTPS服务" class="headerlink" title="2、发布HTTPS服务"></a>2、发布HTTPS服务</h4><p>涉及 证书、端口号等，不嫌弃个人网站带有尾巴了，反正是个人用。最好通过ssh证书访问，不需要；每次输入密码！</p>
+<h5 id="1、Windows下的openssl（注意，不是openssh！）"><a href="#1、Windows下的openssl（注意，不是openssh！）" class="headerlink" title="1、Windows下的openssl（注意，不是openssh！）"></a>1、Windows下的openssl（注意，不是openssh！）</h5><p><a href="http://niusmallnan.com/_build/html/_templates/knowladge/python_https_server.html" target="_blank" rel="noopener">python实现精简的https服务器</a> #参考用python建立https服务</p>
+<blockquote>
+<p>openssl #用git bash运行，因为其内置openssl</p>
+<p>genrsa -out server.key 1024</p>
+<p>rsa -in server.key -out server.key</p>
+<p>req -new -key server.key -out server.csr</p>
+<p>x509 -req -days 1024 -in server.csr -signkey server.key -out server.crt</p>
+<p>cat server.crt server.key &gt; server.pem #退出openssl后执行<br>建立启动文件start_s.py<br>from http.server import HTTPServer, BaseHTTPRequestHandler</p>
+<p>import ssl</p>
+<p>httpd = HTTPServer((‘localhost’, 4443), BaseHTTPRequestHandler)</p>
+<p>httpd.socket = ssl.wrap_socket (httpd.socket,certfile=’./server.pem’, server_side=True)</p>
+<p>httpd.serve_forever()<br>建立index.html，访问出现501错误，为啥？</p>
+</blockquote>
+<p>如下有问题，需要进一步研究完善！</p>
+<blockquote>
+<p>./openssl #把下载的openssl压缩包解压，执行bin目录下的openssl.exe</p>
+<p>&gt;genrsa -out rsa_private_key.pem 1024 #生成私钥文件rsa_private_key.pem</p>
+<p>&gt;rsa -in rsa_private_key.pem -pubout -out rsa_public_key.pem #生成公钥文件rsa_public_key.pem</p>
+<p>&gt;pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM -nocrypt #将原始 RSA私钥转换为 pkcs8格式<br><a href="https://blog.anvileight.com/posts/simple-python-http-server/" target="_blank" rel="noopener">Simple Python HTTP/HTTPS Server With Examples</a><br><a href="https://gist.github.com/dergachev/7028596" target="_blank" rel="noopener">dergachev/simple-https-server.py</a> #python 2<br><a href="http://mfukar.github.io/2013/10/31/HTTPS.html" target="_blank" rel="noopener">HTTPS server in Python 3.x</a><br><a href="http://blog.csdn.net/yhl_jxy/article/details/51538332" target="_blank" rel="noopener">windows上RSA密钥生成和使用</a><br><a href="http://blog.csdn.net/anmoyyh/article/details/70838352" target="_blank" rel="noopener">Windows下RSA密钥生成工具openssl</a> #从这篇博文下载openssl，解压到<code>c:/</code>下（conf需要，是哪行控制呢，可以放到<code>c:\sbin</code>下吗？）<br><a href="https://www.openssl.org/community/binaries.html" target="_blank" rel="noopener">Binaries and Engines</a> #openssl官网是不提供二进制文件下载的，因为在Windows下编译需要庞大的微软开发工具，还是通过官方建议的<a href="https://wiki.openssl.org/index.php/Binaries" target="_blank" rel="noopener">地址</a>下载直接安装吧</p>
+</blockquote>
+<p>nginx<br><a href="https://www.micronbot.com/Linux/reverse-rss-tunnel.html" target="_blank" rel="noopener">反向ssh隧道访问局域网后面的主机</a></p>
+<h5 id="3、使用twisted发布"><a href="#3、使用twisted发布" class="headerlink" title="3、使用twisted发布"></a>3、使用twisted发布</h5><p>用Windows 10 的 powershell，在c:\sbin目录下操作</p>
+<blockquote>
+<p>pip install twisted #提示缺少visual c++ 14.0，安装失败，当然，也可以编译安装，以后有时间研究</p>
+<p>从<a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted" target="_blank" rel="noopener">https://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted</a>下载python对应的版本，比如<code>Twisted-17.9.0-cp36-cp36m-win_amd64.whl</code></p>
+<p>pip install Twisted-17.9.0-cp36-cp36m-win_amd64.whl #安装ok</p>
+<p>twistd -no web –path #启动失败，为什么？<br><a href="http://blog.csdn.net/ariel_dy/article/details/73468958" target="_blank" rel="noopener">Python3.6 安装Twisted</a><br><a href="https://www.zhihu.com/question/52281800" target="_blank" rel="noopener">python3.5可以安装Twisted吗？</a></p>
+</blockquote>
+<h3 id="二、用nginx建立服务"><a href="#二、用nginx建立服务" class="headerlink" title="二、用nginx建立服务"></a>二、用nginx建立服务</h3><p><a href="https://www.jianshu.com/p/57066821b863?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation" target="_blank" rel="noopener">用Nginx搭建HTTPS服务器</a></p>
+<h3 id="三、用Node-js建立web服务"><a href="#三、用Node-js建立web服务" class="headerlink" title="三、用Node.js建立web服务"></a>三、用Node.js建立web服务</h3><p>参考<a href="http://blog.csdn.net/testcs_dn/article/details/50532775" target="_blank" rel="noopener">《Node.js入门》Windows 7下Node.js Web开发环境搭建笔记</a>：<br>在Windows 10中，用git bash新建一个js文件：<code>vim helloworld.js</code></p>
+<blockquote>
+<p>var http = require(‘http’);</p>
+<p>var server = http.createServer(function(request, response) {</p>
+<p>response.end(“hello world!”);</p>
+<p>});</p>
+<p>server.listen(8080);<br>在git bash中启动http服务：<code>node helloworld.js</code>，通过网址<a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhost:8080/</a>，就可以访问这个web服务了。<br><a href="https://www.jianshu.com/p/72ed3307feff?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation" target="_blank" rel="noopener">Nodejs 搭建https服务器（一）</a><br><a href="https://www.jianshu.com/p/6406584ef018" target="_blank" rel="noopener">Nodejs 搭建https服务器</a><br><a href="https://www.jianshu.com/p/d50205308128" target="_blank" rel="noopener">第四天 Nodejs 搭建web服务器</a><br><a href="https://www.zhihu.com/question/35747071" target="_blank" rel="noopener">怎样用Node.js快速搭建服务器？</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/15/558800-e5-85-ac-e5-b7-ae-e8-ae-be-e8-ae-a1-e4-b8-8e-e5-88-86-e6-9e-90/" rel="next" title="2017-LED55NU8800U设计总结">
+                <i class="fa fa-chevron-left"></i> 2017-LED55NU8800U设计总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/17/e8-ae-a1-e7-ae-97-e6-8a-a5-e5-91-8a-e6-a0-bc-e5-bc-8f/" rel="prev" title="计算报告格式">
+                计算报告格式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、Windows-10下，用python建立服务"><span class="nav-number">1.</span> <span class="nav-text">一、Windows 10下，用python建立服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、发布HTTP服务"><span class="nav-number">1.1.</span> <span class="nav-text">1、发布HTTP服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、发布HTTPS服务"><span class="nav-number">1.2.</span> <span class="nav-text">2、发布HTTPS服务</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、Windows下的openssl（注意，不是openssh！）"><span class="nav-number">1.2.1.</span> <span class="nav-text">1、Windows下的openssl（注意，不是openssh！）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、使用twisted发布"><span class="nav-number">1.2.2.</span> <span class="nav-text">3、使用twisted发布</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、用nginx建立服务"><span class="nav-number">2.</span> <span class="nav-text">二、用nginx建立服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、用Node-js建立web服务"><span class="nav-number">3.</span> <span class="nav-text">三、用Node.js建立web服务</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

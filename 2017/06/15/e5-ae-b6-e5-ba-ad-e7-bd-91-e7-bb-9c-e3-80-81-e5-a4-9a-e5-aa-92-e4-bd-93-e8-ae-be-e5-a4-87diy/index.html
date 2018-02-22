@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、音乐服务器——树莓派做数字转盘DIY树莓派身板虽小，任务不能太轻巧，看网上有用来实现音乐网络播放器功能，USB口控制解码器。树莓派安装volumio2和LCD小屏，做无损音乐数字转盘有时间学习一下，争取早日实现用手机控制播放高品质音乐，不要浪费了我的好音箱。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="家庭网络、多媒体设备DIY">
+<meta property="og:url" content="http://yoursite.com/2017/06/15/e5-ae-b6-e5-ba-ad-e7-bd-91-e7-bb-9c-e3-80-81-e5-a4-9a-e5-aa-92-e4-bd-93-e8-ae-be-e5-a4-87diy/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、音乐服务器——树莓派做数字转盘DIY树莓派身板虽小，任务不能太轻巧，看网上有用来实现音乐网络播放器功能，USB口控制解码器。树莓派安装volumio2和LCD小屏，做无损音乐数字转盘有时间学习一下，争取早日实现用手机控制播放高品质音乐，不要浪费了我的好音箱。">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.886Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="家庭网络、多媒体设备DIY">
+<meta name="twitter:description" content="一、音乐服务器——树莓派做数字转盘DIY树莓派身板虽小，任务不能太轻巧，看网上有用来实现音乐网络播放器功能，USB口控制解码器。树莓派安装volumio2和LCD小屏，做无损音乐数字转盘有时间学习一下，争取早日实现用手机控制播放高品质音乐，不要浪费了我的好音箱。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/15/e5-ae-b6-e5-ba-ad-e7-bd-91-e7-bb-9c-e3-80-81-e5-a4-9a-e5-aa-92-e4-bd-93-e8-ae-be-e5-a4-87diy/"/>
+
+
+
+
+
+  <title>家庭网络、多媒体设备DIY | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/15/e5-ae-b6-e5-ba-ad-e7-bd-91-e7-bb-9c-e3-80-81-e5-a4-9a-e5-aa-92-e4-bd-93-e8-ae-be-e5-a4-87diy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">家庭网络、多媒体设备DIY</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-15T19:42:10+08:00">
+                2017-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/" itemprop="url" rel="index">
+                    <span itemprop="name">IoT</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/Network/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、音乐服务器——树莓派做数字转盘DIY"><a href="#一、音乐服务器——树莓派做数字转盘DIY" class="headerlink" title="一、音乐服务器——树莓派做数字转盘DIY"></a>一、音乐服务器——树莓派做数字转盘DIY</h3><p>树莓派身板虽小，任务不能太轻巧，看网上有用来实现音乐网络播放器功能，USB口控制解码器。<br>树莓派安装volumio2和LCD小屏，做无损音乐数字转盘<br>有时间学习一下，争取早日实现用手机控制播放高品质音乐，不要浪费了我的好音箱。</p>
+<a id="more"></a>
+<p><a href="http://forum.xitek.com/forum-viewthread-tid-1665301-extra-page%3D1-ordertype-2-t-1496365568.html" target="_blank" rel="noopener">别折腾什么路由器了，还是树莓派做网播简单易行</a><br><a href="http://www.headphoneclub.com/thread-504651-1-1.html" target="_blank" rel="noopener">[pc-fi软件] 树莓派MoodeAudio系统教程（一）MoodeAudio系统安装 </a></p>
+<h3 id="二、视频服务器——视频娱乐机顶盒选择与DIY"><a href="#二、视频服务器——视频娱乐机顶盒选择与DIY" class="headerlink" title="二、视频服务器——视频娱乐机顶盒选择与DIY"></a>二、视频服务器——视频娱乐机顶盒选择与DIY</h3><p>虽说电视都是android智能操作系统的了，但是还是离不开各种android盒子：IPTV、小米盒子。小米盒子的主要缺点是广告太多，视频清晰度差。<br>解决广告骚扰，有一种方法是在路由器端屏蔽，例如：<a href="http://www.jianshu.com/p/2dcde5619afa" target="_blank" rel="noopener">屏蔽小米电视的开关机广告</a>。我在小宝版梅林固件中，将防火墙里增加了小米广告网址屏蔽，然而没有任何效果。看来还是需要通过自己监控并添加广告网址解决。<br>多媒体盒子还可以自己DIY原生android系统的盒子，需要在网上找一些教程。我觉得这可以做成一门生意。</p>
+<p>用树莓派代替小米盒子：也给自己一个买树莓派3B的理由哈。</p>
+<h3 id="三、云笔记——树莓派用leanote实现私有云：笔记、文件"><a href="#三、云笔记——树莓派用leanote实现私有云：笔记、文件" class="headerlink" title="三、云笔记——树莓派用leanote实现私有云：笔记、文件"></a>三、云笔记——树莓派用leanote实现私有云：笔记、文件</h3><p>搭建一个自己的云笔记，很酷的想法！<br>上网查看，有一款开源的国产软件<a href="https://leanote.com/" target="_blank" rel="noopener">leanote</a>，而且支持思维导图，虽然目前不支持android，但支持微信。有时间在我的渣树莓一代上搭一个。</p>
+<pre>$sudo apt-get install mongodb #安装mongodb
+$sudo /etc/init.d/mongodb start #设置mongodb服务随系统启动
+</pre>
+安装mongodb时的提示......
+<pre>The following NEW packages will be installed: #新安装的软件包
+libboost-atomic1.55.0 libboost-dev libboost-filesystem1.55.0
+libboost-program-options1.55.0 libboost-system1.55.0 libboost-thread1.55.0
+libboost1.55-dev libpcap0.8 libpcrecpp0 libsnappy1 libv8-3.14.5 mongodb
+mongodb-clients mongodb-dev mongodb-server
+0 upgraded, 15 newly installed, 0 to remove and 69 not upgraded.
+Need to get 21.9 MB of archives.
+After this operation, 212 MB of additional disk space will be used.
+......
+Adding user mongodb to group mongodb #添加了mongodb用户和组
+Done</pre>
+《万万没有想到》作者使用[Tiddlywiki](https://zh.wikipedia.org/wiki/Tiddlywiki)来做自己的科研笔记
+参考网页：
+[在树莓派上安装leanote](http://www.cnblogs.com/noright/p/install-leanote-on-raspberry-pi.html)
+
+[leanote binary installation on Mac and Linux (En)](https://github.com/leanote/leanote/wiki/leanote-binary-installation-on-Mac-and-Linux-(En))
+
+### 四、云存储服务器
+
+#### 1、用QNAP NAS做云存储：没有nextcloud应用
+
+#### 2、nextcloud，据说比owncloud好？
+
+可以在VPS上实现，也可以在自己家里的服务器实现，用docker，就可以在一台服务器上跑多个应用了。先参考如下教程安装试试：
+
+[Nextcloud on Raspberry Pi 3 Setup](https://gist.github.com/morschesholz/b88fb9608aff7bd43027b265c16d461b) | [How to Install NextCloud on CentOS 7](https://www.vultr.com/docs/how-to-install-nextcloud-on-centos-7) | [How to Install Nextcloud with Nginx and PHP7-FPM on CentOS 7](https://www.howtoforge.com/tutorial/how-to-install-nextcloud-with-nginx-and-php-fpm-on-centos-7/)
+
+#### 3、在树莓派用owncloud实现
+
+树莓派系统是安装在tf卡上的，这是一种不可靠的，易损坏的介质。而且tf卡容量有限，所以，使用网络存储，比如内网的NAS或移动硬盘，就是更安全、更易于扩充的选择。
+
+目前我有两种选择，一种是在刷了梅林固件的路由器上挂移动硬盘，另一种是在树莓派上实现云存储。
+<pre>sudo apt-get install php5-gd php5-curl
+cd /var/www/html
+sudo wget https://download.owncloud.org/community/owncloud-9.1.4.tar.bz2
+sudo tar -jxvf owncloud-9.1.4.tar.bz2
+cd owncloud
+sudo mkdir data
+sudo chown -R www-data:www-data data
+sudo chown -R www-data:www-data config #为啥config、apps目录显示带底色？
+sudo chown -R www-data:www-data apps
+</pre>
+在chrome浏览器中输入地址`https://www.greydesign.tk/owncloud`进入配置界面，输入root：j2
+会提示`SQLite将被作为数据库使用`，出现错误界面：
+<pre>504 Gateway Time-out
+nginx/1.6.2
+</pre>
+刷新，网页自动变变成了`https://www.greydesign.tk/owncloud/index.php/login`，并提示错误：
+<pre>404 Not Found
+nginx/1.6.2
+</pre>
+
+<h4 id="4、梅林固件路由器挂U盘实现ftp服务"><a href="#4、梅林固件路由器挂U盘实现ftp服务" class="headerlink" title="4、梅林固件路由器挂U盘实现ftp服务"></a>4、梅林固件路由器挂U盘实现ftp服务</h4><p><a href="http://koolshare.cn/thread-97187-1-1.html" target="_blank" rel="noopener">梅林下iPhone自动备份照片、视频</a></p>
+<h4 id="5、梅林固件安装btsync"><a href="#5、梅林固件安装btsync" class="headerlink" title="5、梅林固件安装btsync"></a>5、梅林固件安装btsync</h4><h4 id="安装-amp-resilio（btsync）太消耗内存"><a href="#安装-amp-resilio（btsync）太消耗内存" class="headerlink" title="安装&amp;resilio（btsync）太消耗内存"></a><a href="http://koolshare.cn/thread-66180-1-1.html" target="_blank" rel="noopener">安装&amp;resilio（btsync）太消耗内存</a></h4><h4 id="参考网页"><a href="#参考网页" class="headerlink" title="参考网页"></a>参考网页</h4><p><a href="http://www.jianshu.com/p/efdacbaaa813" target="_blank" rel="noopener">在树莓派上建立owncloud网盘</a><br><a href="http://wixb50.github.io/2016/05/18/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BAowncloud/" target="_blank" rel="noopener">树莓派搭建ownCloud</a><br><a href="https://alexlee.cn/%E6%A0%91%E8%8E%93%E6%B4%BEraspberry-pi%E5%AE%89%E8%A3%85owncloud%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" target="_blank" rel="noopener">树莓派Raspberry Pi安装ownCloud搭建私有云服务器
+</a><a href="http://www.toutiao.com/a6422952658042716418/" target="_blank" rel="noopener">树莓派安装nextcloud个人私有云服务器</a><br><a href="http://disksing.com/docker-seafile" target="_blank" rel="noopener">使用Docker+Seafile搭建私有云存储</a><br><a href="https://segmentfault.com/a/1190000007884916" target="_blank" rel="noopener">部署Seafile搭建自己的网盘</a></p>
+<h3 id="五、路由器、NAS服务器——选择与DIY"><a href="#五、路由器、NAS服务器——选择与DIY" class="headerlink" title="五、路由器、NAS服务器——选择与DIY"></a>五、路由器、NAS服务器——选择与DIY</h3><p>路由器是最重要的家电，不能受制于厂商。</p>
+<p>当前网络已经融入到生活的血脉中，家庭上网的路由器就是一件可以提升生活品质的宝贝了。我在用的是Netgear R7000路由器，京东优惠699买的。<br>路由器品牌、价格众多，市场销量最大的应该是百元设备，那些千元级的路由器凭啥值那个价钱呢？通过Netgear R7000和小米路由器Pro（以下简称Pro）的比较，了解一下吧。<br>首先是硬件配置比较：</p>
+<pre>目前WiFi是802.11.ac，分为两种标准：SU-MIMO和MU-MIMO。R7000支持SU-MIMO，有三根天线（著名的华硕AC68U也是三根天线），Pro支持MU-MIMO，有四根天线。这说明R7000不如Pro吗？
+QoS支持，R7000和Pro都支持，似乎R7000官方固件最新版才支持智能QoS，梅林版本不支持，也就是不能针对设备设置上传、下载带宽？问题：如何配置优化？
+</pre>
+其次是软件配置比较：
+<pre>购买路由器，很重要的一点是能够刷梅林的固件，好处是可以摆脱官方路由的种种限制，自定义shadowsock服务等。Netgear R7000与华硕AC68U虽然硬件配置过时了一些，但由于有多种固件可以配置，一直属于强烈推荐的设备。
+我一直信奉的规则就是：没有好的软件支持，再好的硬件也是行尸走肉，早扔早清爽。目前我不太了解小米路由器的情况，如果不能刷梅林固件，我是不会考虑的。还有，听说小米路由器禁止SSH？那就是垃圾了！
+关于梅林固件，目前我用的是小宝版本，但是一直担心有后门，梅林固件只有小宝的好用吗？如何刷官方的梅林，是不是很多设置需要自己配置啊？
+当然，软件自由对最高的还是自己DIY路由器，软路由是不是终极解决方案，兼做多媒体服务器啥的是不是很好啊？
+</pre>
+
+<h4 id="1、梅林固件"><a href="#1、梅林固件" class="headerlink" title="1、梅林固件"></a>1、梅林固件</h4><p>下一步工作：</p>
+<blockquote>
+<p>1、小宝梅林固件开启ss-server，为何无法访问？</p>
+<p>2、梅林固件的Qos功能，可以查看目前的上网情况，需要进一步了解，比如白天设置了带宽限制，能不能在晚上取消限制呢？</p>
+<p>3、哪个是梅林官网？支持中文吗？<br>梅林固件是被华硕官方认可的，梅林HGG以及梅林小宝固件没有被官方认可。</p>
+</blockquote>
+<p>大部分的梅林用户根本不知道 asus-merlin，只知道 koolshare 的版本。明明是 GPL，koolshare 却不遵守。况且路由器作为网关，应该非常注重安全性，koolshare 的怎么会有这么多人用，而且 koolshare 也不怕 RMerlin 告它们?</p>
+<p><a href="http://www.52asus.com/thread-3027-1-1.html" target="_blank" rel="noopener"><span id="thread_subject">华硕官固，原版梅林，梅林HGG，及梅林小宝 之间关系</span></a> | <a href="http://koolshare.cn/thread-3578-1-1.html" target="_blank" rel="noopener">Asuswrt-merlin基本操作</a></p>
+<p>路由器刷小宝梅林固件，打造私人网络世界</p>
+<pre>京东促销Netgear R7000路由器，看评论能刷梅林，就下手买了。后来才知道，在树莓派上也可以安装shadowsocks client，以后有时间再试试。
+梅林固件占用的端口有：
+8080：远程管理；
+8081：Download master
+8081：Cloud Disk
+我怎么知道这几个端口的?我想把8080 Web interface改成8081、8082时，梅林提醒我的:)
+为了网络安全，通过远程访问路由器，还是开启https吧，http采用明码传输，想想都恐怖！
+具体设置菜单在系统管理中查找，web service改为HTTPS即可，缺省为8443端口。
+目前刷的是小宝梅林固件，根据大陆软件一切从疑的原则，小宝固件难免有后门，以后刷原版梅林固件吧。
+需要补充新买的路由器刷小宝固件的具体操作步骤！
+小宝梅林固件升版，有时要求：清除路由器配置、格式化jffs分区，可以参考如下教程：
+[简明网件R7000刷梅林固件教程](http://k162.space/r7000/)
+【系统管理 --&gt; 恢复/导出/上传设置页面】点击恢复按钮；
+【系统管理 --&gt; 固件升级】选择梅林固件，点上传，就会开始升级了；
+【系统管理 --&gt; 系统设置】，勾选两项JFFS2为“是”
+如果找不到路由器ip，可以通过“http://router.asus.com”访问。
+</pre>
+
+<h4 id="2、在路由器上添加usb存储设备"><a href="#2、在路由器上添加usb存储设备" class="headerlink" title="2、在路由器上添加usb存储设备"></a>2、在路由器上添加usb存储设备</h4><pre>路由器是Netgear R7000，先用U盘试一下，熟悉了以后，再挂USB移动硬盘。
+把一个16G Sandisk U盘插在路由器USB 3.0接口上，在路由器管理界面就能查看到USB 3.0设备，还不知道如何测试存取速度是否达到3.0的标准，看网上的文章，似乎有个设置，可以有效提高存取速度。为保证长期使用的兼容性，也需要将U盘格式化为与路由器系统一致的linux分区，而不是采用原来的Windows FAT32分区。
+</pre>
+
+<h4 id="3、OpenVPN，寻找回家的路（失败！）"><a href="#3、OpenVPN，寻找回家的路（失败！）" class="headerlink" title="3、OpenVPN，寻找回家的路（失败！）"></a>3、OpenVPN，寻找回家的路（失败！）</h4><p>为啥用OpenVPN？为了充分利用家里的路由器设置，愉快上网。进一步，也可以在家里浏览公司的内网，实现家与办公室的互联互通。</p>
+<p>具体配置很简单，在梅林固件中有<code>VPN---OpenVPN Server</code>选项，打开之后，简单配置，就可以构建安全回家的路！<br><code>高级配置</code>中，除少数项目，基本采用默认参数：</p>
+<p><pre>接口类型：TUN<br>通信协议：TCP<br>Server Port：1194<br>Username/Password Authentication：是<br>仅用户名 / 密码验证：是<br>附加 HMAC 验证：停用<br>Auth digest：default<br>VPN 子网 / 子网掩码：10.8.0.0 255.255.255.0<br>轮询间隔：0<br>允许客户端访问 LAN：是<br>允许客户端访问互联网：是<br>响应 DNS：是<br>广告 DNS 至客户端：否<br>加密密码：Defautl<br>压缩：智慧调整<br>TLS 重协调时间：-1<br>Global Log verbosity：3<br>管理客户端专项：否<br></pre><br>在<code>用户名称与密码</code>中添加用户名与密码，因为<code>管理客户端专项</code>没有打开，管理员<code>admin</code>不需要设置密码。应用本页设置后，导出 OpenVPN 设置文件，由于<code>Server instance</code>是<code>Client1</code>，所以配置文件名是<code>client1.opvn</code>，这个文件可以分发给用户。</p>
+<p>打开手机OpenVPN客户端，导入配置文件，就可以通过家里的服务端上网了，非常惊喜的是youtube都能顺畅使用。想实现手机连接自家服务器不使用手机流量，还需要加入免流代码，这是利用了联通免流量服务的漏洞实现的，比如抓取网易云音乐的免流通讯端口，这种非法的事情就算了，不需要进一步研究了。</p>
+<p>在公司配置OpenVPN客户端，就可以通过家里的路由器上网了，上网自由度与在家里一样的哦。兴冲冲到办公室装上OpenVPN客户端，导入配置文件，结果连接失败！初步估计了一下，估计和多年前的那个windows路由有关系。参考网址：<br><a href="http://www.firsthelp.cc/?ask-35954" target="_blank" rel="noopener">Windows系统怎么添加路由表？</a><br><a href="http://firsthelp.cc/?ask-42718" target="_blank" rel="noopener">公司网络环境实现不同的网段相互访问怎么解决？</a></p>
+<h4 id="4、其他"><a href="#4、其他" class="headerlink" title="4、其他"></a>4、其他</h4><p>其实树莓派比刷了梅林固件的路由器性能强，拓展性更好，这是下一步的研究方向。由于配置起来麻烦，需要懂很多Linux以及网络知识。</p>
+<p>外网为啥ping不通我的路由器</p>
+<p><pre>在公司ping自己的路由器域名，显示请求超时timeout，在路由器管理界面中，将树莓派通过DMZ暴露出来，就ping通了，延时大约4ms，非常不错。<br>问题来了，ping是请求路由器的哪个端口？查看我的路由器防火墙设置，响应ping要求选项是否，应该是把网络层的ICMP关闭了。而TCP/UDP以及端口是传输层的，和ping关系不大。<br>参考文章：<br><a href="http://blog.csdn.net/a351945755/article/details/22699985" target="_blank" rel="noopener">PING需要利用到哪些端口？</a><br></pre><br>学习linux知识，为以后搭建自己的的强大路由器做准备：<a href="http://lgiki.xyz/2016/07/22/RaspBerry-Router/" target="_blank" rel="noopener">利用Openwrt制作一台树莓派路由器</a><br>如何进行路由器性能测试：</p>
+<p><pre>Testspeed<br></pre><br>为何Q啥的开关是啥意思？</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/07/e6-97-a5-e6-9c-ac-e5-87-ba-e5-8f-a3-e6-9c-bahj55n8700u-e6-a0-87-e7-89-8c-e8-ae-be-e8-ae-a1-e6-b5-81-e7-a8-8b/" rel="next" title="2017-HJ55N8700U设计总结">
+                <i class="fa fa-chevron-left"></i> 2017-HJ55N8700U设计总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/15/e5-9c-a8windows-10-e4-b8-ad-e5-90-af-e7-94-a8linux-shell/" rel="prev" title="在windows 10中启用linux shell">
+                在windows 10中启用linux shell <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、音乐服务器——树莓派做数字转盘DIY"><span class="nav-number">1.</span> <span class="nav-text">一、音乐服务器——树莓派做数字转盘DIY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、视频服务器——视频娱乐机顶盒选择与DIY"><span class="nav-number">2.</span> <span class="nav-text">二、视频服务器——视频娱乐机顶盒选择与DIY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、云笔记——树莓派用leanote实现私有云：笔记、文件"><span class="nav-number">3.</span> <span class="nav-text">三、云笔记——树莓派用leanote实现私有云：笔记、文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4、梅林固件路由器挂U盘实现ftp服务"><span class="nav-number">3.1.</span> <span class="nav-text">4、梅林固件路由器挂U盘实现ftp服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5、梅林固件安装btsync"><span class="nav-number">3.2.</span> <span class="nav-text">5、梅林固件安装btsync</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-amp-resilio（btsync）太消耗内存"><span class="nav-number">3.3.</span> <span class="nav-text">安装&amp;resilio（btsync）太消耗内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考网页"><span class="nav-number">3.4.</span> <span class="nav-text">参考网页</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、路由器、NAS服务器——选择与DIY"><span class="nav-number">4.</span> <span class="nav-text">五、路由器、NAS服务器——选择与DIY</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、梅林固件"><span class="nav-number">4.1.</span> <span class="nav-text">1、梅林固件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、在路由器上添加usb存储设备"><span class="nav-number">4.2.</span> <span class="nav-text">2、在路由器上添加usb存储设备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、OpenVPN，寻找回家的路（失败！）"><span class="nav-number">4.3.</span> <span class="nav-text">3、OpenVPN，寻找回家的路（失败！）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、其他"><span class="nav-number">4.4.</span> <span class="nav-text">4、其他</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Google提供Fastboot和ADB单独下载服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 入门之ADB">
+<meta property="og:url" content="http://yoursite.com/2017/08/25/meizu-pro5-e4-b8-8d-e6-98-af-e6-9c-89-e4-b8-93-e4-b8-9a-e8-8a-af-e7-89-87-e5-90-97-ef-bc-8c-e4-b8-ba-e5-95-a5-e5-90-ac-e6-84-9f-e5-a6-82-e6-ad-a4-e5-b7-ae-ef-bc-9f/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Google提供Fastboot和ADB单独下载服务">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.890Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 入门之ADB">
+<meta name="twitter:description" content="Google提供Fastboot和ADB单独下载服务">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/25/meizu-pro5-e4-b8-8d-e6-98-af-e6-9c-89-e4-b8-93-e4-b8-9a-e8-8a-af-e7-89-87-e5-90-97-ef-bc-8c-e4-b8-ba-e5-95-a5-e5-90-ac-e6-84-9f-e5-a6-82-e6-ad-a4-e5-b7-ae-ef-bc-9f/"/>
+
+
+
+
+
+  <title>Android 入门之ADB | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/25/meizu-pro5-e4-b8-8d-e6-98-af-e6-9c-89-e4-b8-93-e4-b8-9a-e8-8a-af-e7-89-87-e5-90-97-ef-bc-8c-e4-b8-ba-e5-95-a5-e5-90-ac-e6-84-9f-e5-a6-82-e6-ad-a4-e5-b7-ae-ef-bc-9f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android 入门之ADB</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-25T11:37:05+08:00">
+                2017-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://www.cnbeta.com/articles/tech/574639.htm" target="_blank" rel="noopener">Google提供Fastboot和ADB单独下载服务</a><br><a id="more"></a></p>
+<h3 id="一、ADB（全称Android-Debug-Bridge）"><a href="#一、ADB（全称Android-Debug-Bridge）" class="headerlink" title="一、ADB（全称Android Debug Bridge）"></a>一、ADB（全称Android Debug Bridge）</h3><p>ADB是一个客户端-服务器端程序, 其中客户端是你用来操作的电脑, 服务器端是android设备。ADB主要功能有:</p>
+<blockquote>
+<p>1、在Android设备上运行Shell(命令行)</p>
+<p>2、管理模拟器或设备的端口映射</p>
+<p>3、在计算机和设备之间上传/下载文件</p>
+<p>4、将电脑上的本地APK软件安装至Android模拟器或设备上<br><a href="https://dl.google.com/android/repository/platform-tools-latest-windows.zip" target="_blank" rel="noopener">Google官方ADB下载</a> #含fastboot</p>
+</blockquote>
+<h4 id="1、ADB本地USB连接Android手机："><a href="#1、ADB本地USB连接Android手机：" class="headerlink" title="1、ADB本地USB连接Android手机："></a>1、ADB本地USB连接Android手机：</h4><p>准备工作：手机打开usb调试，本电脑需要驱动程序（似乎Windows10不需要？）</p>
+<blockquote>
+<p>adb devices #查看连接设备</p>
+<p>adb shell #登录设备shell，adb shell &lt;command命令&gt;是直接运行设备命令, 相当于执行远程命令</p>
+<p>adb install &lt;apk文件路径&gt; #安装手机应用，注意apk路径是PC的，系统app用adb push安装</p>
+<p>adb uninstall &lt;软件名&gt; #卸载手机程序，加 -k 参数,为卸载软件但是保留配置和缓存文件</p>
+<p>adb pull 手机文件地址 PC本地目录 #从PC向手机复制文件</p>
+<p>adb pull PC本地目录 手机文件地址 #从手机向PC复制文件</p>
+<p>adb root #获得root权限<br>常用adb终端命令：<br>mount #查看分区</p>
+<p>pwd</p>
+<p>ls -l</p>
+<p>sqlite3 #访问数据库</p>
+</blockquote>
+<h4 id="2、ADB局域网-wifi-连接Android手机："><a href="#2、ADB局域网-wifi-连接Android手机：" class="headerlink" title="2、ADB局域网 wifi 连接Android手机："></a>2、ADB局域网 wifi 连接Android手机：</h4><blockquote>
+<p>adb connect 192.108.1.165 #目标计算机端口 5555 积极拒绝，无法连接，如何授权端口呢？</p>
+</blockquote>
+<h4 id="3、ADB远程连接Android手机"><a href="#3、ADB远程连接Android手机" class="headerlink" title="3、ADB远程连接Android手机"></a>3、ADB远程连接Android手机</h4><p>参考：</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/meil/archive/2012/05/24/2516055.html" target="_blank" rel="noopener">Android开发调试工具ADB的使用</a></p>
+</blockquote>
+<h4 id="4、魅族手机Pro5如何建立与adb连接："><a href="#4、魅族手机Pro5如何建立与adb连接：" class="headerlink" title="4、魅族手机Pro5如何建立与adb连接："></a>4、魅族手机Pro5如何建立与adb连接：</h4><blockquote>
+<p>1、下载<a href="https://developer.android.com/studio/releases/platform-tools.html" target="_blank" rel="noopener">官方SDK包</a>，内含adb工具 #似乎用Google官方adb就可以了，一下内容仅用于记录，不建议</p>
+<p>2、手机通过USB线与笔记本连接，切换到内置光盘模式；</p>
+<p>3、在目录“用户/.android”下建立”adb_usb.ini”文件，写入一行文本“0x2a45”，在硬件管理中安装设备“Android ADB Interface”；</p>
+<p>4、打开手机usb调试：在设置-&gt;关于菜单，连击“版本号”7次（就是网上说的build number ），辅助功能内就能看到开发者选项了，打开里面的USB调试；</p>
+<p>adb kill-server</p>
+<p>adb devices #查看是否成功连接手机，我的手机返回：860BDMK229UB device<br>问题：开启USB调试会提示计算机的密钥指纹如下，是我的笔记本的？有啥用呢？可以用其他方法查看吗？需要保密吗？<br>允许USB调试</p>
+<p>这台计算机的RSA密钥指纹为：6B:17:DB:E8:14:87:FE:DD:EA:FC:40:3C:C8:E4:B3:D8</p>
+</blockquote>
+<h4 id="5、ADB技巧之解决端口占用问题："><a href="#5、ADB技巧之解决端口占用问题：" class="headerlink" title="5、ADB技巧之解决端口占用问题："></a>5、ADB技巧之解决端口占用问题：</h4><p>参考 <a href="http://www.2cto.com/kf/201408/329972.html" target="_blank" rel="noopener">android——解决端口占用问题导致的模拟器无法识别</a></p>
+<blockquote>
+<p>看看你电脑的5037端口有没有被占用</p>
+<p>netstat -ano | findstr “5037”</p>
+<p>如果被占用，会出现一个pid端口号，如7124</p>
+<p>然后用</p>
+<p>tasklist | findstr “7124”</p>
+<p>查看占用端口的进程名称，然后打开任务管理器，找到进程所在的位置，确认是哪个软件带过来的。</p>
+<p>此外看看你的adb版本信息</p>
+<p>adb version</p>
+</blockquote>
+<h4 id="6、ADB技巧之无线连接、录制屏幕视频"><a href="#6、ADB技巧之无线连接、录制屏幕视频" class="headerlink" title="6、ADB技巧之无线连接、录制屏幕视频"></a>6、ADB技巧之<a href="http://www.jianshu.com/p/a2562ff273d4" target="_blank" rel="noopener">无线连接、录制屏幕视频</a></h4><h4 id="7、ADB技巧之提取手机中已安装应用的apk"><a href="#7、ADB技巧之提取手机中已安装应用的apk" class="headerlink" title="7、ADB技巧之提取手机中已安装应用的apk"></a>7、ADB技巧之<a href="http://wiki.jikexueyuan.com/project/android-actual-combat-skills/adb-remove-the-apk-installed-on-the-phone.html" target="_blank" rel="noopener">提取手机中已安装应用的apk</a></h4><h4 id="8、实现Android-app-沉浸模式"><a href="#8、实现Android-app-沉浸模式" class="headerlink" title="8、实现Android app 沉浸模式"></a>8、实现Android app 沉浸模式</h4><p><a href="http://www.howtoip.com/how-to-force-any-android-app-into-fullscreen-immersive-mode-without-rooting/" target="_blank" rel="noopener">如何强制任何Android应用程序进入全屏沉浸式（无根）</a><br><a href="https://m.sohu.com/n/364808217/" target="_blank" rel="noopener">如何打开Android版Chrome Beta隐藏的全屏模式?</a></p>
+<h4 id="9、Python之微信跳一跳游戏外挂"><a href="#9、Python之微信跳一跳游戏外挂" class="headerlink" title="9、Python之微信跳一跳游戏外挂"></a>9、Python之微信跳一跳游戏外挂</h4><p>通过外挂玩微信跳一跳破朋友圈记录</p>
+<p>需要学习通过python控制手机的方法，可以用来输入超复杂密码，可以用来滑动解锁吗？<br><!--more--></p>
+<blockquote>
+<p>下载<a href="https://github.com/wangshub/wechat_jump_game/releases" target="_blank" rel="noopener">stop_jump</a></p>
+<p>用自己的adb子文件夹覆盖辅助程序的adb</p>
+<p>运行<code>stop_jump1_1_2.exe</code>，手机会通过usb连接电脑自动玩游戏，直到破纪录！<br>屏幕坐标知识：<br>打开手机<code>开发者选项</code>的<code>指针位置</code>开关 #屏幕顶端会显示触摸点的dx、dy，坐标系原点在左上角，向右为x，向下为y，比如魅族Pro5，分辨率为1080*1920<br>通过adb实现触摸屏幕动作模拟<br>adb shell input tap 540 960 #点击屏幕中央</p>
+<p>adb shell input swipe 100 100 980 1820 300 #从（100,100）滑到（980,1820），也就是从左上滑到右下，用时300毫秒</p>
+<p>adb shell input swipe 300 500 300 500 80 #点击（300，500）80毫秒<br>按键<br>adb shell input keyevent 26 #按压电源键，也可以 adb shell input KEYCODE_POWER<br>删除密码<br>adb shell rm /data/system/access_control.key</p>
+<p>adb shell rm /data/system/password.key</p>
+<p>adb shell rm /data/sysem/gesture.key</p>
+<p>adb shell reboot -p<br>作者：匿名用户<br>链接：<a href="https://www.zhihu.com/question/33643084/answer/69185165" target="_blank" rel="noopener">https://www.zhihu.com/question/33643084/answer/69185165</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<br><a href="https://github.com/wangshub/wechat_jump_game" target="_blank" rel="noopener">python 微信《跳一跳》辅助</a><br><a href="http://blog.bihe0832.com/adb-shell-input.html" target="_blank" rel="noopener">adb shell input（Android模拟输入）简单总结</a><br><a href="http://blog.csdn.net/soslinken/article/details/49587497" target="_blank" rel="noopener">Android adb input 命令介绍</a><br><a href="http://30daydo.com/article/194" target="_blank" rel="noopener">破解安卓锁屏图案</a></p>
+</blockquote>
+<h3 id="二、FastBoot"><a href="#二、FastBoot" class="headerlink" title="二、FastBoot"></a>二、FastBoot</h3><h3 id="三、国产Android手机刷GMS"><a href="#三、国产Android手机刷GMS" class="headerlink" title="三、国产Android手机刷GMS"></a>三、国产Android手机刷GMS</h3><p><a href="http://blog.bflyer.com/2017/07/23/记一次OPPO-R9s刷机过程/" target="_blank" rel="noopener">http://blog.bflyer.com/2017/07/23/记一次OPPO-R9s刷机过程/</a></p>
+<p><a href="http://www.shuajibang.net/news/detail/2457" target="_blank" rel="noopener">http://www.shuajibang.net/news/detail/2457</a></p>
+<p><a href="http://www.miui.com/thread-4726917-1-1.html" target="_blank" rel="noopener">http://www.miui.com/thread-4726917-1-1.html</a></p>
+<p><a href="http://www.oppo.cn/thread-44279219-1" target="_blank" rel="noopener">http://www.oppo.cn/thread-44279219-1</a></p>
+<p><a href="http://www.mz6.net/news/android/7939.html" target="_blank" rel="noopener">http://www.mz6.net/news/android/7939.html</a></p>
+<p><a href="https://g.pconline.com.cn/bbs/topic-53397181.html" target="_blank" rel="noopener">https://g.pconline.com.cn/bbs/topic-53397181.html</a></p>
+<h3 id="adb"><a href="#adb" class="headerlink" title="adb"></a>adb</h3><h3 id="Android-N"><a href="#Android-N" class="headerlink" title="Android N"></a>Android N</h3><p><a href="http://bbs.flyme.cn/thread-1922151-1-1.html、" target="_blank" rel="noopener">http://bbs.flyme.cn/thread-1922151-1-1.html、</a></p>
+<h3 id="GMS"><a href="#GMS" class="headerlink" title="GMS"></a>GMS</h3><p>国际大厂魅族在谷歌发布Android 8的同一天，发布了Android N测试版！<br>趁中午休息给我的Pro5装上，直观的优点是屏幕变靓丽了，微信可以双开。<br>晚上回家，花费数小时安装谷歌全家桶，也就是GMS，用了国内各一键安装软件，各种安装失败！姑且还不说可能有后门！<br>目前中国大陆地区，目前所有行货手机都不能通过GMS认证。（没有例外？）<br>GMS主要包含三项：</p>
+<blockquote>
+<p>谷歌框架：Google Framework</p>
+<p>谷歌商店服务：Google Services</p>
+<p>谷歌商店：Google Play<br>成功与否，与版本、安装顺序有关系！</p>
+</blockquote>
+<p>Pro5 Android 5.1对应的GMS版本：</p>
+<blockquote>
+<p>Google服务框架：5.1.1-1965118</p>
+<p>Google Play 服务：10.2.98(248-146496160)</p>
+<p>Google Play 商店：8.0.73.R-all[0][PR]162689464<br><a href="http://www.williamlong.info/archives/3765.html" target="_blank" rel="noopener">Google为什么要限制GMS</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/25/e4-b8-80-e4-ba-9b-e4-ba-92-e8-81-94-e7-bd-91-e6-96-b0-e6-a6-82-e5-bf-b5/" rel="next" title="一些互联网新概念">
+                <i class="fa fa-chevron-left"></i> 一些互联网新概念
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/26/e4-bb-80-e4-b9-88-e6-98-af-e7-99-bd-e5-b7-a6/" rel="prev" title="为什么我们讨厌白左">
+                为什么我们讨厌白左 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、ADB（全称Android-Debug-Bridge）"><span class="nav-number">1.</span> <span class="nav-text">一、ADB（全称Android Debug Bridge）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、ADB本地USB连接Android手机："><span class="nav-number">1.1.</span> <span class="nav-text">1、ADB本地USB连接Android手机：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、ADB局域网-wifi-连接Android手机："><span class="nav-number">1.2.</span> <span class="nav-text">2、ADB局域网 wifi 连接Android手机：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、ADB远程连接Android手机"><span class="nav-number">1.3.</span> <span class="nav-text">3、ADB远程连接Android手机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、魅族手机Pro5如何建立与adb连接："><span class="nav-number">1.4.</span> <span class="nav-text">4、魅族手机Pro5如何建立与adb连接：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5、ADB技巧之解决端口占用问题："><span class="nav-number">1.5.</span> <span class="nav-text">5、ADB技巧之解决端口占用问题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6、ADB技巧之无线连接、录制屏幕视频"><span class="nav-number">1.6.</span> <span class="nav-text">6、ADB技巧之无线连接、录制屏幕视频</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7、ADB技巧之提取手机中已安装应用的apk"><span class="nav-number">1.7.</span> <span class="nav-text">7、ADB技巧之提取手机中已安装应用的apk</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8、实现Android-app-沉浸模式"><span class="nav-number">1.8.</span> <span class="nav-text">8、实现Android app 沉浸模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9、Python之微信跳一跳游戏外挂"><span class="nav-number">1.9.</span> <span class="nav-text">9、Python之微信跳一跳游戏外挂</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、FastBoot"><span class="nav-number">2.</span> <span class="nav-text">二、FastBoot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、国产Android手机刷GMS"><span class="nav-number">3.</span> <span class="nav-text">三、国产Android手机刷GMS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#adb"><span class="nav-number">4.</span> <span class="nav-text">adb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-N"><span class="nav-number">5.</span> <span class="nav-text">Android N</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GMS"><span class="nav-number">6.</span> <span class="nav-text">GMS</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

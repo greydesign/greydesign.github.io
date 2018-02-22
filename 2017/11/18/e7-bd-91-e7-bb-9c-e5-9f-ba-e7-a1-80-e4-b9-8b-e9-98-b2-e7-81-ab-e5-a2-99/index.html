@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="博客文章渐多，条理性就凸显重要了。计划把文章分成小块，主题与内容鲜明、简洁一些。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络基础之防火墙">
+<meta property="og:url" content="http://yoursite.com/2017/11/18/e7-bd-91-e7-bb-9c-e5-9f-ba-e7-a1-80-e4-b9-8b-e9-98-b2-e7-81-ab-e5-a2-99/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="博客文章渐多，条理性就凸显重要了。计划把文章分成小块，主题与内容鲜明、简洁一些。">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.892Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络基础之防火墙">
+<meta name="twitter:description" content="博客文章渐多，条理性就凸显重要了。计划把文章分成小块，主题与内容鲜明、简洁一些。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/18/e7-bd-91-e7-bb-9c-e5-9f-ba-e7-a1-80-e4-b9-8b-e9-98-b2-e7-81-ab-e5-a2-99/"/>
+
+
+
+
+
+  <title>网络基础之防火墙 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/18/e7-bd-91-e7-bb-9c-e5-9f-ba-e7-a1-80-e4-b9-8b-e9-98-b2-e7-81-ab-e5-a2-99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">网络基础之防火墙</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-18T10:58:26+08:00">
+                2017-11-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/" itemprop="url" rel="index">
+                    <span itemprop="name">IoT</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/Network/VPS/" itemprop="url" rel="index">
+                    <span itemprop="name">VPS</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IoT/Network/VPS/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>博客文章渐多，条理性就凸显重要了。计划把文章分成小块，主题与内容鲜明、简洁一些。</p>
+<a id="more"></a>
+<h4 id="零、防火墙介绍"><a href="#零、防火墙介绍" class="headerlink" title="零、防火墙介绍"></a>零、防火墙介绍</h4><blockquote>
+<p>防火墙是计算机防止网络攻击的重要屏障。</p>
+<p>修改网络配置，比如改变某些软件服务的端口，不要忘了防火墙的屏蔽多用，可能需要手工开启。</p>
+<p>各个平台都提供了方便的工具来设置防火墙，如Ubuntu的ufw，CentOS的firewalld。</p>
+</blockquote>
+<h4 id="一、R7000路由器小宝梅林固件下的防火墙"><a href="#一、R7000路由器小宝梅林固件下的防火墙" class="headerlink" title="一、R7000路由器小宝梅林固件下的防火墙"></a>一、R7000路由器小宝梅林固件下的防火墙</h4><blockquote>
+<h1 id="iptables-L-grep-8443-梅林管理端口由8443改为8441后，8443查询不到"><a href="#iptables-L-grep-8443-梅林管理端口由8443改为8441后，8443查询不到" class="headerlink" title="iptables -L | grep 8443 #梅林管理端口由8443改为8441后，8443查询不到"></a>iptables -L | grep 8443 #梅林管理端口由8443改为8441后，8443查询不到</h1><h1 id="iptables-I-INPUT-p-tcp-–dport-8443-j-ACCEPT-添加8443端口，注意dport前是两条横！"><a href="#iptables-I-INPUT-p-tcp-–dport-8443-j-ACCEPT-添加8443端口，注意dport前是两条横！" class="headerlink" title="iptables -I INPUT -p tcp –dport 8443 -j ACCEPT #添加8443端口，注意dport前是两条横！"></a>iptables -I INPUT -p tcp –dport 8443 -j ACCEPT #添加8443端口，注意dport前是两条横！</h1><h1 id="iptables-I-INPUT-p-udp-–dport-8443-j-ACCEPT"><a href="#iptables-I-INPUT-p-udp-–dport-8443-j-ACCEPT" class="headerlink" title="iptables -I INPUT -p udp –dport 8443 -j ACCEPT"></a>iptables -I INPUT -p udp –dport 8443 -j ACCEPT</h1><h1 id="iptables-L-grep-8443"><a href="#iptables-L-grep-8443" class="headerlink" title="iptables -L | grep 8443"></a>iptables -L | grep 8443</h1><p>_          ACCEPT udp – anywhere anywhere udp dpt:8443_</p>
+<p>_          ACCEPT tcp – anywhere anywhere tcp dpt:8443_</p>
+<h1 id="service-iptables-save-为啥提示错误？"><a href="#service-iptables-save-为啥提示错误？" class="headerlink" title="service iptables save #为啥提示错误？_"></a>service iptables save #为啥提示错误？_</h1><p>_<br>问题：QNAP如果突破路由器的端口？</p>
+</blockquote>
+<p><a href="http://koolshare.cn/thread-60991-1-1.html" target="_blank" rel="noopener">请问51413端口 （Transmission）在哪里设置打开？</a></p>
+<h4 id="二、树莓派debian下的防火墙"><a href="#二、树莓派debian下的防火墙" class="headerlink" title="二、树莓派debian下的防火墙"></a>二、树莓派debian下的防火墙</h4><p>用 _iptables _查看防火墙状态，竟然没有！所有端口都是开放的，如果把树莓派放在WLAN，危险性还是很大的</p>
+<blockquote>
+<p>$ sudo service iptables status</p>
+<p>● iptables.service</p>
+<p>Loaded: not-found (Reason: No such file or directory)</p>
+<p>Active: inactive (dead)<br><a href="http://www.cnblogs.com/jikexianfeng/p/6899572.html" target="_blank" rel="noopener">树莓派UFW防火墙简单设置</a><br>$ sudo apt-get install ufw</p>
+<p>$ sudo ufw status</p>
+<p>$ sudo ufw allow from 192.168.1.165 #允许我的笔记本从内网访问树莓派的所有端口，避免无法连接的尴尬！</p>
+<p>$ sudo ufw enable #会警告干扰ssh连接，完成后，防火墙状态显示只有允许笔记本连接，其他都被屏蔽了：</p>
+<p>_          To                 Action        From_</p>
+<p>_          Anywhere__    ALLOW      192.168.1.165_</p>
+<p>$ sudo ufw default deny #并没有改变防火墙规则，为啥？</p>
+<p>$ sudo ufw allow 80 #打开http端口（含v6）</p>
+<p>$ sudo ufw allow 22 #打开ssh端口</p>
+<p>$ sudo ufw allow 443 #打开https端口</p>
+<p>$ sudo ufw allow 8443<br>&nbsp;</p>
+</blockquote>
+<h4 id="三、CentOS下的防火墙"><a href="#三、CentOS下的防火墙" class="headerlink" title="三、CentOS下的防火墙"></a>三、CentOS下的防火墙</h4><p>firewalld的命令（注意参数都是两条横杠，不是一条！）</p>
+<p>运行、停止、禁用firewalld</p>
+<blockquote>
+<p>启动：# systemctl start firewalld</p>
+<p>重启：# systemctl restart firewalld</p>
+<p>查看状态：# systemctl status firewalld 或者 firewall-cmd –state</p>
+<p>停止：# systemctl disable firewalld</p>
+<p>禁用：# systemctl stop firewalld<br>配置firewalld<br>查看版本：$ firewall-cmd –version</p>
+<p>查看帮助：$ firewall-cmd –help</p>
+<p>显示状态：$ firewall-cmd –state</p>
+<p>查看区域信息: $ firewall-cmd –get-active-zones</p>
+<p>查看指定接口所属区域：$ firewall-cmd –get-zone-of-interface=eth0</p>
+<p>拒绝所有包：# firewall-cmd –panic-on</p>
+<p>取消拒绝状态：# firewall-cmd –panic-off</p>
+<p>查看是否拒绝：$ firewall-cmd –query-panic</p>
+<p>更新防火墙规则：</p>
+<h1 id="firewall-cmd-–reload"><a href="#firewall-cmd-–reload" class="headerlink" title="firewall-cmd –reload"></a>firewall-cmd –reload</h1><h1 id="firewall-cmd-–complete-reload"><a href="#firewall-cmd-–complete-reload" class="headerlink" title="firewall-cmd –complete-reload"></a>firewall-cmd –complete-reload</h1><p>两者的区别就是第一个无需断开连接，就是firewalld特性之一动态添加规则，第二个需要断开连接，类似重启服务</p>
+<p>将接口添加到区域，默认接口都在public</p>
+<h1 id="firewall-cmd-–zone-public-–add-interface-eth0"><a href="#firewall-cmd-–zone-public-–add-interface-eth0" class="headerlink" title="firewall-cmd –zone=public –add-interface=eth0"></a>firewall-cmd –zone=public –add-interface=eth0</h1><p>永久生效再加上 –permanent 然后reload防火墙</p>
+<p>设置默认接口区域</p>
+<h1 id="firewall-cmd-–set-default-zone-public"><a href="#firewall-cmd-–set-default-zone-public" class="headerlink" title="firewall-cmd –set-default-zone=public"></a>firewall-cmd –set-default-zone=public</h1><p>立即生效无需重启</p>
+<p>打开端口（貌似这个才最常用）</p>
+<p>查看dmz区域打开的端口：</p>
+<h1 id="firewall-cmd-–zone-dmz-–list-ports-一般缺省区域是public"><a href="#firewall-cmd-–zone-dmz-–list-ports-一般缺省区域是public" class="headerlink" title="firewall-cmd –zone=dmz –list-ports #一般缺省区域是public"></a>firewall-cmd –zone=dmz –list-ports #一般缺省区域是public</h1><p>加入一个端口到dmz区域：</p>
+<h1 id="firewall-cmd-–zone-dmz-–add-port-8080-tcp"><a href="#firewall-cmd-–zone-dmz-–add-port-8080-tcp" class="headerlink" title="firewall-cmd –zone=dmz –add-port=8080/tcp"></a>firewall-cmd –zone=dmz –add-port=8080/tcp</h1><p>若要永久生效方法同上</p>
+<p>打开一个服务，类似于将端口可视化，服务需要在配置文件中添加，/etc/firewalld 目录下有services文件夹，这个不详细说了，详情参考文档</p>
+<h1 id="firewall-cmd-–zone-work-–add-service-smtp"><a href="#firewall-cmd-–zone-work-–add-service-smtp" class="headerlink" title="firewall-cmd –zone=work –add-service=smtp"></a>firewall-cmd –zone=work –add-service=smtp</h1><p>移除服务</p>
+<h1 id="firewall-cmd-–zone-work-–remove-service-smtp"><a href="#firewall-cmd-–zone-work-–remove-service-smtp" class="headerlink" title="firewall-cmd –zone=work –remove-service=smtp"></a>firewall-cmd –zone=work –remove-service=smtp</h1><p>管理VPS的防火墙设置，详见本博客博文 <a href="https://www.greydesign.tk/?p=79" target="_blank" rel="noopener">通过VPS看这美丽的世界</a> ，中关于增加ss端口，需要打开防火墙的实践（iptables是centos6的命令，过时了）。<br>iptables -I INPUT -p tcp –dport 9001:9005 -j ACCEPT #开启9001~9005端口防火墙</p>
+<p>iptables -I INPUT -p udb –dport 9001:9005 -j ACCEPT</p>
+</blockquote>
+<h4 id="四、管理docker防火墙设置"><a href="#四、管理docker防火墙设置" class="headerlink" title="四、管理docker防火墙设置"></a>四、管理docker防火墙设置</h4><p>参考 ： <a href="https://www.binss.me/blog/docker-pass-through-system-firewall/" target="_blank" rel="noopener">无视系统防火墙的docker</a> ，可以查看docker的防火墙状态：</p>
+<blockquote>
+<p>sudo iptables -L DOCKER #CentOS查看docker开启的防火墙端口</p>
+</blockquote>
+<h4 id="五、Windows下的防火墙"><a href="#五、Windows下的防火墙" class="headerlink" title="五、Windows下的防火墙"></a>五、Windows下的防火墙</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/10/e8-bf-99-e5-87-a0-e5-a4-a9-e6-97-a0-e6-b3-95-e4-bb-8e-e5-85-ac-e5-8f-b8-e7-94-b5-e8-84-91-e4-bb-a5-e5-8f-8a-e6-89-8b-e6-9c-ba-e8-ae-bf-e9-97-ae-e6-88-91-e7-9a-84-e6-a0-91-e8-8e-93-e6-b4-be-e6-9c-8d/" rel="next" title="世界，你好！如何通过家庭宽带搭建个人服务器">
+                <i class="fa fa-chevron-left"></i> 世界，你好！如何通过家庭宽带搭建个人服务器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/26/e7-bd-91-e7-bb-9c-e5-9f-ba-e7-a1-80-e4-b9-8b-e6-9f-a5-e8-af-a2-e5-91-bd-e4-bb-a4/" rel="prev" title="网络基础之查询命令">
+                网络基础之查询命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#零、防火墙介绍"><span class="nav-number">1.</span> <span class="nav-text">零、防火墙介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一、R7000路由器小宝梅林固件下的防火墙"><span class="nav-number">2.</span> <span class="nav-text">一、R7000路由器小宝梅林固件下的防火墙</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#iptables-L-grep-8443-梅林管理端口由8443改为8441后，8443查询不到"><span class="nav-number"></span> <span class="nav-text">iptables -L | grep 8443 #梅林管理端口由8443改为8441后，8443查询不到</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#iptables-I-INPUT-p-tcp-–dport-8443-j-ACCEPT-添加8443端口，注意dport前是两条横！"><span class="nav-number"></span> <span class="nav-text">iptables -I INPUT -p tcp –dport 8443 -j ACCEPT #添加8443端口，注意dport前是两条横！</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#iptables-I-INPUT-p-udp-–dport-8443-j-ACCEPT"><span class="nav-number"></span> <span class="nav-text">iptables -I INPUT -p udp –dport 8443 -j ACCEPT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#iptables-L-grep-8443"><span class="nav-number"></span> <span class="nav-text">iptables -L | grep 8443</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#service-iptables-save-为啥提示错误？"><span class="nav-number"></span> <span class="nav-text">service iptables save #为啥提示错误？_</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#二、树莓派debian下的防火墙"><span class="nav-number">1.</span> <span class="nav-text">二、树莓派debian下的防火墙</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、CentOS下的防火墙"><span class="nav-number">2.</span> <span class="nav-text">三、CentOS下的防火墙</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#firewall-cmd-–reload"><span class="nav-number"></span> <span class="nav-text">firewall-cmd –reload</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#firewall-cmd-–complete-reload"><span class="nav-number"></span> <span class="nav-text">firewall-cmd –complete-reload</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#firewall-cmd-–zone-public-–add-interface-eth0"><span class="nav-number"></span> <span class="nav-text">firewall-cmd –zone=public –add-interface=eth0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#firewall-cmd-–set-default-zone-public"><span class="nav-number"></span> <span class="nav-text">firewall-cmd –set-default-zone=public</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#firewall-cmd-–zone-dmz-–list-ports-一般缺省区域是public"><span class="nav-number"></span> <span class="nav-text">firewall-cmd –zone=dmz –list-ports #一般缺省区域是public</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#firewall-cmd-–zone-dmz-–add-port-8080-tcp"><span class="nav-number"></span> <span class="nav-text">firewall-cmd –zone=dmz –add-port=8080/tcp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#firewall-cmd-–zone-work-–add-service-smtp"><span class="nav-number"></span> <span class="nav-text">firewall-cmd –zone=work –add-service=smtp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#firewall-cmd-–zone-work-–remove-service-smtp"><span class="nav-number"></span> <span class="nav-text">firewall-cmd –zone=work –remove-service=smtp</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#四、管理docker防火墙设置"><span class="nav-number">1.</span> <span class="nav-text">四、管理docker防火墙设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、Windows下的防火墙"><span class="nav-number">2.</span> <span class="nav-text">五、Windows下的防火墙</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

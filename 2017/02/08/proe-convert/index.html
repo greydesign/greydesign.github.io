@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="如果设计软件初始配置良好，工作起来就会得心应手。本文记录的是实际应用中的配置点滴，很不系统，仅作为个人的日常记录。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PTC Wildfire4 Wildfire5 Creo4配置笔记">
+<meta property="og:url" content="http://yoursite.com/2017/02/08/proe-convert/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="如果设计软件初始配置良好，工作起来就会得心应手。本文记录的是实际应用中的配置点滴，很不系统，仅作为个人的日常记录。">
+<meta property="og:image" content="http://www.mianfeiwendang.com/pic/adfada723196b46f59360e09/1-619-jpg_6_0_______-807-0-0-807.jpg">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.882Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PTC Wildfire4 Wildfire5 Creo4配置笔记">
+<meta name="twitter:description" content="如果设计软件初始配置良好，工作起来就会得心应手。本文记录的是实际应用中的配置点滴，很不系统，仅作为个人的日常记录。">
+<meta name="twitter:image" content="http://www.mianfeiwendang.com/pic/adfada723196b46f59360e09/1-619-jpg_6_0_______-807-0-0-807.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/08/proe-convert/"/>
+
+
+
+
+
+  <title>PTC Wildfire4 Wildfire5 Creo4配置笔记 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/08/proe-convert/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PTC Wildfire4 Wildfire5 Creo4配置笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-08T01:31:59+08:00">
+                2017-02-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ASD/" itemprop="url" rel="index">
+                    <span itemprop="name">ASD</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ASD/CREO-amp-UNGX/" itemprop="url" rel="index">
+                    <span itemprop="name">CREO&amp;UNGX</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ASD/CREO-amp-UNGX/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>如果设计软件初始配置良好，工作起来就会得心应手。本文记录的是实际应用中的配置点滴，很不系统，仅作为个人的日常记录。<br><a id="more"></a></p>
+<h3 id="一、wildfire-4配置"><a href="#一、wildfire-4配置" class="headerlink" title="一、wildfire 4配置"></a>一、wildfire 4配置</h3><blockquote>
+<p>1、设置工作目录</p>
+<p>2、编写config.pro</p>
+</blockquote>
+<h4 id="1、在windows下安装好proe文件，首先需要设置的是工作目录："><a href="#1、在windows下安装好proe文件，首先需要设置的是工作目录：" class="headerlink" title="1、在windows下安装好proe文件，首先需要设置的是工作目录："></a>1、在windows下安装好proe文件，首先需要设置的是工作目录：</h4><p>在windows开始菜单中，找到proe的启动快捷方式，右键属性菜单，在起始位置栏，填入自己的工作目录，比如d:\wildfire4。更好的方式是设置一个windows环境变量wildfire4=d:\wildfire4，把环境变量填入起始位置，如%wildfire4，这样有利于在配置文件中引用。注意，windows中引用环境变量用%符号，而在proe中引用windows环境变量用$符号。</p>
+<h4 id="2、在工作目录中新建proe启动配置文件，文件名是config-pro。"><a href="#2、在工作目录中新建proe启动配置文件，文件名是config-pro。" class="headerlink" title="2、在工作目录中新建proe启动配置文件，文件名是config.pro。"></a>2、在工作目录中新建proe启动配置文件，文件名是config.pro。</h4><p>接手别人的设计文件，有很多使用习惯不一样，如何快速将转手过来的设计文件，比如图纸更改为自己的习惯，涉及到很多配置：<br>三维模型：</p>
+<h4 id="3、打印配置pdf线型宽度控制（改配置后没有颜色了，咋回事？）"><a href="#3、打印配置pdf线型宽度控制（改配置后没有颜色了，咋回事？）" class="headerlink" title="3、打印配置pdf线型宽度控制（改配置后没有颜色了，咋回事？）"></a>3、打印配置pdf线型宽度控制（改配置后没有颜色了，咋回事？）</h4><h5 id="1）在config-pro配置文件加入如下三行"><a href="#1）在config-pro配置文件加入如下三行" class="headerlink" title="1）在config.pro配置文件加入如下三行"></a>1）在<code>config.pro</code>配置文件加入如下三行</h5><blockquote>
+<p>pen1_line_weight 1 #这句啥意思？</p>
+<p>pen_table_file $PRO_DIRECTORY\text\table.pnt</p>
+<p>pdf_use_pentable yes</p>
+</blockquote>
+<h5 id="2）修改table-pnt内容如下"><a href="#2）修改table-pnt内容如下" class="headerlink" title="2）修改table.pnt内容如下"></a>2）修改<code>table.pnt</code>内容如下</h5><blockquote>
+<p>pen 1 color 0.0 0.0 0.0; thickness 0.015 cm</p>
+<p>pen 2 color 0.0 0.02 0.035; thickness 0.006 cm</p>
+<p>pen 3 color 0.0 0.0 0.0; thickness 0.006 cm</p>
+<p>pen 4 color 0.0 0.0 0.0; thickness 0.006 cm</p>
+<p>pen 5 color 0.0 0.0 0.0; thickness 0.015 cm</p>
+<p>pen 6 color 0.0 0.02 0.035; thickness 0.006 cm</p>
+<p>pen 7 color 0.0 0.0 0.0; thickness 0.006 cm</p>
+<p>pen 8 color 0.0 0.02 0.035; thickness 0.006 cm</p>
+</blockquote>
+<h5 id="3）确认config-pro能正确指向table-pnt文件"><a href="#3）确认config-pro能正确指向table-pnt文件" class="headerlink" title="3）确认config.pro能正确指向table.pnt文件"></a>3）确认<code>config.pro</code>能正确指向<code>table.pnt</code>文件</h5><h5 id="附：参考"><a href="#附：参考" class="headerlink" title="附：参考"></a>附：参考</h5><p><a href="http://www.creoug.com/thread-10925-1-1.html" target="_blank" rel="noopener">关于PROE工程图导出PDF时线条过粗，对打印笔调整的一点经验分享</a></p>
+<h4 id="4、更改绝对精度"><a href="#4、更改绝对精度" class="headerlink" title="4、更改绝对精度"></a>4、更改绝对精度</h4><blockquote>
+<p>Enable_absolute_accuracy yes #使绝对精度功能可用</p>
+<p>default_abs_accuracy #设置系统缺省的绝对精度值</p>
+<p>accuracy_lower_bound #修改相对精度的下限，有效的下限值为1.0000e-6 ~ 1.0000e-4。注：缺省的零件相对精度有效值范围为 0.01 到 0.0001，缺省值是 0.0012。</p>
+</blockquote>
+<h5 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h5><blockquote>
+<p>1、模型单位是mm，如何标注cm单位的图纸，可以与mm单位的图纸共存吗？</p>
+<p>2、在图纸模式下，输出stp格式文件，会导致wildfire4软件意外退出，是wildfire4 的bug。</p>
+<p>4、我在config.pro设置了search path，一个项目的设计文件分不同目录放置。但这样非常不方便，proe是否支持改工作目录就可以在工作目录中读取单独的config？</p>
+</blockquote>
+<p><pre>草绘尺寸锁定<br>快捷键设定，参考UGNX，例如（加黑字体代表我已经加入到config中使用了）：<br><strong>1、“x”代表拉伸特征Extrude；</strong><br>2、“N”代表距离分析；<br>3、“P”代表point点；<br>4、“F”代表替换面；<br>5、“P”代表投影曲线，草绘中？<br>6、“S”代表草图；<br>7、“H”代表抽壳；<br>8、“D”代表插入基准平面；<br>如何在快捷键中加入Ctrl、Shift、Alt？<br><a href="http://www.mianfeiwendang.com/pic/adfada723196b46f59360e09/1-619-jpg_6_0_______-807-0-0-807.jpg" target="_blank" rel="noopener">UGNX7.5常用快捷键</a><br>如下面是我的wordpress插入的第一张图片，在此标记、纪念一下。<br><img src="http://www.mianfeiwendang.com/pic/adfada723196b46f59360e09/1-619-jpg_6_0_______-807-0-0-807.jpg" alt=""><br></pre><br>图纸：</p>
+<p><pre>缺省字体 default_font changfangsong<br>标注尺寸字高 drawing_text_height    2.5<br>箭头<br></pre><br>尺寸标注：</p>
+<p><pre>decimal_marker period ！尺寸数值的小数点设置为实心原点<br></pre><br>如何锁定balloon的直径？字符虽说都是2.5高，但随着位数不同，balloon不一样大啊<br>如何切换半径、直径标注尺寸的折线？</p>
+<h3 id="二、Wildfire-5配置"><a href="#二、Wildfire-5配置" class="headerlink" title="二、Wildfire 5配置"></a>二、Wildfire 5配置</h3><p>1、如何关闭启动wildfire5文件关联的提示？</p>
+<p>2、配置特征树，显示特征号（有利于查找特征之间的关联性）</p>
+<blockquote>
+<p>&nbsp;</p>
+<p>特征树、锤子扳手图标、Tree Columns、Type、info、选“Feat #”加入到Displayed栏目。</p>
+<p>特征树、锤子扳手图标、Save Setting File、保存为Tree.cfg文件</p>
+<p>其实就是在Tree.cfg中加入了一行：‘COLUMN “Info” “Feat #” 8’</p>
+<p>在config.pro中用“mdl_tree_cfg_file”指向这个Tree.cfg<br>3、提高曲面显示效果<br>在config.pro中加入一行：shade_quality 6</p>
+</blockquote>
+<h3 id="三、Creo-4配置"><a href="#三、Creo-4配置" class="headerlink" title="三、Creo 4配置"></a>三、Creo 4配置</h3><p>1、启动时会打开多个网页，还会对http网址进行安全警告</p>
+<blockquote>
+<p>改用chrome内核：config.pro中加入：“windows_browser_type chromium_browser”，就没有安全警告了</p>
+<p>更改主页：在config.pro中加入：“web_browser_homepage <a href="https://www.greydesign.tk”，注意使用https网址，当然也可以设置为空白页“about:blank”" target="_blank" rel="noopener">https://www.greydesign.tk”，注意使用https网址，当然也可以设置为空白页“about:blank”</a></p>
+<p>关闭启动时打开网页的选项：“File、Options、Window Settings、Expand the browser during startup”，取消复选框，保存为config.win文件，下次启动就会生效<br>2、全屏操作：F11，或左下角图标。够炫酷！</p>
+</blockquote>
+<p>3、快捷键设置支持Ctrl等辅助键</p>
+<blockquote>
+<p>New、Open、Save与UGNX一致：Ctrl+N、Ctrl+O、Ctrl+S</p>
+<p>Save a copy：Ctrl+Shift+S #比UGNX合理</p>
+<p>设置工作目录：自定义为Ctrl+Shift+W（因为Ctrl+W在浏览器中是关闭窗口的意思）<br>4、旋转中心（Spin Center）<br>a、关闭旋转中心（点击图标切换状态），就可以以鼠标为中心旋转</p>
+<p>b、重新定义旋转中心：</p>
+<p>b-1、Wildfire 4：“View、Orientation、Reorient（可以通过图标直接到这一步）、Type、Options”</p>
+<p>b-2、Creo 4：Reorient图标、Type、Options<br>5、导入stp文件<br>Creo2.0导入stp时如何保留基准，就是导入后就有基准平面和坐标，以前Proe5.0的时候可以设置intf_in_use_template_models yes</p>
+<p>Wildfire可以采用New文件，再倒入的方式，避免Open方法没有坐标系，为啥Creo没有stp选项</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/06/tol-conflict/" rel="next" title="模组背板公差正负0.4，如何保证中框四段拼的间隙小于0.3？">
+                <i class="fa fa-chevron-left"></i> 模组背板公差正负0.4，如何保证中框四段拼的间隙小于0.3？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/12/rpi-buy/" rel="prev" title="关于树莓派的基本介绍">
+                关于树莓派的基本介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、wildfire-4配置"><span class="nav-number">1.</span> <span class="nav-text">一、wildfire 4配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、在windows下安装好proe文件，首先需要设置的是工作目录："><span class="nav-number">1.1.</span> <span class="nav-text">1、在windows下安装好proe文件，首先需要设置的是工作目录：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、在工作目录中新建proe启动配置文件，文件名是config-pro。"><span class="nav-number">1.2.</span> <span class="nav-text">2、在工作目录中新建proe启动配置文件，文件名是config.pro。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、打印配置pdf线型宽度控制（改配置后没有颜色了，咋回事？）"><span class="nav-number">1.3.</span> <span class="nav-text">3、打印配置pdf线型宽度控制（改配置后没有颜色了，咋回事？）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1）在config-pro配置文件加入如下三行"><span class="nav-number">1.3.1.</span> <span class="nav-text">1）在config.pro配置文件加入如下三行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2）修改table-pnt内容如下"><span class="nav-number">1.3.2.</span> <span class="nav-text">2）修改table.pnt内容如下</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3）确认config-pro能正确指向table-pnt文件"><span class="nav-number">1.3.3.</span> <span class="nav-text">3）确认config.pro能正确指向table.pnt文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#附：参考"><span class="nav-number">1.3.4.</span> <span class="nav-text">附：参考</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、更改绝对精度"><span class="nav-number">1.4.</span> <span class="nav-text">4、更改绝对精度</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#其他问题"><span class="nav-number">1.4.1.</span> <span class="nav-text">其他问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、Wildfire-5配置"><span class="nav-number">2.</span> <span class="nav-text">二、Wildfire 5配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Creo-4配置"><span class="nav-number">3.</span> <span class="nav-text">三、Creo 4配置</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

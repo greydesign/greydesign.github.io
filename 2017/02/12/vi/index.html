@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、vi编辑器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简洁的vim环境入门">
+<meta property="og:url" content="http://yoursite.com/2017/02/12/vi/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、vi编辑器">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.882Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简洁的vim环境入门">
+<meta name="twitter:description" content="一、vi编辑器">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/12/vi/"/>
+
+
+
+
+
+  <title>简洁的vim环境入门 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/12/vi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">简洁的vim环境入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-12T20:33:34+08:00">
+                2017-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding/" itemprop="url" rel="index">
+                    <span itemprop="name">Coding</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding/Network/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="一、vi编辑器"><a href="#一、vi编辑器" class="headerlink" title="一、vi编辑器"></a>一、vi编辑器</h4><a id="more"></a>
+<p><a href="http://c.biancheng.net/cpp/html/2735.html" target="_blank" rel="noopener">10分钟掌握Linux vi编辑器常见命令的使用，最简单的vi编辑器教程</a></p>
+<h4 id="二、Windows下安装配置gvim"><a href="#二、Windows下安装配置gvim" class="headerlink" title="二、Windows下安装配置gvim"></a>二、Windows下安装配置gvim</h4><p>优点：适合终端操作、快、不需要鼠标。两种安装方法：</p>
+<blockquote>
+<p>1、<a href="https://vim.sourceforge.io/download.php#pc" target="_blank" rel="noopener">官网下载</a>并安装，比如<code>gvim8.0.exe</code> 。</p>
+<p>注意安装目录放在<code>C:\Vim</code>，好处是安装插件时不会被Windows保护机制困扰，有读写权限</p>
+<p>还有，不要追求64bit版本，因为官网提示64bit版本已经停止维护。</p>
+<p>2、在git bash中输入<code>vim</code>（git自带vim）<br>1、设置环境变量<br>添加路径到path：C:\Vim\vim80</p>
+<p>新增环境变量VIM=C:\Vim<br>2、修改配置文件<code>_vimrc</code>（C:\Vim目录下）<br>“设置显示行号</p>
+<p>set nu</p>
+<p>“取消VIM的自动备份功能</p>
+<p>set nobackup</p>
+<p>“设置缩进，以4个空格作为缩进</p>
+<p>set tabstop=4</p>
+<p>set sts=4</p>
+<p>set expandtab</p>
+<p>set softtabstop=4</p>
+<p>set shiftwidth=4</p>
+<p>set autoindent</p>
+<p>set cindent</p>
+<p>“修改配色方案</p>
+<p>colorscheme desert #注意：desert配色方案，在Windows powershell中，set后面的关键字看不见！所以在Windows先还是建议用gvim，或在cmd下使用。<br>3、配置、安装插件：<br>安装git #我用官方git而不是mysgit</p>
+<p>建立<code>C:\Program Files\Git\cmd\curl.cmd</code>文件 #命令行下<code>curl --version</code> 运行ok.这个步骤可以省略吗？有啥用?</p>
+<p><code>git clone https://github.com/VundleVim/Vundle.vim.git C:\Vim\vimfiles\bundle\Vundle.vim</code> #安装Vundle ，官方指导：<a href="https://github.com/VundleVim/Vundle.vim/wiki/Vundle-for-Windows" target="_blank" rel="noopener">Vundle for Windows</a></p>
+<p>添加Windows环境变量<code>$VIM=C:\Vim</code></p>
+<p>修改_vimrc配置文件，添加插件信息</p>
+<p>在gvim中运行<code>:PluginInstall</code> #可顺利安装插件，这时如何退出gvim？<br>curl.cmd内容如下：<br>@rem Do not use “echo off” to not affect any child calls.</p>
+<p>@setlocal</p>
+<p>@rem Get the abolute path to the parent directory, which is assumed to be the</p>
+<p>@rem Git installation root.</p>
+<p>@for /F “delims=” %%I in (“%~dp0..”) do @set git_install_root=%%~fI</p>
+<p>@set PATH=%git_install_root%\bin;%git_install_root%\mingw\bin;%git_install_root%\mingw64\bin;%PATH%</p>
+<p>@rem !!!!!!! For 64bit msysgit, replace ‘mingw’ above with ‘mingw64’ !!!!!!!</p>
+<p>@if not exist “%HOME%” @set HOME=%HOMEDRIVE%%HOMEPATH%</p>
+<p>@if not exist “%HOME%” @set HOME=%USERPROFILE%</p>
+<p>@curl.exe %*<br><code>_vimrc</code>添加插件信息<br>“插件管理</p>
+<p>set nocompatible</p>
+<p>filetype off</p>
+<p>set rtp+=$VIM/vimfiles/bundle/Vundle.vim/</p>
+<p>call vundle#begin(‘$VIM/vimfiles/bundle’)</p>
+<p>“let Vundle manage Vundle, required</p>
+<p>Plugin ‘VundleVim/Vundle.vim’</p>
+<p>“my bundle plugin</p>
+<p>Plugin ‘Lokaltog/vim-powerline’</p>
+<p>Plugin ‘Solarized’</p>
+<p>Plugin ‘Markdown’</p>
+<p>call vundle#end()</p>
+<p>filetype plugin indent on<br><a href="https://coolshell.cn/articles/5426.html" target="_blank" rel="noopener">简明 VIM 练级攻略</a><br><a href="https://www.jianshu.com/p/3e3f881bb5bd" target="_blank" rel="noopener">Windows下gvim安装vundle</a> #省略了git安装步骤，不需要安装curl？<br><a href="http://www.huangdc.com/421" target="_blank" rel="noopener">全世界最好的编辑器VIM之Windows配置篇</a> #vundle安装插件时，运行<code>BundleInstall</code>失败，为啥？<br><a href="http://zcodes.net/2017/05/09/install-vim-in-windows.html" target="_blank" rel="noopener">Windows 下安装 Vim</a> #编译安装方法<br><a href="http://www.letuknowit.com/topics/20120428/use-vim-to-build-python-development-environment-on-windows-xp.html/" target="_blank" rel="noopener">VIM搭建Python开发环境（Windows版本）</a><br><a href="https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/#windows" target="_blank" rel="noopener">VIM and Python – A Match Made in Heaven</a><br><a href="https://www.jianshu.com/p/24aefcd4ca93" target="_blank" rel="noopener">vim安装markdown插件</a> #不支持Windows吗？</p>
+</blockquote>
+<h4 id="三、Linux的vim"><a href="#三、Linux的vim" class="headerlink" title="三、Linux的vim"></a>三、Linux的vim</h4><h4 id="四、可爱的chrome插件（用类似vim的方法浏览网页，减少鼠标对手指的伤害）"><a href="#四、可爱的chrome插件（用类似vim的方法浏览网页，减少鼠标对手指的伤害）" class="headerlink" title="四、可爱的chrome插件（用类似vim的方法浏览网页，减少鼠标对手指的伤害）"></a>四、可爱的chrome插件（用类似vim的方法浏览网页，减少鼠标对手指的伤害）</h4><p><a href="https://sspai.com/post/27723" target="_blank" rel="noopener">让你用 Chrome 上网快到想哭：Vimium</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/12/rpi-buy/" rel="next" title="关于树莓派的基本介绍">
+                <i class="fa fa-chevron-left"></i> 关于树莓派的基本介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/15/558800-e5-85-ac-e5-b7-ae-e8-ae-be-e8-ae-a1-e4-b8-8e-e5-88-86-e6-9e-90/" rel="prev" title="2017-LED55NU8800U设计总结">
+                2017-LED55NU8800U设计总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、vi编辑器"><span class="nav-number">1.</span> <span class="nav-text">一、vi编辑器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、Windows下安装配置gvim"><span class="nav-number">2.</span> <span class="nav-text">二、Windows下安装配置gvim</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、Linux的vim"><span class="nav-number">3.</span> <span class="nav-text">三、Linux的vim</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、可爱的chrome插件（用类似vim的方法浏览网页，减少鼠标对手指的伤害）"><span class="nav-number">4.</span> <span class="nav-text">四、可爱的chrome插件（用类似vim的方法浏览网页，减少鼠标对手指的伤害）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

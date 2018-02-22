@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="服务器平台：vultr（VPS提供商），而不是github 软件平台：CentOS，Nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络基础之在VPS上搭建Hexo博客">
+<meta property="og:url" content="http://yoursite.com/2017/12/03/e7-bd-91-e7-bb-9c-e5-9f-ba-e7-a1-80-e4-b9-8b-e5-9c-a8vps-e4-b8-8a-e6-90-ad-e5-bb-bahexo-e5-8d-9a-e5-ae-a2-trashed/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="服务器平台：vultr（VPS提供商），而不是github 软件平台：CentOS，Nginx">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.902Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络基础之在VPS上搭建Hexo博客">
+<meta name="twitter:description" content="服务器平台：vultr（VPS提供商），而不是github 软件平台：CentOS，Nginx">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/03/e7-bd-91-e7-bb-9c-e5-9f-ba-e7-a1-80-e4-b9-8b-e5-9c-a8vps-e4-b8-8a-e6-90-ad-e5-bb-bahexo-e5-8d-9a-e5-ae-a2-trashed/"/>
+
+
+
+
+
+  <title>网络基础之在VPS上搭建Hexo博客 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/03/e7-bd-91-e7-bb-9c-e5-9f-ba-e7-a1-80-e4-b9-8b-e5-9c-a8vps-e4-b8-8a-e6-90-ad-e5-bb-bahexo-e5-8d-9a-e5-ae-a2-trashed/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">网络基础之在VPS上搭建Hexo博客</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-03T11:28:51+08:00">
+                2017-12-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Markdown/" itemprop="url" rel="index">
+                    <span itemprop="name">Markdown</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Markdown/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Markdown/Network/VPS/" itemprop="url" rel="index">
+                    <span itemprop="name">VPS</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Markdown/Network/VPS/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>服务器平台：vultr（VPS提供商），而不是github</p>
+<p>软件平台：CentOS，Nginx<br><a id="more"></a></p>
+</blockquote>
+<h3 id="一、配置服务器端环境："><a href="#一、配置服务器端环境：" class="headerlink" title="一、配置服务器端环境："></a>一、配置服务器端环境：</h3><p>1、VPS新建CentOS Server上搭建Nginx</p>
+<blockquote>
+<h1 id="passwd-Windows-10环境下，通过putty登录（复制初始密码，通过鼠标右键粘贴），修改root密码"><a href="#passwd-Windows-10环境下，通过putty登录（复制初始密码，通过鼠标右键粘贴），修改root密码" class="headerlink" title="passwd # Windows 10环境下，通过putty登录（复制初始密码，通过鼠标右键粘贴），修改root密码"></a>passwd # Windows 10环境下，通过putty登录（复制初始密码，通过鼠标右键粘贴），修改root密码</h1><h1 id="rpm-q-centos-release-centos-release-7-3-1611-el7-centos-x86-64"><a href="#rpm-q-centos-release-centos-release-7-3-1611-el7-centos-x86-64" class="headerlink" title="rpm -q centos-release # centos-release-7-3.1611.el7.centos.x86_64"></a>rpm -q centos-release # centos-release-7-3.1611.el7.centos.x86_64</h1><h1 id="yum-install-epel-release-安装-CentOS-7-EPEL-源，似乎没有必要，所以没有执行"><a href="#yum-install-epel-release-安装-CentOS-7-EPEL-源，似乎没有必要，所以没有执行" class="headerlink" title="yum install epel-release # 安装 CentOS 7 EPEL 源，似乎没有必要，所以没有执行"></a>yum install epel-release # 安装 CentOS 7 EPEL 源，似乎没有必要，所以没有执行</h1><h1 id="yum-install-nginx-安装-Nginx"><a href="#yum-install-nginx-安装-Nginx" class="headerlink" title="yum install nginx # 安装 Nginx"></a>yum install nginx # 安装 Nginx</h1><h1 id="systemctl-start-nginx-启动Nginx"><a href="#systemctl-start-nginx-启动Nginx" class="headerlink" title="systemctl start nginx #启动Nginx"></a>systemctl start nginx #启动Nginx</h1><h1 id="firewall-cmd-–permanent-–zone-public-–add-service-http-添加-HTTP-和-HTTPS-端口到防火墙允许列表"><a href="#firewall-cmd-–permanent-–zone-public-–add-service-http-添加-HTTP-和-HTTPS-端口到防火墙允许列表" class="headerlink" title="firewall-cmd –permanent –zone=public –add-service=http #添加 HTTP 和 HTTPS 端口到防火墙允许列表"></a>firewall-cmd –permanent –zone=public –add-service=http #添加 HTTP 和 HTTPS 端口到防火墙允许列表</h1><h1 id="sudo-firewall-cmd-–permanent-–zone-public-–add-service-https"><a href="#sudo-firewall-cmd-–permanent-–zone-public-–add-service-https" class="headerlink" title="sudo firewall-cmd –permanent –zone=public –add-service=https"></a>sudo firewall-cmd –permanent –zone=public –add-service=https</h1><h1 id="sudo-firewall-cmd-–reload"><a href="#sudo-firewall-cmd-–reload" class="headerlink" title="sudo firewall-cmd –reload"></a>sudo firewall-cmd –reload</h1><h1 id="sudo-systemctl-restart-firewalld-service"><a href="#sudo-systemctl-restart-firewalld-service" class="headerlink" title="sudo systemctl restart firewalld.service"></a>sudo systemctl restart firewalld.service</h1><p>打开浏览器，复制Server的ip地址，回车，就会看到欢迎页面：“Welcome to nginx on Fedora!”。注意提示：index.html在“/usr/share/nginx/html”目录中，nginx配置文件在“/etc/nginx/nginx.conf”</p>
+<h1 id="curl-127-0-0-1-会显示Nginx主页的html代码"><a href="#curl-127-0-0-1-会显示Nginx主页的html代码" class="headerlink" title="curl 127.0.0.1 # 会显示Nginx主页的html代码"></a>curl 127.0.0.1 # 会显示Nginx主页的html代码</h1><h1 id="yum-install-net-tools-安装网络工具"><a href="#yum-install-net-tools-安装网络工具" class="headerlink" title="yum install net-tools #安装网络工具"></a>yum install net-tools #安装网络工具</h1><h1 id="netstat-ntpl-确认Nginx打开了80端口，但是没有443端口，为啥？"><a href="#netstat-ntpl-确认Nginx打开了80端口，但是没有443端口，为啥？" class="headerlink" title="netstat -ntpl #确认Nginx打开了80端口，但是没有443端口，为啥？"></a>netstat -ntpl #确认Nginx打开了80端口，但是没有443端口，为啥？</h1><p>netstat测试内容如下：<br>Active Internet connections (only servers)</p>
+<p>Proto Recv-Q Send-Q Local Address Foreign Address State PID/Program name</p>
+<p>tcp 0 0 0.0.0.0:80 0.0.0.0:* LISTEN 2493/nginx: master</p>
+<p>tcp 0 0 0.0.0.0:22 0.0.0.0:* LISTEN 429/sshd</p>
+<p>tcp 0 0 127.0.0.1:25 0.0.0.0:* LISTEN 606/master</p>
+<p>tcp6 0 0 :::80 :::* LISTEN 2493/nginx: master</p>
+<p>tcp6 0 0 :::22 :::* LISTEN 429/sshd</p>
+<p>tcp6 0 0 ::1:25 :::* LISTEN 606/master<br>2、配置Nginx虚拟主机</p>
+<h1 id="mkdir-p-usr-share-nginx-blog-html-新建blog目录用于放置Hexo，新建一个测试用index-html主页文件"><a href="#mkdir-p-usr-share-nginx-blog-html-新建blog目录用于放置Hexo，新建一个测试用index-html主页文件" class="headerlink" title="mkdir -p /usr/share/nginx/blog/html #新建blog目录用于放置Hexo，新建一个测试用index.html主页文件"></a>mkdir -p /usr/share/nginx/blog/html #新建blog目录用于放置Hexo，新建一个测试用index.html主页文件</h1><h1 id="vi-etc-nginx-conf-d-blog-conf-新建虚拟主机配置文件，因为nginx配置文件（-etc-nginx-nginx-conf）内包含一行内容”include-etc-nginx-conf-d-conf-“，所以是可行的。"><a href="#vi-etc-nginx-conf-d-blog-conf-新建虚拟主机配置文件，因为nginx配置文件（-etc-nginx-nginx-conf）内包含一行内容”include-etc-nginx-conf-d-conf-“，所以是可行的。" class="headerlink" title="vi /etc/nginx/conf.d/blog.conf #新建虚拟主机配置文件，因为nginx配置文件（/etc/nginx/nginx.conf）内包含一行内容”include /etc/nginx/conf.d/*.conf;“，所以是可行的。"></a>vi /etc/nginx/conf.d/blog.conf #新建虚拟主机配置文件，因为nginx配置文件（/etc/nginx/nginx.conf）内包含一行内容”include /etc/nginx/conf.d/*.conf;“，所以是可行的。</h1><h1 id="systemctl-restart-nginx-重启-Nginx-服务器，使nginx服务器虚拟主机设定生效"><a href="#systemctl-restart-nginx-重启-Nginx-服务器，使nginx服务器虚拟主机设定生效" class="headerlink" title="systemctl restart nginx #重启 Nginx 服务器，使nginx服务器虚拟主机设定生效"></a>systemctl restart nginx #重启 Nginx 服务器，使nginx服务器虚拟主机设定生效</h1><p>新配置文件”blog.conf”内容如下：<br>server {</p>
+<p>listen 80;</p>
+<p>listen [::]:80;</p>
+<p>root /usr/share/nginx/blog/html;</p>
+<p>index index.html index.htm index.nginx-debian.html;</p>
+<p>server_name zhangqihui.mobi <a href="http://www.zhangqihui.mobi" target="_blank" rel="noopener">www.zhangqihui.mobi</a>;</p>
+<p>location / {</p>
+<p>try_files $uri $uri/ =404;</p>
+<p>}</p>
+<p>}<br>本地Windows 10电脑，编辑“C:\Windows\System32\drivers\etc/hosts” #增加一行“xx.xx.xx.xx zhangqihui.tk“ 将服务器ip地址指向自己的域名，打开浏览器，通过域名就可以看到虚拟机测试主页了。（我先设置了DNS CNAME，没有测试）</p>
+</blockquote>
+<p>3、到DNS将域名解析到服务器地址</p>
+<blockquote>
+<p>到godaddy，配置zhangqihui.mobi DNS指向VPS ip地址</p>
+<p>到tk网站，通过我的Facebook账户登录，将zhangqihui.tk指向服务器ip地址 #因tk网站不稳定，改用godaddy<br>4、部署Hexo</p>
+<h1 id="yum-install-git-在-VPS-上安装-git"><a href="#yum-install-git-在-VPS-上安装-git" class="headerlink" title="yum install git #在 VPS 上安装 git"></a>yum install git #在 VPS 上安装 git</h1><h1 id="cd"><a href="#cd" class="headerlink" title="cd ~"></a>cd ~</h1><h1 id="mkdir-blog-git-amp-amp-cd-blog-git-创建空白-git-仓库，并且设置-git-hook"><a href="#mkdir-blog-git-amp-amp-cd-blog-git-创建空白-git-仓库，并且设置-git-hook" class="headerlink" title="mkdir blog.git &amp;&amp; cd blog.git #创建空白 git 仓库，并且设置 git hook"></a>mkdir blog.git &amp;&amp; cd blog.git #创建空白 git 仓库，并且设置 git hook</h1><h1 id="git-init-–bare-返回提示“Initialized-empty-Git-repository-in-root-blog-git-”"><a href="#git-init-–bare-返回提示“Initialized-empty-Git-repository-in-root-blog-git-”" class="headerlink" title="git init –bare #返回提示“Initialized empty Git repository in /root/blog.git/”"></a>git init –bare #返回提示“Initialized empty Git repository in /root/blog.git/”</h1><h1 id="cd-hooks"><a href="#cd-hooks" class="headerlink" title="cd hooks"></a>cd hooks</h1><h1 id="vi-post-receive-创建脚本，并写入内容"><a href="#vi-post-receive-创建脚本，并写入内容" class="headerlink" title="vi post-receive #创建脚本，并写入内容"></a>vi post-receive #创建脚本，并写入内容</h1><h1 id="chmod-x-post-receive-赋予脚本的执行权限"><a href="#chmod-x-post-receive-赋予脚本的执行权限" class="headerlink" title="chmod +x post-receive #赋予脚本的执行权限"></a>chmod +x post-receive #赋予脚本的执行权限</h1><p>在 /root/blog.git/hooks/post-receive 脚本内容如下：</p>
+<div class="line">#!/bin/bash</div>
+
+<div class="line">GIT_REPO=/root/blog.git #git仓库</div>
+
+<div class="line">TMP_GIT_CLONE=/tmp/blog</div>
+
+<div class="line">PUBLIC_WWW=/usr/share/nginx/blog/html #网站目录</div>
+
+<div class="line">rm -rf ${TMP_GIT_CLONE}</div>
+
+<div class="line">git clone $GIT_REPO $TMP_GIT_CLONE</div>
+
+<div class="line">rm -rf ${PUBLIC_WWW}/*</div>
+
+<div class="line">cp -rf ${TMP_GIT_CLONE}/* ${PUBLIC_WWW}</div>
+</blockquote>
+<h3 id="二、配置本机环境"><a href="#二、配置本机环境" class="headerlink" title="二、配置本机环境"></a>二、配置本机环境</h3><p>1、Windows 10 安装Hexo环境</p>
+<blockquote>
+<p>缺省设置安装<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git</a>； # <a href="https://github.com/git-for-windows/git/releases/download/v2.15.1.windows.2/Git-2.15.1.2-64-bit.exe" target="_blank" rel="noopener">(2.15.1) 64-bit version of Git for Windows</a> ，需要FQ，TNND!</p>
+<p>缺省设置安装<a href="https://nodejs.org/download/" target="_blank" rel="noopener">Node.js</a>； # <a href="https://nodejs.org/download/release/v9.2.0/node-v9.2.0-x64.msi" target="_blank" rel="noopener">node-v9.2.0-x64.msi </a><br>在D盘新建hexo目录，通过鼠标右键命令“Git Bash Here”<br>$ npm install hexo-cli -g<br>提示如下：<br>C:\Users\qdmca\AppData\Roaming\npm\hexo -&gt; C:\Users\qdmca\AppData\Roaming\npm\node_modules\hexo-cli\bin\hexo</p>
+<p>npm WARN optional SKIPPING OPTIONAL DEPENDENCY: <a href="mailto:fsevents@1.1.3" target="_blank" rel="noopener">fsevents@1.1.3</a> (node_modules\hexo-cli\node_modules\fsevents):</p>
+<p>npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for <a href="mailto:fsevents@1.1.3" target="_blank" rel="noopener">fsevents@1.1.3</a>: wanted {“os”:”darwin”,”arch”:”any”} (current: {“os”:”win32”,”arch”:”x64”})</p>
+<ul>
+<li><a href="mailto:hexo-cli@1.0.4" target="_blank" rel="noopener">hexo-cli@1.0.4</a></li>
+</ul>
+<p>added 217 packages in 68.345s<br>$ hexo init blog #在 blog 目录下初始化 hexo 博客<br>提示如下：<br>INFO Cloning hexo-starter to D:\hexo\blog</p>
+<p>Cloning into ‘D:\hexo\blog’…</p>
+<p>remote: Counting objects: 62, done.</p>
+<p>remote: Compressing objects: 100% (2/2), done.</p>
+<p>remote: Total 62 (delta 0), reused 2 (delta 0), pack-reused 59</p>
+<p>Unpacking objects: 100% (62/62), done.</p>
+<p>Submodule ‘themes/landscape’ (<a href="https://github.com/hexojs/hexo-theme-landscape.git" target="_blank" rel="noopener">https://github.com/hexojs/hexo-theme-landscape.git</a>) registered for path ‘themes/landscape’</p>
+<p>Cloning into ‘D:/hexo/blog/themes/landscape’…</p>
+<p>remote: Counting objects: 785, done.</p>
+<p>remote: Total 785 (delta 0), reused 0 (delta 0), pack-reused 785</p>
+<p>Receiving objects: 100% (785/785), 2.53 MiB | 1.08 MiB/s, done.</p>
+<p>Resolving deltas: 100% (410/410), done.</p>
+<p>Submodule path ‘themes/landscape’: checked out ‘73a23c51f8487cfcd7c6deec96ccc7543960d350’</p>
+<p>INFO Install dependencies</p>
+<p>▒▒Ϣ: ▒▒▒ṩ▒▒ģʽ▒޷▒▒ҵ▒▒ļ▒▒▒</p>
+<p>npm WARN deprecated <a href="mailto:swig@1.4.2" target="_blank" rel="noopener">swig@1.4.2</a>: This package is no longer maintained</p>
+<p>npm notice created a lockfile as package-lock.json. You should commit this file.</p>
+<p>npm WARN optional SKIPPING OPTIONAL DEPENDENCY: <a href="mailto:fsevents@1.1.3" target="_blank" rel="noopener">fsevents@1.1.3</a> (node_modules\fsevents):</p>
+<p>npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for <a href="mailto:fsevents@1.1.3" target="_blank" rel="noopener">fsevents@1.1.3</a>: wanted {“os”:”darwin”,”arch”:”any”} (current: {“os”:”win32”,”arch”:”x64”})</p>
+<p>added 429 packages in 22.993s</p>
+<p>INFO Start blogging with Hexo!<br>$ cd blog #进入博客根目录，并且安装相关插件依赖等</p>
+<p>$ npm install<br>提示如下：<br>npm WARN optional SKIPPING OPTIONAL DEPENDENCY: <a href="mailto:fsevents@1.1.3" target="_blank" rel="noopener">fsevents@1.1.3</a> (node_modules\fsevents):</p>
+<p>npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for <a href="mailto:fsevents@1.1.3" target="_blank" rel="noopener">fsevents@1.1.3</a>: wanted {“os”:”darwin”,”arch”:”any”} (current: {“os”:”win32”,”arch”:”x64”})</p>
+<p>added 116 packages in 10.783s<br>$ hexo g # 渲染 Source 目录下文件问静态页面<br>提示如下：<br>INFO Start processing</p>
+<p>INFO Files loaded in 314 ms</p>
+<p>INFO Generated: index.html</p>
+<p>INFO Generated: archives/index.html</p>
+<p>INFO Generated: fancybox/jquery.fancybox.js</p>
+<p>INFO Generated: fancybox/fancybox_loading.gif</p>
+<p>INFO Generated: fancybox/blank.gif</p>
+<p>INFO Generated: fancybox/jquery.fancybox.css</p>
+<p>INFO Generated: <a href="mailto:fancybox/fancybox_loading@2x.gif" target="_blank" rel="noopener">fancybox/fancybox_loading@2x.gif</a></p>
+<p>INFO Generated: archives/2017/index.html</p>
+<p>INFO Generated: fancybox/jquery.fancybox.pack.js</p>
+<p>INFO Generated: fancybox/fancybox_overlay.png</p>
+<p>INFO Generated: <a href="mailto:fancybox/fancybox_sprite@2x.png" target="_blank" rel="noopener">fancybox/fancybox_sprite@2x.png</a></p>
+<p>INFO Generated: css/fonts/FontAwesome.otf</p>
+<p>INFO Generated: fancybox/fancybox_sprite.png</p>
+<p>INFO Generated: fancybox/helpers/jquery.fancybox-buttons.css</p>
+<p>INFO Generated: fancybox/helpers/jquery.fancybox-thumbs.css</p>
+<p>INFO Generated: fancybox/helpers/jquery.fancybox-buttons.js</p>
+<p>INFO Generated: archives/2017/12/index.html</p>
+<p>INFO Generated: fancybox/helpers/jquery.fancybox-thumbs.js</p>
+<p>INFO Generated: css/style.css</p>
+<p>INFO Generated: css/fonts/fontawesome-webfont.eot</p>
+<p>INFO Generated: css/fonts/fontawesome-webfont.woff</p>
+<p>INFO Generated: js/script.js</p>
+<p>INFO Generated: css/images/banner.jpg</p>
+<p>INFO Generated: fancybox/helpers/jquery.fancybox-media.js</p>
+<p>INFO Generated: css/fonts/fontawesome-webfont.ttf</p>
+<p>INFO Generated: 2017/12/03/hello-world/index.html</p>
+<p>INFO Generated: fancybox/helpers/fancybox_buttons.png</p>
+<p>INFO Generated: css/fonts/fontawesome-webfont.svg</p>
+<p>INFO 28 files generated in 844 ms<br>$ hexo s # 本地跑一个 server 来看博客效果<br>提示如下：<br>INFO Start processing</p>
+<p>INFO Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>. Press Ctrl+C to stop.<br>本地浏览器打开网址“<a href="http://localhost:4000/”，测试hexo安装成功" target="_blank" rel="noopener">http://localhost:4000/”，测试hexo安装成功</a> #如果通过路由器端口映射，应该在外网也能看到</p>
+</blockquote>
+<p>2、配置本机环境</p>
+<blockquote>
+<p>$ npm install hexo-deployer-git –save #在博客目录下运行下面命令，安装 git 部署工具<br>提示如下：<br>npm WARN optional SKIPPING OPTIONAL DEPENDENCY: <a href="mailto:fsevents@1.1.3" target="_blank" rel="noopener">fsevents@1.1.3</a> (node_modules\fsevents):</p>
+<p>npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for <a href="mailto:fsevents@1.1.3" target="_blank" rel="noopener">fsevents@1.1.3</a>: wanted {“os”:”darwin”,”arch”:”any”} (current: {“os”:”win32”,”arch”:”x64”})</p>
+<ul>
+<li><a href="mailto:hexo-deployer-git@0.3.1" target="_blank" rel="noopener">hexo-deployer-git@0.3.1</a></li>
+</ul>
+<p>added 132 packages in 18.447s</p>
+<p>qdmca@ASUS13 MINGW64 /d/hexo/blog<br>编辑博客配置文件“_config.yml”为如下内容（修改deploy选项，注意，冒号后面有空格，否则会出错！）：<br>deploy:</p>
+<p>type: git</p>
+<p>message: update</p>
+<p>repo:</p>
+<p>s1: <a href="mailto:root@45.32.227.150" target="_blank" rel="noopener">root@45.32.227.150</a>:/root/blog.git/,master<br>$ git config –global user.email “<a href="mailto:3dlinux@gmail.com" target="_blank" rel="noopener">3dlinux@gmail.com</a>“ #配置本地git用户信息</p>
+<p>$ git config –global user.name “root”</p>
+<p>$hexo d #部署本地渲染网页到服务器上<br>本文参考：<a href="https://eliyar.biz/how_to_build_hexo_blog/" target="_blank" rel="noopener">从 0 开始搭建 hexo 博客</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/02/e7-bd-91-e7-bb-9c-e5-9f-ba-e7-a1-80-e4-b9-8b-e5-8f-8d-e5-90-91-e4-bb-a3-e7-90-86-ef-bc-9anginx/" rel="next" title="网络基础之Nginx">
+                <i class="fa fa-chevron-left"></i> 网络基础之Nginx
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/09/firefox-e4-b8-ad-e5-9b-bd-e7-89-88-e6-98-af-e6-80-8e-e4-b9-88-e5-9b-9e-e4-ba-8b-ef-bc-9f/" rel="prev" title="Firefox中国版是怎么回事？">
+                Firefox中国版是怎么回事？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、配置服务器端环境："><span class="nav-number">1.</span> <span class="nav-text">一、配置服务器端环境：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#passwd-Windows-10环境下，通过putty登录（复制初始密码，通过鼠标右键粘贴），修改root密码"><span class="nav-number"></span> <span class="nav-text">passwd # Windows 10环境下，通过putty登录（复制初始密码，通过鼠标右键粘贴），修改root密码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rpm-q-centos-release-centos-release-7-3-1611-el7-centos-x86-64"><span class="nav-number"></span> <span class="nav-text">rpm -q centos-release # centos-release-7-3.1611.el7.centos.x86_64</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yum-install-epel-release-安装-CentOS-7-EPEL-源，似乎没有必要，所以没有执行"><span class="nav-number"></span> <span class="nav-text">yum install epel-release # 安装 CentOS 7 EPEL 源，似乎没有必要，所以没有执行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yum-install-nginx-安装-Nginx"><span class="nav-number"></span> <span class="nav-text">yum install nginx # 安装 Nginx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#systemctl-start-nginx-启动Nginx"><span class="nav-number"></span> <span class="nav-text">systemctl start nginx #启动Nginx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#firewall-cmd-–permanent-–zone-public-–add-service-http-添加-HTTP-和-HTTPS-端口到防火墙允许列表"><span class="nav-number"></span> <span class="nav-text">firewall-cmd –permanent –zone=public –add-service=http #添加 HTTP 和 HTTPS 端口到防火墙允许列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sudo-firewall-cmd-–permanent-–zone-public-–add-service-https"><span class="nav-number"></span> <span class="nav-text">sudo firewall-cmd –permanent –zone=public –add-service=https</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sudo-firewall-cmd-–reload"><span class="nav-number"></span> <span class="nav-text">sudo firewall-cmd –reload</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sudo-systemctl-restart-firewalld-service"><span class="nav-number"></span> <span class="nav-text">sudo systemctl restart firewalld.service</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#curl-127-0-0-1-会显示Nginx主页的html代码"><span class="nav-number"></span> <span class="nav-text">curl 127.0.0.1 # 会显示Nginx主页的html代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yum-install-net-tools-安装网络工具"><span class="nav-number"></span> <span class="nav-text">yum install net-tools #安装网络工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#netstat-ntpl-确认Nginx打开了80端口，但是没有443端口，为啥？"><span class="nav-number"></span> <span class="nav-text">netstat -ntpl #确认Nginx打开了80端口，但是没有443端口，为啥？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mkdir-p-usr-share-nginx-blog-html-新建blog目录用于放置Hexo，新建一个测试用index-html主页文件"><span class="nav-number"></span> <span class="nav-text">mkdir -p /usr/share/nginx/blog/html #新建blog目录用于放置Hexo，新建一个测试用index.html主页文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vi-etc-nginx-conf-d-blog-conf-新建虚拟主机配置文件，因为nginx配置文件（-etc-nginx-nginx-conf）内包含一行内容”include-etc-nginx-conf-d-conf-“，所以是可行的。"><span class="nav-number"></span> <span class="nav-text">vi /etc/nginx/conf.d/blog.conf #新建虚拟主机配置文件，因为nginx配置文件（/etc/nginx/nginx.conf）内包含一行内容”include /etc/nginx/conf.d/*.conf;“，所以是可行的。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#systemctl-restart-nginx-重启-Nginx-服务器，使nginx服务器虚拟主机设定生效"><span class="nav-number"></span> <span class="nav-text">systemctl restart nginx #重启 Nginx 服务器，使nginx服务器虚拟主机设定生效</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yum-install-git-在-VPS-上安装-git"><span class="nav-number"></span> <span class="nav-text">yum install git #在 VPS 上安装 git</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cd"><span class="nav-number"></span> <span class="nav-text">cd ~</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mkdir-blog-git-amp-amp-cd-blog-git-创建空白-git-仓库，并且设置-git-hook"><span class="nav-number"></span> <span class="nav-text">mkdir blog.git &amp;&amp; cd blog.git #创建空白 git 仓库，并且设置 git hook</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-init-–bare-返回提示“Initialized-empty-Git-repository-in-root-blog-git-”"><span class="nav-number"></span> <span class="nav-text">git init –bare #返回提示“Initialized empty Git repository in /root/blog.git/”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cd-hooks"><span class="nav-number"></span> <span class="nav-text">cd hooks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vi-post-receive-创建脚本，并写入内容"><span class="nav-number"></span> <span class="nav-text">vi post-receive #创建脚本，并写入内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chmod-x-post-receive-赋予脚本的执行权限"><span class="nav-number"></span> <span class="nav-text">chmod +x post-receive #赋予脚本的执行权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二、配置本机环境"><span class="nav-number">1.</span> <span class="nav-text">二、配置本机环境</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

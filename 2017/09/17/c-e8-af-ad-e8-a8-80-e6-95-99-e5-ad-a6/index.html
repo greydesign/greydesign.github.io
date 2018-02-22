@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="2017-09-17 体验课  19：00~20：00 IDE工具：啊哈C、DEV-C++、Visual C++ 6.0 讲述 printf 语句">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++语言编程">
+<meta property="og:url" content="http://yoursite.com/2017/09/17/c-e8-af-ad-e8-a8-80-e6-95-99-e5-ad-a6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="2017-09-17 体验课  19：00~20：00 IDE工具：啊哈C、DEV-C++、Visual C++ 6.0 讲述 printf 语句">
+<meta property="og:updated_time" content="2018-02-22T13:05:46.890Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++语言编程">
+<meta name="twitter:description" content="2017-09-17 体验课  19：00~20：00 IDE工具：啊哈C、DEV-C++、Visual C++ 6.0 讲述 printf 语句">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/17/c-e8-af-ad-e8-a8-80-e6-95-99-e5-ad-a6/"/>
+
+
+
+
+
+  <title>C++语言编程 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/17/c-e8-af-ad-e8-a8-80-e6-95-99-e5-ad-a6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++语言编程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-17T12:31:57+08:00">
+                2017-09-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding/" itemprop="url" rel="index">
+                    <span itemprop="name">Coding</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding/Network/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>2017-09-17 体验课</p>
+<blockquote>
+<p>19：00~20：00</p>
+<p>IDE工具：啊哈C、DEV-C++、Visual C++ 6.0</p>
+<p>讲述 printf 语句<br><a id="more"></a><br>孙老师邮箱<br><a href="mailto:m18661830588_1@163.com" target="_blank" rel="noopener">m18661830588_1@163.com</a>，密码 C18661830588</p>
+</blockquote>
+<h4 id="Windows下的编译器比较与选择（尽早在Linux下搞开发吧！）"><a href="#Windows下的编译器比较与选择（尽早在Linux下搞开发吧！）" class="headerlink" title="Windows下的编译器比较与选择（尽早在Linux下搞开发吧！）"></a>Windows下的编译器比较与选择（尽早在Linux下搞开发吧！）</h4><blockquote>
+<p>1、GNU GCC + MinGW</p>
+<p>2、CLANG（LLVM的前端） + MinGW</p>
+</blockquote>
+<h4 id="Windows-10-C-开发环境的搭建"><a href="#Windows-10-C-开发环境的搭建" class="headerlink" title="Windows 10 C++开发环境的搭建"></a>Windows 10 C++开发环境的搭建</h4><p>需求：初期最好在虚拟机中、纯命令行下学习makefile以及debug。等熟悉了再选择Windows下适合的IDE。</p>
+<p>1、Code::Blocks</p>
+<blockquote>
+<p>网上很多推荐<br>2、微软Visual Studio Community以及Visual Studio Code<br>Visual Studio Community是巨无霸，不推荐</p>
+<p>Visual Studio Code够小，但安装后是没有C编译器的，需要配合MinGW，详见<a href="https://code.visualstudio.com/docs/languages/cpp" target="_blank" rel="noopener">C/C++ for VS Code</a>，不推荐<br>3、Sublime Text + MinGW<br>最新版的MINGW + sublime text(装上clang插件)，使用gcc</p>
+<p>需要补充安装步骤<br>4、Git Bash<br>linux终端界面，喜欢，能添加gcc编译器吗？如何查看python版本？<br>5、Notepad++<br>6、Gvim ：<a href="http://dantvt.is-programmer.com/posts/63161.html" target="_blank" rel="noopener">MSYS2 + MinGW-w64 + Git + gVim 环境配置</a><br>1、安装mys2：<a href="http://www.msys2.org/" target="_blank" rel="noopener">msys2官网</a>版本较旧，例如<code>msys2-x86_64-20161025.exe</code>，到<a href="http://sourceforge.net/projects/msys2/" target="_blank" rel="noopener">sourceforge.net</a>下载的版本是<code>msys2-x86_64-20170918.exe</code>，不要考虑x32或者i686版本，缺省安装到<code>c:\mys64</code>，添加Windows环境变量<code>HOME=C:\msys64</code>。按官网首页的提示用<code>pacman -Syu</code>以及<code>pacman -Su</code>更新。</p>
+<p>2、安装gcc：<code>pacman -Sl | grep gcc</code>查看gcc安装包，<code>pacman -S mingw-w64-x86_64-gcc</code>安装gcc到<code>mingw64</code>目录中，从开始菜单打开<code>MSYS2 MinGW 64-bit</code>，输入<code>gcc --version</code>验证安装。注意32bit、64bit以及没有标注bit的三个启动命令，都是通过<code>msys2_shell.cmd</code>启动的，但其他两个无法找到gcc，如何实现的？</p>
+<p>3、pacman -S git #会同时安装vim，HOME环境变量是咋回事？<br>7、bash<br>Windows上可以原生运行Linux bash，不推荐<br>8、Emacs</p>
+</blockquote>
+<p>实践0：通过MinGW安装gcc编译器，学习基本操作，对于学习语言本身足够了，而且也可以在Windows下运行</p>
+<p>参考：<a href="http://www.jianshu.com/p/535a3131ccd8" target="_blank" rel="noopener">GCC学习(1)之MinGW使用</a>，联网下了好多包，实在是不如在linux下爽快，还是在虚拟机下玩Linux好。</p>
+<blockquote>
+<p>下载<a href="https://sourceforge.net/projects/mingw/" target="_blank" rel="noopener">mingw0.62版</a>，缺省安装到C盘，标记4个包（mingw-developer-toolkit、mingw32-base、mingw32-gcc-g++、msys-base），从installation菜单apply。</p>
+<p>配置增加2个Windows环境变量并增加到path中：</p>
+<p>MINGW_HOME=C:\MinGW</p>
+<p>MINGW_MAKE_HOME=C:\MinGW\msys\1.0</p>
+<p>path ：%MINGW_HOME%bin;%MINGW_MAKE_HOME%bin</p>
+<p>在Windows终端中，输入gcc –version和make –version（注意是两个减号），能输出相应的版本信息，则证明配置成功了。</p>
+<p>注意，用gcc编译c，用g++编译cpp</p>
+<p>需要学习make语法<br>实践 1：通过Code::Blocks安装GCC<br>引用知乎的评价：</p>
+<p>MinGW已经不推荐使用。只有32位版，更新速度也不怎么样。</p>
+<p>MinGW-w64更新最快，基本上gcc更近后几周内就会跟进。32位和64位都提供。</p>
+<p>TDM-GCC，更新速度也不怎么样，同时提供32位和64位。</p>
+<p>涉及64位时，TDM-GCC和MinGW-w64还有一个重要的区别，64位的TDM-GCC既能编译64位binary，也能编译32位binary（用-m32参数）。而MinGW-w64无此能力，你需要装32位和64位的两套MinGW w64 tool chain来编译两种binary。<br>下载一个<a href="http://www.codeblocks.org/downloads" target="_blank" rel="noopener">Code::Blocks</a>。。然后只用里面MinGW的部分<br>注意下载带mingw的安装包，否则没有编译器，比如下载这个：codeblocks-16.01mingw-setup.exe</p>
+<p>安装后会提示没有配置c编译器路径，什么鬼？</p>
+<p>如何编译一个hello.cpp？需要new一个项目吗？<br>实践2：下载<a href="http://tdm-gcc.tdragon.net/download" target="_blank" rel="noopener">TDM-GCC</a>，最大安装<br>TDM-GCC只有Windows版本，不翻墙下载会很慢。</p>
+<p>下载64位版本，比如“<a href="http://sourceforge.net/projects/tdm-gcc/files/TDM-GCC%20Installer/tdm64-gcc-5.1.0-2.exe/download" target="_blank" rel="noopener">tdm64-gcc-5.1.0-2.exe</a>”。基于MingGW-w64，但是非官方。</p>
+<p>安装Notepad++ 64位版本</p>
+<p>安装TDM 64位版本，Windows的path会自动添加“C:\TDM-GCC-64\bin”，并没有设置Windows环境变量：“TDM-GCC”，path也不是这样添加：%TDM-GCC%\bin。</p>
+<p>Windows安装后没有生成任何图标，新建一个hello.cpp程序，在命令行下执行“gcc hello.cpp”即可编译出a.exe可执行文件。</p>
+<p>安装sublime text 3：注意选中右键菜单，打开hello.cpp，选择“C++ single file”，也可以正常编译。</p>
+<p>安装notepad++：如何配置？<a href="https://jingyan.baidu.com/article/14bd256e4cb86ebb6d261287.html" target="_blank" rel="noopener">Notepad++ 配合MinGW直接编译运行C/C++代码</a><br>参考：</p>
+</blockquote>
+<p><a href="http://blog.csdn.net/xiaozaq/article/details/73614061" target="_blank" rel="noopener">TDM-GCC and Notepad++ 运行c/c++程序 </a><br><a href="http://blog.csdn.net/crazycoder8848/article/details/25164471" target="_blank" rel="noopener">MinGW MinGW-w64 TDM-GCC等工具链之间的区别与联系</a><br><a href="https://xylc.cc/use-sublime-text-3-with-mingw-w64-to-compile-c-program/" target="_blank" rel="noopener">使用Sublime Text 3与MinGW-w64编译C语言程序</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/13/2017-crf3a69-e8-ae-be-e8-ae-a1-e6-80-bb-e7-bb-93/" rel="next" title="2017-CRF3A69设计总结">
+                <i class="fa fa-chevron-left"></i> 2017-CRF3A69设计总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/18/oi/" rel="prev" title="OI">
+                OI <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">244</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows下的编译器比较与选择（尽早在Linux下搞开发吧！）"><span class="nav-number">1.</span> <span class="nav-text">Windows下的编译器比较与选择（尽早在Linux下搞开发吧！）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows-10-C-开发环境的搭建"><span class="nav-number">2.</span> <span class="nav-text">Windows 10 C++开发环境的搭建</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
